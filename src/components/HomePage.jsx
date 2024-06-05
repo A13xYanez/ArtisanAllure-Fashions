@@ -5,6 +5,7 @@ import LogoScroller from './home-page/LogoScroller'
 import Productscroller from './home-page/Productscroller'
 import Banner1 from './home-page/Banner1'
 import Footer2 from './home-page/Footer2'
+import './Home.css'
 
 export default function HomePage() {
     return (
