@@ -1,5 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
+import { MdLockOutline } from "react-icons/md"
+import { FaUser } from "react-icons/fa6";
 
 export default function Authenticate() {
     const [active, setActive] = useState(false)
@@ -13,6 +15,9 @@ export default function Authenticate() {
             <div className={active ? 'container sign-up-mode' : 'container'}>
                 <div className="signin-signup">
                     <form action="" className="sign-in-form">
+                        <div className='lock-icon-container'>
+                            <MdLockOutline className='lock-icon' />
+                        </div>
                         <h2 className="title">Sign in</h2>
                         <div className="input-field">
                             <input type='email' required />
@@ -22,14 +27,27 @@ export default function Authenticate() {
                             <input type='password' required />
                             <span>Password*</span>
                         </div>
-                        <button className='btn'>SIGN IN</button>
+                        <button className='submit-btn'>SIGN IN</button>
                         <div className="form-links">
-                            <p>forgor</p>
-                            <p>already</p>
+                            <p>Forgot Password?</p>
+                            <p onClick={isActive}>Don't Have An Account? Sign Up</p>
                         </div>
                     </form>
                     <form action="" className="sign-up-form">
+                        <div className='lock-icon-container'>
+                            <FaUser className='user-icon' />
+                        </div>
                         <h2 className="title">Sign up</h2>
+                        <div className="name">
+                            <div className="input-field">
+                                <input type='text' required />
+                                <span>First Name*</span>
+                            </div>
+                            <div className="input-field">
+                                <input type='text' required />
+                                <span>Last Name*</span>
+                            </div>
+                        </div>
                         <div className="input-field">
                             <input type='email' required />
                             <span>Email Address*</span>
@@ -38,28 +56,25 @@ export default function Authenticate() {
                             <input type='password' required />
                             <span>Password*</span>
                         </div>
-                        <button className='btn'>SIGN UP</button>
+                        <div className="input-field">
+                            <input type='password' required />
+                            <span>Confirm Password*</span>
+                        </div>
+                        <button className='submit-btn'>SIGN UP</button>
                         <div className="form-links">
-                            <p>forgor</p>
-                            <p>already</p>
+                            <p onClick={isActive}>Already Have An Account? Sign In</p>
                         </div>
                     </form>
                 </div>
                 <div className="panels-container">
                     <div className="panel left-panel">
                         <div className="content">
-                            <h3>Have??</h3>
-                            <p>sdc</p>
-                            <button className="btn" onClick={isActive}>Sign in</button>
-                            <h1 className='image'>image</h1>
+                            
                         </div>
                     </div>
                     <div className="panel right-panel">
                         <div className="content">
-                            <h3>Have??</h3>
-                            <p>sdc</p>
-                            <button className="btn" onClick={isActive}>Sign in</button>
-                            <h1 className='image'>image</h1>
+                            
                         </div>
                     </div>
                 </div>
