@@ -215,10 +215,24 @@
     left: -50%;
     width: 100%;
     height: 100%;
-    background: #9c27b0;
     z-index: 6;
     transform: translateX(100%);
     transition: 1s ease-in-out;
+    background: linear-gradient(45deg, #190028, #220135, #32004f, #3a015c);
+    background-size: 300% 300%;
+    animation: background 12s ease-in-out infinite;
+}
+
+@keyframes background {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
 }
 
 .signin-signup {
