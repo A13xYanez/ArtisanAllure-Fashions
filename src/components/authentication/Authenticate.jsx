@@ -69,12 +69,16 @@ export default function Authenticate() {
                 <div className="panels-container">
                     <div className="panel left-panel">
                         <div className="content">
-                            
+                            <h1>ArtisanAllure Fashions</h1>
+                            <h2>Join today to find your next outfit</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
                         </div>
                     </div>
                     <div className="panel right-panel">
                         <div className="content">
-                            
+                            <h1>ArtisanAllure Fashions</h1>
+                            <h2>Login to deck out your wardrobe</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
                         </div>
                     </div>
                 </div>
