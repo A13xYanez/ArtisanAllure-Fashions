@@ -1,4 +1,5 @@
 import React from 'react'
+import './Authenticate.css'
 import { useState } from 'react'
 import { MdLockOutline } from "react-icons/md"
 import { FaUser } from "react-icons/fa6";
@@ -20,7 +21,7 @@ export default function Authenticate() {
                         </div>
                         <h2 className="title">Sign in</h2>
                         <div className="input-field">
-                            <input type='email' required />
+                            <input type='text' required />
                             <span>Email Address*</span>
                         </div>
                         <div className="input-field">
@@ -49,7 +50,7 @@ export default function Authenticate() {
                             </div>
                         </div>
                         <div className="input-field">
-                            <input type='email' required />
+                            <input type='text' required />
                             <span>Email Address*</span>
                         </div>
                         <div className="input-field">
@@ -70,15 +71,15 @@ export default function Authenticate() {
                     <div className="panel left-panel">
                         <div className="content">
                             <h1>ArtisanAllure Fashions</h1>
-                            <h2>Join today to find your next outfit</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                            <h2>Join today and explore the trends</h2>
+                            <p>Get access to all of our services. Free Shipping with no purchase requisite. Easy returns within 30 days of order delivery, no questions asked. Promotions and discounts held frequently to save you big.</p>
                         </div>
                     </div>
                     <div className="panel right-panel">
                         <div className="content">
                             <h1>ArtisanAllure Fashions</h1>
                             <h2>Login to deck out your wardrobe</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                            <p>Get access to all of our services. Free Shipping with no purchase requisite. Easy returns within 30 days of order delivery, no questions asked. Promotions and discounts held frequently to save you big.</p>
                         </div>
                     </div>
                 </div>
