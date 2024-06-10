@@ -1,6 +1,6 @@
 import React from "react"
 import Navbar from './home-page/Navbar'
-import Hero2 from './home-page/Hero2'
+import Hero from './home-page/Hero'
 import LogoScroller from './home-page/LogoScroller'
 import Productscroller from './home-page/Productscroller'
 import Banner1 from './home-page/Banner1'
@@ -11,7 +11,7 @@ export default function HomePage() {
     return (
         <>
             <Navbar /> 
-            <Hero2 />
+            <Hero />
             <LogoScroller />
             <Productscroller />
             <Banner1 />
