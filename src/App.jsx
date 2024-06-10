@@ -1,23 +1,16 @@
 import React from 'react'
 import './App.css'
-import Navbar from './components/home-page/Navbar'
-import Hero2 from './components/home-page/Hero2'
-import LogoScroller from './components/home-page/LogoScroller'
-import Productscroller from './components/home-page/Productscroller'
-import Banner1 from './components/home-page/Banner1'
-import Footer2 from './components/home-page/Footer2'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import HomePage from './components/HomePage'
+import Authenticate from './components/authentication/Authenticate'
 
 export default function App() {
   return (
-    <div className='app'>
-      <Navbar /> 
-      <Hero2 />
-      <LogoScroller />
-      <Productscroller />
-      <Banner1 />
-      <Productscroller />
-      <Productscroller />
-      <Footer2 />
-    </div>
+    <Router>
+        <Routes>
+          <Route path='/' element={<HomePage />} exact />
+          <Route path='/login' element={<Authenticate />} />
+        </Routes>
+    </Router>
   )
 }

@@ -38,7 +38,7 @@ export default function Navbar() {
                     <div className='nav-icons'>
                         <FaRegHeart className='wish-list icon' />
                         <PiShoppingCartSimple className='shopping-bag icon' />
-                        <FaRegUser className='account icon' />
+                        <Link to='/login'><FaRegUser className='account icon' /></Link>
                     </div>
                 </div>
             </div>
