@@ -14,3 +14,10 @@ const userSchema = new mongoose.Schema({
         });
 
 export const UserModel = mongoose.model('User', userSchema);
+
+// Create a new user
+export const createUser = async (values) => {
+    return UserModel(values)
+        .save()
+        .then((user) => user.toObject());
+};
