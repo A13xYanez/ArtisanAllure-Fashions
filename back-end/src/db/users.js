@@ -21,3 +21,29 @@ export const createUser = async (values) => {
         .save()
         .then((user) => user.toObject());
 };
+
+// Find a user by their email
+export const getUserByEmail = async (email, includeCredentials) => {
+    if (includeCredentials) {
+        return UserModel.findOne({ email }).select(
+            'authentication.password authentication.salt'
+        );
+    }
+
+    return UserModel.findOne({ email });
+};
+
+// Find a user by their given session token
+export const getUserBySessionToken = async (session_token) => {
+    return UserModel.findOne({
+        'authentication.session_token': session_token,
+    }).select('authentication.salt');
+};
+
+
+// Gives the user a new session token
+export const updateUserSessionToken = async (id, session_token) => {
+    return UserModel.findByIdAndUpdate(id, {
+        'authentication.session_token': session_token,
+    });
+};

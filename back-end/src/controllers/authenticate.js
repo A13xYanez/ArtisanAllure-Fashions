@@ -1,5 +1,6 @@
 import express from 'express';
 import { createUser } from '../db/users.js';
+import { getUserByEmail } from '../db/users.js';
 import { generateRandomString, authentication } from '../helpers/index.js';
 import pkg from 'lodash';
 const { get, merge } = pkg;
@@ -53,4 +54,48 @@ export const register = async (req, res) => {
             error: 'Invalid request...',
         });
     }
+};
+
+// checks the users login credentials with the database
+export const login = async (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({
+            error: 'Invalid email or password...',
+        });
+    }
+
+    const user = await getUserByEmail(email, true);
+
+    if (!user) {
+        return res.status(400).json({
+            error: 'Invalid email or password...',
+        });
+    }
+
+    const { password: hashedPassword, salt } = user.authentication;
+
+    if (authentication(salt, password) !== hashedPassword) {
+        return res.status(400).json({
+            error: 'Invalid email or password...',
+        });
+    }
+
+    user.authentication.session_token = authentication(
+        generateRandomString(),
+        user._id.toString()
+    );
+
+    await user.save();
+
+    res.cookie('session_token', user.authentication.session_token, {
+        domain: 'localhost',
+        path: '/',
+        secure: true,
+        httpOnly: true,
+        sameSite: 'none',
+    });
+
+    return res.sendStatus(200);
 };
