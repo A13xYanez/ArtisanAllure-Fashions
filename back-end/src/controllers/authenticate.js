@@ -1,5 +1,6 @@
 import express from 'express';
 import { createUser } from '../db/users.js';
+import { generateRandomString, authentication } from '../helpers/index.js';
 import pkg from 'lodash';
 const { get, merge } = pkg;
 
@@ -18,7 +19,7 @@ export const register = async (req, res) => {
     }
 
     try {
-        const { first_name, last_name, username, email, password, date_of_birth } = req.body;
+        const { first_name, last_name, username, email, password } = req.body;
 
         const userExists = await getUserByEmail(email);
 
