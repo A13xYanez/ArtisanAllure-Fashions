@@ -17,7 +17,7 @@ export default function Authenticate() {
                 <div className="signin-signup">
                     <form action="" className="sign-in-form">
                         <div className='lock-icon-container'>
-                            <MdLockOutline className='lock-icon' />
+                            <MdLockOutline className='lock' />
                         </div>
                         <h2 className="title">Sign in</h2>
                         <div className="input-field">
