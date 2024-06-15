@@ -1,7 +1,7 @@
-import express from 'express';
 import { createUser } from '../db/users.js';
-import { getUserByEmail } from '../db/users.js';
 import { generateRandomString, authentication } from '../helpers/index.js';
+import { getUserByEmail } from '../db/users.js';
+
 import pkg from 'lodash';
 const { get, merge } = pkg;
 
@@ -20,11 +20,11 @@ export const register = async (req, res) => {
     }
 
     try {
-        const { first_name, last_name, username, email, password } = req.body;
+        const { first_name, last_name, email, password } = req.body;
 
-        const userExists = await getUserByEmail(email);
+    const userExists = await getUserByEmail(email);
 
-        if (userExists) {
+    if (userExists) {
         return res.status(400).json({
             error: 'User already exists...',
         });
@@ -32,8 +32,7 @@ export const register = async (req, res) => {
 
     const salt = generateRandomString();
 
-    const user = createUser({
-        username,
+    const user = await createUser({
         email,
         authentication: {
             password: authentication(salt, password),
@@ -42,19 +41,17 @@ export const register = async (req, res) => {
         user_info: {
             first_name,
             last_name,
-            date_of_birth,
         },
     });
 
     return res.sendStatus(200);
-    
     } catch (error) {
         console.error('Error registering user: ', error);
-        return res.status(400).json({
-            error: 'Invalid request...',
-        });
+        return res.sendStatus(500);
     }
 };
+
+
 
 // checks the users login credentials with the database
 export const login = async (req, res) => {
@@ -69,9 +66,9 @@ export const login = async (req, res) => {
     const user = await getUserByEmail(email, true);
 
     if (!user) {
-        return res.status(400).json({
-            error: 'Invalid email or password...',
-        });
+    return res.status(400).json({
+        error: 'Invalid email or password...',
+    });
     }
 
     const { password: hashedPassword, salt } = user.authentication;
