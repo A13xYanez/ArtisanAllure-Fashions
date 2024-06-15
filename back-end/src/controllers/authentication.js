@@ -1,11 +1,12 @@
 import { createUser } from '../db/users.js';
 import { generateRandomString, authentication } from '../helpers/index.js';
 import { getUserByEmail } from '../db/users.js';
-
 import pkg from 'lodash';
 const { get, merge } = pkg;
 
-// creates a new user into the database
+
+
+// Creates a new user into the database
 export const register = async (req, res) => {
     const registrationRequestBodyValid = get(
         req,
@@ -53,7 +54,7 @@ export const register = async (req, res) => {
 
 
 
-// checks the users login credentials with the database
+// Checks the users login credentials with the database
 export const login = async (req, res) => {
     const { email, password } = req.body;
 
@@ -93,6 +94,22 @@ export const login = async (req, res) => {
         httpOnly: true,
         sameSite: 'none',
     });
+
+    return res.sendStatus(200);
+};
+
+
+
+// Changes the users session token to revoke access
+export const logout = async (req, res) => {
+    const user = get(req, 'identity');
+
+    user.authentication.session_token = authentication(
+        generateRandomString(),
+        user._id.toString()
+    );
+
+    await user.save();
 
     return res.sendStatus(200);
 };

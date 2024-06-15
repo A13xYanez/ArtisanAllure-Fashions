@@ -1,5 +1,8 @@
 import mongoose from 'mongoose';
 
+
+
+// Schema for user data
 const userSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     authentication: {
@@ -17,12 +20,16 @@ const userSchema = new mongoose.Schema({
 
 export const UserModel = mongoose.model('User', userSchema);
 
+
+
 // Create a new user
 export const createUser = async (values) => {
     return UserModel(values)
         .save()
         .then((user) => user.toObject());
 };
+
+
 
 // Find a user by their email
 export const getUserByEmail = async (email, includeCredentials) => {
@@ -35,12 +42,15 @@ export const getUserByEmail = async (email, includeCredentials) => {
     return UserModel.findOne({ email });
 };
 
+
+
 // Find a user by their given session token
 export const getUserBySessionToken = async (session_token) => {
     return UserModel.findOne({
         'authentication.session_token': session_token,
     }).select('authentication.salt');
 };
+
 
 
 // Gives the user a new session token
