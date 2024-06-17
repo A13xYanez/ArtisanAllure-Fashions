@@ -1,27 +1,42 @@
-import React from 'react'
-import './Authenticate.css'
-import { useState } from 'react'
-import { MdLockOutline } from "react-icons/md"
-import { FaUser } from "react-icons/fa6"
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import React from 'react';
+import './Authenticate.css';
+import { useState } from 'react';
+import { MdLockOutline } from "react-icons/md";
+import { FaUser } from "react-icons/fa6";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Authenticate() {
-    const [active, setActive] = useState(false)
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const navigate = useNavigate()
+    const [active, setActive] = useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [first_name, setFirst_Name] = useState("");
+    const [last_name, setLast_Name] = useState("");
+    const navigate = useNavigate();
 
     function isActive() {
-        setActive(!active)
-    }
+        setActive(!active);
+    };
 
     function loginUser(e) {
         e.preventDefault();
         axios.post("http://localhost:8080/auth/login", { email, password })
-        .then((res) => { navigate("/") })
-        .catch((error) => { console.error(error.response.data.error) })
-    }
+        .then((res) => { navigate("/"); })
+        .catch((error) => { console.error(error.response.data.error); });
+    };
+
+    function registerUser(e) {
+        e.preventDefault();
+
+        if (password != confirmPassword) {
+            return console.error("Passwords do not match.")
+        }
+
+        axios.post("http://localhost:8080/auth/register", { email, password, first_name, last_name })
+        .then((res) => { navigate("/"); })
+        .catch((error) => { console.error(error.response.data.error); });
+    };
 
     return (
         <div className="auth-page">
@@ -46,31 +61,31 @@ export default function Authenticate() {
                             <p onClick={isActive}>Don't Have An Account? Sign Up</p>
                         </div>
                     </form>
-                    <form action="" className="sign-up-form">
+                    <form className="sign-up-form" autoComplete='off' onSubmit={registerUser}>
                         <div className='lock-icon-container'>
                             <FaUser className='user-icon' />
                         </div>
                         <h2 className="title">Sign up</h2>
                         <div className="name">
                             <div className="input-field">
-                                <input type='text' required />
+                                <input type='text' required onChange={e => setFirst_Name(e.target.value)} />
                                 <span>First Name*</span>
                             </div>
                             <div className="input-field">
-                                <input type='text' required />
+                                <input type='text' required onChange={e => setLast_Name(e.target.value)} />
                                 <span>Last Name*</span>
                             </div>
                         </div>
                         <div className="input-field">
-                            <input type='text' required />
+                            <input type='text' required onChange={e => setEmail(e.target.value)} />
                             <span>Email Address*</span>
                         </div>
                         <div className="input-field">
-                            <input type='password' required />
+                            <input type='password' required onChange={e => setPassword(e.target.value)} />
                             <span>Password*</span>
                         </div>
                         <div className="input-field">
-                            <input type='password' required />
+                            <input type='password' required onChange={e => setConfirmPassword(e.target.value)} />
                             <span>Confirm Password*</span>
                         </div>
                         <button className='submit-btn'>SIGN UP</button>
@@ -97,5 +112,5 @@ export default function Authenticate() {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
