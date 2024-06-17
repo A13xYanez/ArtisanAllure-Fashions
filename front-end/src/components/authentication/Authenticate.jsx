@@ -2,30 +2,42 @@ import React from 'react'
 import './Authenticate.css'
 import { useState } from 'react'
 import { MdLockOutline } from "react-icons/md"
-import { FaUser } from "react-icons/fa6";
+import { FaUser } from "react-icons/fa6"
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export default function Authenticate() {
     const [active, setActive] = useState(false)
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const navigate = useNavigate()
 
     function isActive() {
         setActive(!active)
+    }
+
+    function loginUser(e) {
+        e.preventDefault();
+        axios.post("http://localhost:8080/auth/login", { email, password })
+        .then((res) => { navigate("/") })
+        .catch((error) => { console.error(error.response.data.error) })
     }
 
     return (
         <div className="auth-page">
             <div className={active ? 'container sign-up-mode' : 'container'}>
                 <div className="signin-signup">
-                    <form action="" className="sign-in-form">
+                    <form className="sign-in-form" autoComplete='off' onSubmit={loginUser}>
                         <div className='lock-icon-container'>
                             <MdLockOutline className='lock' />
                         </div>
                         <h2 className="title">Sign in</h2>
                         <div className="input-field">
-                            <input type='text' required />
+                            <input type='text' required onChange={e => setEmail(e.target.value)} />
                             <span>Email Address*</span>
                         </div>
                         <div className="input-field">
-                            <input type='password' required />
+                            <input type='password' required onChange={e => setPassword(e.target.value)} />
                             <span>Password*</span>
                         </div>
                         <button className='submit-btn'>SIGN IN</button>
