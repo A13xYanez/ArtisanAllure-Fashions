@@ -25,15 +25,34 @@ export const ProductModel = mongoose.model('Product', productSchema);
 // Gets the featured products by newest to display on the homepage
 export const fetchHomeFeaturedProducts = async () => {
   try {
+    const itemsToFetch = 5; // maximum items to fetch
+
     // Fetch the newest products sorted by arrival_date in descending order
-    const itemsToFetch = 5;
     const products = await ProductModel.find()
-      .limit(itemsToFetch)
+      .limit(itemsToFetch) // limits the amount of products fetched
       .sort({ arrival_date: -1 }) // -1 for descending order
 
     return products;
   } catch (error) {
-    console.error('Error fetching products:', error);
+    console.error('Error fetching featured products:', error);
     throw error;
   }
 };
+
+
+
+// Gets the on sale products to display on the homepage
+export const fetchHomeSaleProducts = async () => {
+  try {
+    const itemsToFetch = 5; // maximum items to fetch
+
+    const products = await ProductModel.find()
+      .limit(itemsToFetch)
+      .sort({ sale_price: -1 })
+
+    return products;
+  } catch (error) {
+    console.error('Error fetching on sale products:', error);
+    throw error;
+  }
+}
