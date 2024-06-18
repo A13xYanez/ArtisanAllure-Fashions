@@ -76,3 +76,22 @@ export const fetchHomeTopRatedProducts = async () => {
     throw error;
   }
 };
+
+
+
+// Gets the products filtered by gender male
+export const fetchFilterMaleProducts = async (page) => {
+  try {
+    const itemsToFetch = 20; // maximum items to fetch
+
+    // Fetch the products filtered by gender and limits products by page
+    const products = await ProductModel.find({ gender: "Male" })
+      .skip((page - 1) * itemsToFetch)
+      .limit(itemsToFetch)
+      
+    return products;
+  } catch (error) {
+    console.error('Error fetching male products:', error);
+    throw error;
+  }
+}
