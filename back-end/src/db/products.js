@@ -46,9 +46,10 @@ export const fetchHomeSaleProducts = async () => {
   try {
     const itemsToFetch = 5; // maximum items to fetch
 
+     // Fetch the products on sale sorted by sale_price
     const products = await ProductModel.find()
-      .limit(itemsToFetch)
-      .sort({ sale_price: -1 })
+      .limit(itemsToFetch) // limits the amount of products fetched
+      .sort({ sale_price: -1 }) // -1 for descending order
 
     return products;
   } catch (error) {
@@ -56,3 +57,22 @@ export const fetchHomeSaleProducts = async () => {
     throw error;
   }
 }
+
+
+
+// Gets the featured products by newest to display on the homepage
+export const fetchHomeTopRatedProducts = async () => {
+  try {
+    const itemsToFetch = 5; // maximum items to fetch
+
+    // Fetch the highly rated products
+    const products = await ProductModel.find()
+      .limit(itemsToFetch) // limits the amount of products fetched
+      .sort({ ratings: -1 }) // -1 for descending order
+
+    return products;
+  } catch (error) {
+    console.error('Error fetching highly rated products:', error);
+    throw error;
+  }
+};
