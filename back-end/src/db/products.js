@@ -151,3 +151,23 @@ export const fetchFilterOnSaleProducts = async (page) => {
     throw error;
   }
 };
+
+
+
+// Gets the products filtered by newest
+export const fetchFilterFeaturedProducts = async (page) => {
+  try {
+    const itemsToFetch = 20; // maximum items to fetch
+
+    // Fetch the products filtered by newest and limits products by page
+    const products = await ProductModel.find()
+      .skip((page - 1) * itemsToFetch)
+      .limit(itemsToFetch)
+      .sort({ arrival_date: -1 }) // -1 for descending order
+      
+    return products;
+  } catch (error) {
+    console.error('Error fetching featured products:', error);
+    throw error;
+  }
+};
