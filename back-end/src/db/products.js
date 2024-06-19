@@ -79,38 +79,57 @@ export const fetchHomeTopRatedProducts = async () => {
 
 
 
-// Gets the products filtered by gender male
-export const fetchFilterMaleProducts = async (page) => {
+// Gets the products filtered by gender male and adult
+export const fetchFilterMensProducts = async (page) => {
   try {
     const itemsToFetch = 20; // maximum items to fetch
 
-    // Fetch the products filtered by gender and limits products by page
-    const products = await ProductModel.find({ gender: "Male" })
+    // Fetch the products filtered by gender, age, and limits products by page
+    const products = await ProductModel.find({ gender: "Male", age_group: "Adult" })
       .skip((page - 1) * itemsToFetch)
       .limit(itemsToFetch)
       
     return products;
   } catch (error) {
-    console.error('Error fetching male products:', error);
+    console.error('Error fetching mens products:', error);
     throw error;
   }
 };
 
 
 
-// Gets the products filtered by gender female
-export const fetchFilterFemaleProducts = async (page) => {
+// Gets the products filtered by gender female and adult
+export const fetchFilterWomansProducts = async (page) => {
   try {
     const itemsToFetch = 20; // maximum items to fetch
 
-    // Fetch the products filtered by gender and limits products by page
-    const products = await ProductModel.find({ gender: "Female" })
+    // Fetch the products filtered by gender, age, and limits products by page
+    const products = await ProductModel.find({ gender: "Female", age_group: "Adult" })
       .skip((page - 1) * itemsToFetch)
       .limit(itemsToFetch)
       
     return products;
   } catch (error) {
-    console.error('Error fetching female products:', error);
+    console.error('Error fetching womans products:', error);
+    throw error;
+  }
+};
+
+
+
+// Gets the products filtered by age group kids
+export const fetchFilterKidsProducts = async (page) => {
+  try {
+    const itemsToFetch = 20; // maximum items to fetch
+
+    // Fetch the products filtered by age and limits products by page
+    const products = await ProductModel.find({ age_group: "Kid" })
+      .skip((page - 1) * itemsToFetch)
+      .limit(itemsToFetch)
+      
+    return products;
+  } catch (error) {
+    console.error('Error fetching kids products:', error);
     throw error;
   }
 };
