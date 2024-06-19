@@ -47,9 +47,8 @@ export const fetchHomeSaleProducts = async () => {
     const itemsToFetch = 5; // maximum items to fetch
 
      // Fetch the products on sale sorted by sale_price
-    const products = await ProductModel.find()
+    const products = await ProductModel.find({  sale_price: { $gt: 0 } })
       .limit(itemsToFetch) // limits the amount of products fetched
-      .sort({ sale_price: -1 }) // -1 for descending order
 
     return products;
   } catch (error) {
@@ -130,6 +129,25 @@ export const fetchFilterKidsProducts = async (page) => {
     return products;
   } catch (error) {
     console.error('Error fetching kids products:', error);
+    throw error;
+  }
+};
+
+
+
+// Gets the products filtered by items on sale
+export const fetchFilterOnSaleProducts = async (page) => {
+  try {
+    const itemsToFetch = 20; // maximum items to fetch
+
+    // Fetch the products filtered by sale price grater than 0 and limits products by page
+    const products = await ProductModel.find({  sale_price: { $gt: 0 } })
+      .skip((page - 1) * itemsToFetch)
+      .limit(itemsToFetch)
+      
+    return products;
+  } catch (error) {
+    console.error('Error fetching on sale products:', error);
     throw error;
   }
 };
