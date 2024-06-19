@@ -56,7 +56,7 @@ export const fetchHomeSaleProducts = async () => {
     console.error('Error fetching on sale products:', error);
     throw error;
   }
-}
+};
 
 
 
@@ -94,4 +94,23 @@ export const fetchFilterMaleProducts = async (page) => {
     console.error('Error fetching male products:', error);
     throw error;
   }
-}
+};
+
+
+
+// Gets the products filtered by gender female
+export const fetchFilterFemaleProducts = async (page) => {
+  try {
+    const itemsToFetch = 20; // maximum items to fetch
+
+    // Fetch the products filtered by gender and limits products by page
+    const products = await ProductModel.find({ gender: "Female" })
+      .skip((page - 1) * itemsToFetch)
+      .limit(itemsToFetch)
+      
+    return products;
+  } catch (error) {
+    console.error('Error fetching female products:', error);
+    throw error;
+  }
+};
