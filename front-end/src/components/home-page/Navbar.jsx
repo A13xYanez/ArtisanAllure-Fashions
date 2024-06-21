@@ -23,7 +23,7 @@ export default function Navbar() {
                 <img className='logo' src={logo4} />
                 <div className={isOpen ? 'nav--breakpoint-open' : 'nav--breakpoint'}>
                     <div className='nav--links'>
-                        <p>New & Featured</p>
+                        <Link to='/featured'><p>New & Featured</p></Link>
                         <p>Men</p>
                         <p>Women</p>
                         <p>Kids</p>
