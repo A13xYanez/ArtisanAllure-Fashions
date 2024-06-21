@@ -7,11 +7,11 @@ import { BsFillCartCheckFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 
-export default function Productscroller() {
+export default function TopRatedProductscroller() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/home/featured')
+        axios.get('http://localhost:8080/home/ratings')
         .then((res) => { setProducts(res.data); })
         .catch((error) => { console.error(error.response.data.error); });
     }, []);
@@ -19,7 +19,7 @@ export default function Productscroller() {
     return (
         <section className="product">
             <div className="section-header">
-                <h2 className="product-category">best selling</h2>
+                <h2 className="product-category">Top Rated</h2>
                 <button>Explore More</button>
             </div>
             <button class="pre-btn">{<IoIosArrowForward className="arrow-icon" />}</button>

@@ -1,11 +1,13 @@
-import React from "react"
-import Navbar from './home-page/Navbar'
-import Hero from './home-page/Hero'
-import LogoScroller from './home-page/LogoScroller'
-import Productscroller from './home-page/Productscroller'
-import Banner1 from './home-page/Banner1'
-import Footer2 from './home-page/Footer2'
-import './Home.css'
+import React from "react";
+import Navbar from './home-page/Navbar';
+import Hero from './home-page/Hero';
+import LogoScroller from './home-page/LogoScroller';
+import FeaturedProductscroller from './home-page/FeaturedProductscroller';
+import TopRatedProductscroller from './home-page/TopRatedProductscroller';
+import OnSaleProductscroller from './home-page/OnSaleProductscroller';
+import Banner1 from './home-page/Banner1';
+import Footer2 from './home-page/Footer2';
+import './Home.css';
 
 export default function HomePage() {
     return (
@@ -13,11 +15,11 @@ export default function HomePage() {
             <Navbar /> 
             <Hero />
             <LogoScroller />
-            <Productscroller />
+            <FeaturedProductscroller />
             <Banner1 />
-            <Productscroller />
-            <Productscroller />
+            <TopRatedProductscroller />
+            <OnSaleProductscroller />
             <Footer2 />
         </>
     )
-}
+};
