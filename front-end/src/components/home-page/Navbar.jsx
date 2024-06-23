@@ -23,11 +23,11 @@ export default function Navbar() {
                 <img className='logo' src={logo4} />
                 <div className={isOpen ? 'nav--breakpoint-open' : 'nav--breakpoint'}>
                     <div className='nav--links'>
-                        <Link to='/featured'><p>New & Featured</p></Link>
-                        <p>Men</p>
-                        <p>Women</p>
-                        <p>Kids</p>
-                        <p>Sale</p>
+                        <Link className='link' to='/featured'><p>New & Featured</p></Link>
+                        <Link className='link'><p>Men</p></Link>
+                        <Link className='link'><p>Women</p></Link>
+                        <Link className='link'><p>Kids</p></Link>
+                        <Link className='link'><p>Sale</p></Link>
                         <IoClose onClick={iconClicked} className={isOpen ? 'close-menu' : 'close-menu-hidden'} />
                     </div>
                     <div className='nav--extras'>
