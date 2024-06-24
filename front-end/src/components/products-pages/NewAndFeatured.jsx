@@ -7,7 +7,7 @@ export default function NewAndFeatured() {
     return (
         <>
             <Navbar /> 
-            <Products />
+            <Products urlPath={'products/featured'} />
         </>
     )
 };

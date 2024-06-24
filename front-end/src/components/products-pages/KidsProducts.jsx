@@ -7,7 +7,7 @@ export default function KidsProducts() {
     return (
         <>
             <Navbar /> 
-            <Products />
+            <Products urlPath={'products/kids'} />
         </>
     )
 };
