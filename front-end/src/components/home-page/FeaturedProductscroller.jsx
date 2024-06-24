@@ -39,7 +39,7 @@ export default function FeaturedProductscroller() {
                         </div>
                         <div className="product-info">
                             <div className="info-title">
-                                <h2 className="product-brand">brand</h2>
+                                <h2 className="product-brand">{product.brand}</h2>
                                 <div className="review-stars">
                                     <GoStarFill />
                                     <GoStarFill />
