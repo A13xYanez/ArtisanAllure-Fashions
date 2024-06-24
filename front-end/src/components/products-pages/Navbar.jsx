@@ -20,14 +20,14 @@ export default function Navbar() {
         <nav>
             <div className='nav-filler'></div>
             <div className='nav'>
-                <img className='logo' src={logo4} />
+                <Link to='/'><img className='logo' src={logo4} /></Link>
                 <div className={isOpen ? 'nav--breakpoint-open' : 'nav--breakpoint'}>
                     <div className='nav--links'>
-                        <Link  className="link" to='/featured'><p>New & Featured</p></Link>
-                        <Link className="link"><p>Men</p></Link>
-                        <Link className="link"><p>Women</p></Link>
-                        <Link className="link"><p>Kids</p></Link>
-                        <Link className="link"><p>Sale</p></Link>
+                        <Link className="link" to='/featured'><p>New & Featured</p></Link>
+                        <Link className="link" to='/mens'><p>Men</p></Link>
+                        <Link className="link" to='/womans'><p>Women</p></Link>
+                        <Link className="link" to='/kids'><p>Kids</p></Link>
+                        <Link className="link" to='/sales'><p>Sale</p></Link>
                         <IoClose onClick={iconClicked} className={isOpen ? 'close-menu' : 'close-menu-hidden'} />
                     </div>
                     <div className='nav--extras'>

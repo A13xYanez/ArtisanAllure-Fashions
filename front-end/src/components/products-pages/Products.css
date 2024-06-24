@@ -272,7 +272,7 @@
 .dropdown-icon-container {
     position: absolute;
     right: 1;
-    padding: 0 0 0 150px;
+    padding: 0 0 0 220px;
     height: 50px;
     display: flex;
     align-items: center;
@@ -443,5 +443,19 @@
 .review-stars p {
     margin-right: 10px;
     font-family: sans-serif;
+    font-weight: 300;
+}
+
+.dropdown-text {
+    position: absolute;
+    left: 1;
+    padding: 0 10px;
+    font-family: sans-serif;
+    pointer-events: none;
+    transform: translate(16px) translateY(-5px);
+    font-size: .8rem;
+    background: white;
+    z-index: 3;
+    color: darkgray;
     font-weight: 300;
 }

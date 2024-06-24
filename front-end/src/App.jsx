@@ -5,6 +5,10 @@ import HomePage from './components/HomePage';
 import Authenticate from './components/authentication/Authenticate';
 import ShoppingCart from './components/shopping-cart/ShoppingCart';
 import NewAndFeatured from './components/products-pages/NewAndFeatured';
+import MensProducts from './components/products-pages/MenProducts';
+import WomansProducts from './components/products-pages/WomansProducts';
+import KidsProducts from './components/products-pages/KidsProducts';
+import SalesProducts from './components/products-pages/SalesProducts';
 
 export default function App() {
   return (
@@ -14,6 +18,10 @@ export default function App() {
           <Route path='/login' element={<Authenticate />} />
           <Route path='/cart' element={<ShoppingCart />} />
           <Route path='/featured' element={<NewAndFeatured />} />
+          <Route path='/mens' element={<MensProducts />} />
+          <Route path='/womans' element={<WomansProducts />} />
+          <Route path='/kids' element={<KidsProducts />} />
+          <Route path='/sales' element={<SalesProducts />} />
         </Routes>
     </Router>
   )

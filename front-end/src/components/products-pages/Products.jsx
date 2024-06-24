@@ -22,11 +22,10 @@ export default function Products() {
                 </div>
                 <div className='dropdown-container'>
                     <select className='filter-dropdown'>
-                        <option>option 1</option>
-                        <option>option 2</option>
-                        <option>option 3</option>
-                        <option>option 4</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
                     </select>
+                    <span className='dropdown-text'>Sort by</span>
                     <div className="dropdown-icon-container">
                         <IoIosArrowDown className='dropdown-icon' />
                     </div>
