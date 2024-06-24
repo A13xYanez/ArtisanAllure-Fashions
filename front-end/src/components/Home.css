@@ -77,13 +77,16 @@
 
 .nav--links {
     display: flex;
+    align-items: center;
     font-size: larger;
     color: whitesmoke;
 }
 
-.nav--links > p {
+.link {
     font-family: sans-serif;
-    margin: 15px;
+    margin: 0 15px 0 15px;
+    color: whitesmoke;
+    text-decoration: none;
 }
 
 .nav--extras {
