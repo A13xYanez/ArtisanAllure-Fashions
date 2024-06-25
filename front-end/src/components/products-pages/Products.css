@@ -296,7 +296,7 @@
     width: 300px;
     min-height: 520px;
     margin: 0;
-    margin-bottom: 80px;
+    margin-bottom: 30px;
 }
 
 .product-image {
@@ -462,4 +462,21 @@
     z-index: 3;
     color: darkgray;
     font-weight: 300;
+}
+
+.pages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pages h2 {
+    font-family: sans-serif;
+    margin: 0 15px 0 15px;
+    user-select: none;
+}
+
+.page-arrow {
+    cursor: pointer;
+    font-size: 20px;
 }

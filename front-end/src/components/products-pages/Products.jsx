@@ -7,16 +7,19 @@ import { GoStarFill } from "react-icons/go";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { BsFillCartCheckFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 import img from './assets/47-BRAND-Los-Angeles-Dodgers-47-Clean-Up-Strapback-Hat.jpg';
 
 export default function Products(props) {
     const [products, setProducts] = useState([]);
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/${props.urlPath}/1`)
+        axios.get(`http://localhost:8080/${props.urlPath}/${page}`)
         .then((res) => { setProducts(res.data); })
         .catch((error) => { console.error(error.response.data.error); });
-    }, []);
+    }, [page]);
     return (
         <div className='product-page'>
             <div className='product-filters'>
@@ -71,6 +74,11 @@ export default function Products(props) {
                         </div>
                     </div>
                 ))}
+            </div>
+            <div className="pages">
+                <FaArrowLeft className='page-arrow' onClick={() => page != 1 ? setPage(page - 1) : setPage(page)} />
+                <h2>{page}</h2>
+                <FaArrowRight className='page-arrow' onClick={() => setPage(page + 1)} />
             </div>
         </div>
     )
