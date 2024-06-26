@@ -7,7 +7,7 @@ export default function SalesProducts() {
     return (
         <>
             <Navbar /> 
-            <Products />
+            <Products urlPath={'products/sale'} />
         </>
     )
 };
