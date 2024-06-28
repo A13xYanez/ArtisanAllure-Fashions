@@ -38,7 +38,7 @@ export default function Navbar() {
                             <input className='search-input' type='text' placeholder='Search' />
                         </div>
                         <div className='nav-icons'>
-                            <FaRegHeart className='wish-list icon' />
+                            <Link to='/wishlist'><FaRegHeart className='wish-list icon' /></Link>
                             <Link to='/cart'><PiShoppingCartSimple className='shopping-bag icon' /></Link>
                             <Link to='/login'><FaRegUser className='account icon' /></Link>
                         </div>
