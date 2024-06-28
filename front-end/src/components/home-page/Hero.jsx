@@ -1,5 +1,6 @@
 import React from 'react'
 import img from './assets/hero2.png'
+import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
 
 export default function Hero() {
@@ -9,13 +10,59 @@ export default function Hero() {
                 <img src={img} className="hero-img2" />
             </div>
             <div className="hero-text2">
-                <h6>FIND YOUR STYLE</h6>
-                <h1>New Arrivals</h1>
-                <h2>Ready To Rock</h2>
-                <p>Discover Our New & Featured Collections</p>
-                <button className="hero-button2">
-                    Shop Now {<FaArrowRight />}
-                </button>
+                <div className="hero-text-box">
+                    <motion.h6
+                        initial={{
+                            x: -500,
+                        }}
+                        animate={{
+                            x: 0,
+                        }}
+                        transition={{
+                            duration: .35,
+                    }}>FIND YOUR STYLE</motion.h6>
+                    <motion.h1
+                        initial={{
+                            x: -500,
+                        }}
+                        animate={{
+                            x: 0,
+                        }}
+                        transition={{
+                            duration: .50, 
+                    }}>New Arrivals</motion.h1>
+                    <motion.h2
+                        initial={{
+                            x: -500,
+                        }}
+                        animate={{
+                            x: 0,
+                        }}
+                        transition={{
+                            duration: .65,
+                    }}>Ready To Rock</motion.h2>
+                    <motion.p
+                        initial={{
+                            x: -500,
+                        }}
+                        animate={{
+                            x: 0,
+                        }}
+                        transition={{
+                            duration: .80,
+                    }}>Discover Our New & Featured Collections With Frequent Updates</motion.p>
+                    <motion.button className="hero-button2"
+                    initial={{
+                        x: -500,
+                    }}
+                    animate={{
+                        x: 0,
+                    }}
+                    transition={{
+                        duration: .95,
+                        ease: 'circIn'
+                    }}>Shop Now {<FaArrowRight />}</motion.button>
+                </div>
             </div>
         </section>
     )
