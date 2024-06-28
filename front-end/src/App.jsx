@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import Authenticate from './components/authentication/Authenticate';
 import ShoppingCart from './components/shopping-cart/ShoppingCart';
+import Wishlist from './components/wishlist-page/Wishlist';
 import NewAndFeatured from './components/products-pages/NewAndFeatured';
 import MensProducts from './components/products-pages/MenProducts';
 import WomansProducts from './components/products-pages/WomansProducts';
@@ -17,6 +18,7 @@ export default function App() {
           <Route path='/' element={<HomePage />} exact />
           <Route path='/login' element={<Authenticate />} />
           <Route path='/cart' element={<ShoppingCart />} />
+          <Route path='/wishlist' element={<Wishlist />} />
           <Route path='/featured' element={<NewAndFeatured />} />
           <Route path='/mens' element={<MensProducts />} />
           <Route path='/womans' element={<WomansProducts />} />
