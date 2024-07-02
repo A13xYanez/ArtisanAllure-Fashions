@@ -3,9 +3,10 @@ import Navbar from './Navbar';
 import Hero from './Hero';
 import LogoScroller from './LogoScroller';
 import FeaturedProductscroller from './FeaturedProductscroller';
+import Promo from './Promo';
 import TopRatedProductscroller from './TopRatedProductscroller';
 import OnSaleProductscroller from './OnSaleProductscroller';
-import Banner1 from './Banner1';
+import Benefits from "./Benefits";
 import Footer2 from './Footer2';
 import './Home.css';
 
@@ -16,9 +17,10 @@ export default function HomePage() {
             <Hero />
             <LogoScroller />
             <FeaturedProductscroller />
-            <Banner1 />
+            <Promo />
             <TopRatedProductscroller />
             <OnSaleProductscroller />
+            <Benefits />
             <Footer2 />
         </>
     )

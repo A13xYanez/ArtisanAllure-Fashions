@@ -17,30 +17,30 @@ export default function OnSaleProductscroller() {
     }, []);
 
     return (
-        <section className="product">
-            <div className="section-header">
-                <h2 className="product-category">On Sale</h2>
+        <section className="product-home">
+            <div className="section-header-home">
+                <h2 className="product-category-home">On Sale</h2>
                 <button>Explore More</button>
             </div>
-            <button class="pre-btn">{<IoIosArrowForward className="arrow-icon" />}</button>
-            <button class="nxt-btn">{<IoIosArrowForward className="arrow-icon" />}</button>
-            <button className="pre-btn"></button>
-            <button className="nxt-btn"></button>
-            <div className="product-container">
+            <button class="pre-btn-home">{<IoIosArrowForward className="arrow-icon-home" />}</button>
+            <button class="nxt-btn-home">{<IoIosArrowForward className="arrow-icon-home" />}</button>
+            <button className="pre-btn-home"></button>
+            <button className="nxt-btn-home"></button>
+            <div className="product-container-home">
                 {products.map((product) => (
-                    <div className="product-card">
-                        <div className="product-image">
-                            <div className="heart-container">
-                                <FaRegHeart className="heart-icon" />
+                    <div className="product-card-home">
+                        <div className="product-image-home">
+                            <div className="heart-container-home">
+                                <FaRegHeart className="heart-icon-home" />
                             </div>
-                            <span className="discount-tag">50% off</span>
-                            <img src={product.product_image} className="product-thumb" alt="" />
-                            <button class="card-btn">add to wishlist</button>
+                            <span className="discount-tag-home">50% off</span>
+                            <img src={product.product_image} className="product-thumb-home" alt="" />
+                            <button class="card-btn-home">add to wishlist</button>
                         </div>
-                        <div className="product-info">
-                            <div className="info-title">
-                                <h2 className="product-brand">brand</h2>
-                                <div className="review-stars">
+                        <div className="product-info-home">
+                            <div className="info-title-home">
+                                <h2 className="product-brand-home">{product.brand}</h2>
+                                <div className="review-stars-home">
                                     <GoStarFill />
                                     <GoStarFill />
                                     <GoStarFill />
@@ -48,10 +48,10 @@ export default function OnSaleProductscroller() {
                                     <GoStarFill />
                                 </div>
                             </div>
-                            <p className="product-short-description">{product.product_name}</p>
-                            <span className="actual-price">${product.regular_price}</span><span className="price">${product.sale_price}</span>
-                            <div className="cart-container">
-                                <BsFillCartPlusFill className="cart-icon" />
+                            <p className="product-short-description-home">{product.product_name}</p>
+                            <span className="actual-price-home">${product.regular_price}</span><span className="price-home">${product.sale_price}</span>
+                            <div className="cart-container-home">
+                                <BsFillCartPlusFill className="cart-icon-home" />
                             </div>
                         </div>
                     </div>

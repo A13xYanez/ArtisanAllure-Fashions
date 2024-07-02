@@ -1,10 +1,6 @@
-import React from 'react'
-import logo from './assets/logo2.png'
-import { FaInstagram } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { FaYoutube } from "react-icons/fa";
-import { FaFacebookF } from "react-icons/fa";
-import { FaLinkedinIn } from "react-icons/fa";
+import React from 'react';
+import logo from './assets/logo2.png';
+import { Link } from 'react-router-dom';
 
 export default function Footer2() {
     return (
@@ -12,25 +8,9 @@ export default function Footer2() {
             <div className="footer-content">
                 <div className="top">
                     <div className="footer-logo">
-                        <img src={logo} />
+                        <Link to='/'><img src={logo} /></Link>
                     </div>
-                    <div className='social-icons-container'>
-                        <div className='instagram-icon-box'>
-                            <FaInstagram className='social-icon' />
-                        </div>
-                        <div className='x-icon-box'>
-                            <FaXTwitter className='social-icon' />
-                        </div>
-                        <div className='youtube-icon-box'>
-                            <FaYoutube className='social-icon' />
-                        </div>
-                        <div className='facebook-icon-box'>
-                            <FaFacebookF className='social-icon' />
-                        </div>
-                        <div className='linkedin-icon-box'>
-                            <FaLinkedinIn className='social-icon' />
-                        </div>
-                    </div>
+                    
                 </div>
                 <div className="link-boxes">
                     <ul className="box">
@@ -66,4 +46,4 @@ export default function Footer2() {
             </div>
         </footer>
     )
-}
+};
