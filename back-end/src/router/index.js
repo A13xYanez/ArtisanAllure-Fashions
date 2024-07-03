@@ -1,6 +1,7 @@
 import express from 'express';
 import authentication from './authentication.js';
 import products from './products.js';
+import account from './account.js';
 
 const router = express.Router();
 
@@ -9,5 +10,6 @@ const router = express.Router();
 export default () => {
     authentication(router);
     products(router);
+    account(router);
     return router;
 };

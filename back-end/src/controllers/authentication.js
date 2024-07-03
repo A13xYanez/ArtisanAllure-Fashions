@@ -23,27 +23,27 @@ export const register = async (req, res) => {
     try {
         const { first_name, last_name, email, password } = req.body;
 
-    const userExists = await getUserByEmail(email);
+        const userExists = await getUserByEmail(email);
 
-    if (userExists) {
-        return res.status(400).json({
-            error: 'User already exists...',
+        if (userExists) {
+            return res.status(400).json({
+                error: 'User already exists...',
+            });
+        }
+
+        const salt = generateRandomString();
+
+        const user = await createUser({
+            email,
+            authentication: {
+                password: authentication(salt, password),
+                salt,
+            },
+            user_info: {
+                first_name,
+                last_name,
+            },
         });
-    }
-
-    const salt = generateRandomString();
-
-    const user = await createUser({
-        email,
-        authentication: {
-            password: authentication(salt, password),
-            salt,
-        },
-        user_info: {
-            first_name,
-            last_name,
-        },
-    });
 
     return res.sendStatus(200);
     } catch (error) {
