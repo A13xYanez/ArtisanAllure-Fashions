@@ -16,6 +16,10 @@ export default function TopRatedProductscroller() {
         .catch((error) => { console.error(error.response.data.error); });
     }, []);
 
+    function addItemToCart(e) {
+        console.log(e.target.value);
+    };
+
     return (
         <section className="product-home">
             <div className="section-header-home">
@@ -50,9 +54,9 @@ export default function TopRatedProductscroller() {
                             </div>
                             <p className="product-short-description-home">{product.product_name}</p>
                             <span className="actual-price-home">${product.regular_price}</span><span className="price-home">${product.sale_price}</span>
-                            <div className="cart-container-home">
-                                <BsFillCartPlusFill className="cart-icon-home" />
-                            </div>
+                            <button value={product.id} className="cart-container-home" onClick={addItemToCart}>
+                                {<BsFillCartPlusFill className="cart-icon-home" />}
+                            </button>
                         </div>
                     </div>
                 ))}
