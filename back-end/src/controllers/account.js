@@ -1,4 +1,4 @@
-import { addToCart, getUserById, updateCartQty } from "../db/users.js";
+import { addToCart, getUserById, updateCartQty, updateUserCartTotal } from "../db/users.js";
 import { getProductById } from "../db/products.js";
 import pkg from 'lodash';
 const { get, merge } = pkg;
@@ -13,12 +13,14 @@ export const addToAccountCart = async (req, res) => {
         const productID = req.params.id;
         const productQty = 1;
         let existsInCart = false;
-        let incrementItemQty;
+        let incrementItemQty = 0;
+        let newTotal = 0;
 
         const userInformation = await getUserById(user._id, false);
         const productInformation = await getProductById(productID);
 
         const itemsInCart = userInformation.account_details.cart.items;
+        const oldCartTotal = userInformation.account_details.cart.cartTotal;
         const itemPriceRegular = productInformation.regular_price;
         const itemPriceSale = productInformation.sale_price;
 
@@ -45,6 +47,16 @@ export const addToAccountCart = async (req, res) => {
                 price_sale: itemPriceSale
             });
         }
+
+        if (itemPriceSale > 0) {
+            newTotal = productQty * itemPriceSale;
+        } else {
+            newTotal = productQty * itemPriceRegular;
+        }
+        
+        newTotal += oldCartTotal;
+
+        await updateUserCartTotal(user._id, newTotal);
 
         return res.sendStatus(200);
     } catch (error) {

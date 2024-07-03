@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     },
     account_details: {
         cart: {
-            totalPrice: {type: Number, default: 0},
+            cartTotal: {type: Number, default: 0},
             items: [{
                 item: {type: mongoose.Schema.Types.ObjectId},
                 quantity: {type: Number, default: 1},
@@ -100,4 +100,11 @@ export const updateCartQty = async (account_id, product) => {
         {"account_details.cart.items.item": product.item}, 
         {$set: {"account_details.cart.items.$": {item: product.item, quantity: product.quantity, price_regular: product.price_regular, price_sale: product.price_sale}}}
     );
+};
+
+
+
+// Updates the users total with new total
+export const updateUserCartTotal = async (account_id, total) => {
+    return UserModel.findByIdAndUpdate(account_id, {"account_details.cart.cartTotal": total});
 };
