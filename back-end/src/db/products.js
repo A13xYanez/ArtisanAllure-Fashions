@@ -171,3 +171,10 @@ export const fetchFilterFeaturedProducts = async (page) => {
     throw error;
   }
 };
+
+
+
+// Finds a product by ID and returns its details
+export const getProductById = async (product) => {
+    return ProductModel.findById(product);
+}

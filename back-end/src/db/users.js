@@ -16,6 +16,17 @@ const userSchema = new mongoose.Schema({
         last_name: { type: String, required: true },
         datetime_created: { type: Date, default: Date.now },
     },
+    account_details: {
+        cart: {
+            cartTotal: {type: Number, default: 0},
+            items: [{
+                item: {type: mongoose.Schema.Types.ObjectId},
+                quantity: {type: Number, default: 1},
+                price_regular: {type: Number, default: 0},
+                price_sale: {type: Number, default: 0}
+            }]
+        },
+    }
 });
 
 export const UserModel = mongoose.model('User', userSchema);
@@ -27,6 +38,18 @@ export const createUser = async (values) => {
     return UserModel(values)
         .save()
         .then((user) => user.toObject());
+};
+
+
+
+// Find a user by their ID
+export const getUserById = async (id, includeCredentials) => {
+    if (includeCredentials) {
+        return UserModel.findById(id).select(
+        'authentication.password authentication.salt'
+        );
+    }
+    return UserModel.findById(id);
 };
 
 
@@ -58,4 +81,30 @@ export const updateUserSessionToken = async (id, session_token) => {
     return UserModel.findByIdAndUpdate(id, {
         'authentication.session_token': session_token,
     });
+};
+
+
+
+// Adds new item to cart
+export const addToCart = async (account_id, product) => {
+    return UserModel.findById(account_id)
+    .updateOne({$push: {"account_details.cart.items": {item: product.item, quantity: product.quantity, price_regular: product.price_regular, price_sale: product.price_sale}}});
+};
+
+
+
+// Updates the quantity of the item already in the cart
+export const updateCartQty = async (account_id, product) => {
+    return UserModel.findById(account_id)
+    .findOneAndUpdate(
+        {"account_details.cart.items.item": product.item}, 
+        {$set: {"account_details.cart.items.$": {item: product.item, quantity: product.quantity, price_regular: product.price_regular, price_sale: product.price_sale}}}
+    );
+};
+
+
+
+// Updates the users total with new total
+export const updateUserCartTotal = async (account_id, total) => {
+    return UserModel.findByIdAndUpdate(account_id, {"account_details.cart.cartTotal": total});
 };
