@@ -411,6 +411,7 @@
     height: 22px; 
     font-weight: 500; 
     color: #516ff5;
+    pointer-events: none;
 }
 
 .heart-container {

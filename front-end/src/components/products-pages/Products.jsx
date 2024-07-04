@@ -9,7 +9,8 @@ import { BsFillCartCheckFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
-import img from './assets/47-BRAND-Los-Angeles-Dodgers-47-Clean-Up-Strapback-Hat.jpg';
+
+axios.defaults.withCredentials = true;
 
 export default function Products(props) {
     const [products, setProducts] = useState([]);
@@ -20,6 +21,13 @@ export default function Products(props) {
         .then((res) => { setProducts(res.data); })
         .catch((error) => { console.error(error.response.data.error); });
     }, [page]);
+
+    function addItemToCart(e) {
+        axios.post(`http://localhost:8080/account/addToCart/${(e.target.value)}`)
+        .then((res) => console.log(res))
+        .catch((error) => { console.error(error.response.data.error); });
+    };
+    
     return (
         <div className='product-page'>
             <div className='product-filters'>
@@ -51,7 +59,7 @@ export default function Products(props) {
                                 <FaRegHeart className="heart-icon" />
                             </div>
                             <span className="discount-tag">50% off</span>
-                            <img src={img} className="product-thumb" alt="" />
+                            <img src={product.product_image} className="product-thumb" alt="" />
                             <button class="card-btn">add to wishlist</button>
                         </div>
                         <div className="product-info">
@@ -68,9 +76,9 @@ export default function Products(props) {
                             </div>
                             <p className="product-short-description">{product.product_name}</p>
                             <span className="actual-price">${product.regular_price}</span><span className="price">${product.sale_price}</span>
-                            <div className="cart-container">
-                                <BsFillCartPlusFill className="cart-icon" />
-                            </div>
+                            <button value={product.id} className="cart-container" onClick={addItemToCart}>
+                                {<BsFillCartPlusFill className="cart-icon" />}
+                            </button>
                         </div>
                     </div>
                 ))}

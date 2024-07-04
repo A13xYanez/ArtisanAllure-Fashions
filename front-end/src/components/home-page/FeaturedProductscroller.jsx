@@ -7,6 +7,8 @@ import { BsFillCartCheckFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 
+axios.defaults.withCredentials = true;
+
 export default function FeaturedProductscroller() {
     const [products, setProducts] = useState([]);
 

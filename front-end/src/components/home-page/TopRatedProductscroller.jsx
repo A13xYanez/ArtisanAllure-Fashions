@@ -7,6 +7,8 @@ import { BsFillCartCheckFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 
+axios.defaults.withCredentials = true;
+
 export default function TopRatedProductscroller() {
     const [products, setProducts] = useState([]);
 
@@ -17,7 +19,9 @@ export default function TopRatedProductscroller() {
     }, []);
 
     function addItemToCart(e) {
-        console.log(e.target.value);
+        axios.post(`http://localhost:8080/account/addToCart/${(e.target.value)}`)
+        .then((res) => console.log(res))
+        .catch((error) => { console.error(error.response.data.error); });
     };
 
     return (
