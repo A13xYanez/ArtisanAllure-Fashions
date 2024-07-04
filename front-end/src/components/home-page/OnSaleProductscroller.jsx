@@ -7,6 +7,8 @@ import { BsFillCartCheckFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 
+axios.defaults.withCredentials = true;
+
 export default function OnSaleProductscroller() {
     const [products, setProducts] = useState([]);
 
@@ -15,6 +17,12 @@ export default function OnSaleProductscroller() {
         .then((res) => { setProducts(res.data); })
         .catch((error) => { console.error(error.response.data.error); });
     }, []);
+
+    function addItemToCart(e) {
+        axios.post(`http://localhost:8080/account/addToCart/${(e.target.value)}`)
+        .then((res) => console.log(res))
+        .catch((error) => { console.error(error.response.data.error); });
+    };
 
     return (
         <section className="product-home">
@@ -50,9 +58,9 @@ export default function OnSaleProductscroller() {
                             </div>
                             <p className="product-short-description-home">{product.product_name}</p>
                             <span className="actual-price-home">${product.regular_price}</span><span className="price-home">${product.sale_price}</span>
-                            <div className="cart-container-home">
-                                <BsFillCartPlusFill className="cart-icon-home" />
-                            </div>
+                            <button value={product.id} className="cart-container-home" onClick={addItemToCart}>
+                                {<BsFillCartPlusFill className="cart-icon-home" />}
+                            </button>
                         </div>
                     </div>
                 ))}
