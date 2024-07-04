@@ -96,3 +96,19 @@ export const displayUserProductsInCart = async (req, res) => {
         res.status(500).send('Server Error');
     }
 }
+
+
+
+// Gets the amount total in the cart
+export const fetchCartAmountTotal = async (req, res) => {
+    try {
+        const user = get(req, 'identity');
+        const userInformation = await getUserById(user._id, false);
+        const totalPayment = userInformation.account_details.cart.cartTotal;
+
+        res.json(totalPayment);
+    } catch (error) {
+        console.error('Error fetching cart total:', error);
+        res.status(500).send('Server Error');
+    }
+}
