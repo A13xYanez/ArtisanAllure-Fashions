@@ -26,6 +26,11 @@ const userSchema = new mongoose.Schema({
                 price_sale: {type: Number, default: 0}
             }]
         },
+        wishlist: {
+            items: [{
+                item: {type: mongoose.Schema.Types.ObjectId}
+            }]
+        }
     }
 });
 
@@ -108,3 +113,22 @@ export const updateCartQty = async (account_id, product) => {
 export const updateUserCartTotal = async (account_id, total) => {
     return UserModel.findByIdAndUpdate(account_id, {"account_details.cart.cartTotal": total});
 };
+
+
+
+// Saves item to wishlist
+export const saveToWishlist = async (account_id, product) => {
+    return UserModel.findById(account_id)
+    .updateOne({$push: {"account_details.wishlist.items": {item: product.item}}});
+};
+
+
+
+// Delete item from wishlist
+export const removeFromWishlist = async (account_id, product) => {
+    return UserModel.findById(account_id)
+    .findOneAndUpdate(
+        {"account_details.wishlist.items.item": product.item}, 
+        {$pull: {"account_details.wishlist.items": {item: product.item}}}
+    );
+}
