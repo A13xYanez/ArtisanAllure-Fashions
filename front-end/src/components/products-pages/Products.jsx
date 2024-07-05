@@ -27,6 +27,12 @@ export default function Products(props) {
         .then((res) => console.log(res))
         .catch((error) => { console.error(error.response.data.error); });
     };
+
+    function saveItemToWishlist(e) {
+        axios.post(`http://localhost:8080/account/saveToWishlist/${(e.target.value)}`)
+        .then((res) => console.log(res))
+        .catch((error) => { console.error(error.response.data.error); });
+    };
     
     return (
         <div className='product-page'>
@@ -55,12 +61,12 @@ export default function Products(props) {
                 {products.map((product) => (
                     <div className="product-card">
                         <div className="product-image">
-                            <div className="heart-container">
-                                <FaRegHeart className="heart-icon" />
-                            </div>
+                            <button value={product.id} className="heart-container" onClick={saveItemToWishlist}>
+                                {<FaRegHeart className="heart-icon" />}
+                            </button>
                             <span className="discount-tag">50% off</span>
                             <img src={product.product_image} className="product-thumb" alt="" />
-                            <button class="card-btn">add to wishlist</button>
+                            <button value={product.id} class="card-btn" onClick={saveItemToWishlist}>add to wishlist</button>
                         </div>
                         <div className="product-info">
                             <div className="info-title">
