@@ -439,6 +439,7 @@
 .heart-icon {
     height: 20px;
     width: 20px;
+    pointer-events: none;
 }
 
 .review-stars {

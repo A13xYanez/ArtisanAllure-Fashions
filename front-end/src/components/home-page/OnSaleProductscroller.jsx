@@ -24,6 +24,12 @@ export default function OnSaleProductscroller() {
         .catch((error) => { console.error(error.response.data.error); });
     };
 
+    function saveItemToWishlist(e) {
+        axios.post(`http://localhost:8080/account/saveToWishlist/${(e.target.value)}`)
+        .then((res) => console.log(res))
+        .catch((error) => { console.error(error.response.data.error); });
+    };
+
     return (
         <section className="product-home">
             <div className="section-header-home">
@@ -38,12 +44,12 @@ export default function OnSaleProductscroller() {
                 {products.map((product) => (
                     <div className="product-card-home">
                         <div className="product-image-home">
-                            <div className="heart-container-home">
-                                <FaRegHeart className="heart-icon-home" />
-                            </div>
+                            <button value={product.id} className="heart-container-home" onClick={saveItemToWishlist}>
+                                {<FaRegHeart className="heart-icon-home" />}
+                            </button>
                             <span className="discount-tag-home">50% off</span>
                             <img src={product.product_image} className="product-thumb-home" alt="" />
-                            <button class="card-btn-home">add to wishlist</button>
+                            <button value={product.id} class="card-btn-home" onClick={saveItemToWishlist}>add to wishlist</button>
                         </div>
                         <div className="product-info-home">
                             <div className="info-title-home">
