@@ -1,4 +1,5 @@
 import { addToCart, getUserById, updateCartQty, updateUserCartTotal } from "../db/users.js";
+import { saveToWishlist, removeFromWishlist } from "../db/users.js";
 import { getProductById } from "../db/products.js";
 import pkg from 'lodash';
 const { get, merge } = pkg;
@@ -95,7 +96,7 @@ export const displayUserProductsInCart = async (req, res) => {
         console.error('Error displaying items in cart:', error);
         res.status(500).send('Server Error');
     }
-}
+};
 
 
 
@@ -111,4 +112,72 @@ export const fetchCartAmountTotal = async (req, res) => {
         console.error('Error fetching cart total:', error);
         res.status(500).send('Server Error');
     }
-}
+};
+
+
+
+// Checks if item is already in wishlist and removes it if so,
+// otherwise saves item to wishlist.
+export const saveToAccountWishlist = async (req, res) => {
+    try {
+        const user = get(req, 'identity');
+        const productID = req.params.id;
+        let existsInWishlist = false;
+
+        const userInformation = await getUserById(user._id, false);
+        const itemsInWishlist = userInformation.account_details.wishlist.items;
+
+        for (let index in itemsInWishlist) {
+            if (productID == itemsInWishlist[index].item) {
+                existsInWishlist = true;
+                break;
+            }
+        }
+
+        if (existsInWishlist) {
+            removeFromWishlist(user._id, {
+                item: productID
+            })
+        } else {
+            saveToWishlist(user._id, {
+                item: productID
+            })
+        }
+
+        return res.sendStatus(200);
+    } catch (error) {
+        console.error('Error saving item to wishlist:', error);
+        res.status(500).send('Server Error');
+    }
+};
+
+
+
+// Gets the user and products saved
+// in their wishlist
+export const displayUserProductsInWishlist = async (req, res) => {
+    try {
+        const user = get(req, 'identity');
+        const userInformation = await getUserById(user._id, false);
+        const itemsInWishlist = userInformation.account_details.wishlist.items;
+
+        const formattedProductsInWishlist = await Promise.all(itemsInWishlist.map(async product => {
+            const productInformation = await getProductById(product.item);
+            
+            return ({
+                product_image: productInformation.product_image,
+                product_name: productInformation.product_name,
+                brand: productInformation.brand,
+                ratings: productInformation.ratings,
+                regular_price: productInformation.regular_price,
+                sale_price: productInformation.sale_price,
+                id: productInformation._id,
+            })
+        }));
+
+        res.json(formattedProductsInWishlist);
+    } catch (error) {
+        console.error('Error displaying items in wishlist:', error);
+        res.status(500).send('Server Error');
+    }
+};
