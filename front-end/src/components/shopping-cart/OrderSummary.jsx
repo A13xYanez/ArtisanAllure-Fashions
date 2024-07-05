@@ -1,7 +1,19 @@
 import React from 'react'
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { IoLockClosedSharp } from "react-icons/io5";
 
+axios.defaults.withCredentials = true;
+
 export default function OrderSummary() {
+    const [estimatedTotal, setEstimatedTotal] = useState(0);
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/account/cartTotal')
+        .then((res) => { setEstimatedTotal(res.data); })
+        .catch((error) => { console.error(error.response.data.error); });
+    }, []);
+
     return (
         <section className='order-summary'>
             <div className='section-title'>
@@ -10,7 +22,7 @@ export default function OrderSummary() {
             <div className="costs-total">
                 <div className="category-section">
                     <p className='category-title'>Subtotal</p>
-                    <p className='category-costs'>$0.00</p>
+                    <p className='category-costs'>${estimatedTotal}</p>
                 </div>
                 <div className="category-section">
                     <p className='category-title'>Shipping</p>
@@ -18,11 +30,11 @@ export default function OrderSummary() {
                 </div>
                 <div className="category-section">
                     <p className='category-title'>Estimated Tax</p>
-                    <p className='category-costs'>$0.00</p>
+                    <p className='category-costs'>${(estimatedTotal * 0.0725).toFixed(2)}</p>
                 </div>
                 <div className="category-section">
                     <p className='category-title'>Estimated Total</p>
-                    <p className='category-costs'>$0.00</p>
+                    <p className='category-costs'>${(estimatedTotal + (estimatedTotal * 0.0725)).toFixed(2)}</p>
                 </div>
             </div>
             <div className="promo-code">
