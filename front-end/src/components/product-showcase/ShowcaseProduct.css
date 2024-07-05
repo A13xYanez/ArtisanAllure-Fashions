@@ -1,0 +1,124 @@
+/* Global */
+* {
+    margin: 0;
+}
+
+
+
+
+
+
+/* Showcase Product */
+.product-details-page {
+    display: flex;
+    padding: 70px 80px 70px 80px;
+}
+
+.product-images-container {
+    width: 30%;
+}
+
+.product-img-large {
+    width: 355px;
+    object-fit: cover;
+}
+
+.product-img-cluster {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-img-small {
+    width: 32%;
+    height: 100%;
+    object-fit: cover;
+    margin-top: 2px;
+    cursor: pointer;
+}
+
+.product-details {
+    width: 70%;
+    font-family: sans-serif;
+    padding: 30px 60px 30px 60px;
+    color: #2c2c34;
+}
+
+.product-details h6 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.product-details h4 {
+    padding: 40px 0 20px 0;
+    font-size: 24px;
+}
+
+.product-details h3 {
+    padding: 40px 0 20px 0;
+    font-size: 22px;
+}
+
+.product-details h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.product-details select {
+    padding: 5px 10px;
+    margin-bottom: 20px;
+    background: whitesmoke;
+    border: 1px solid #2c2c34;
+}
+
+.product-input {
+    display: flex;
+    align-items: center;
+}
+
+.product-input button {
+    width: 150px;
+    height: 50px;
+    border: none;
+    background: dodgerblue;
+    color: white;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: 24px;
+}
+
+.product-input input {
+    text-align: center;
+    border: 1px solid #2c2c34;
+    height: 44px;
+    width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    font-size: 16px;
+}
+
+.product-details span {
+    line-height: 25px;
+    color: rgb(121, 120, 120);
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.product-details-prices {
+    display: flex;
+    align-items: center;
+}
+
+.product-details-regular-price {
+    text-decoration: underline 3px;
+    text-underline-offset: -40%;
+    text-decoration-skip-ink: none;
+}
+
+.product-details-sale-price {
+    margin-left: 20px;
+    color: red;
+}
