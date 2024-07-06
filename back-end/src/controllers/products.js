@@ -1,6 +1,7 @@
 import { fetchHomeFeaturedProducts, fetchHomeSaleProducts, fetchHomeTopRatedProducts } from '../db/products.js';
 import { fetchFilterMensProducts, fetchFilterWomansProducts, fetchFilterKidsProducts } from '../db/products.js';
 import { fetchFilterOnSaleProducts, fetchFilterFeaturedProducts } from '../db/products.js';
+import { getProductById } from '../db/products.js';
 import pkg from 'lodash';
 const { get, merge } = pkg;
 
@@ -235,3 +236,28 @@ export const filterFeaturedProducts = async (req, res) => {
     res.status(500).send('Server Error');
   }
 };
+
+
+
+// Get only one product
+export const getProductDetails = async (req, res) => {
+  try {
+    const productID = req.params.id;
+    const productInformation = await getProductById(productID);
+
+    const formattedProductDetails = {
+                product_image: productInformation.product_image,
+                product_name: productInformation.product_name,
+                brand: productInformation.brand,
+                ratings: productInformation.ratings,
+                regular_price: productInformation.regular_price,
+                sale_price: productInformation.sale_price,
+                id: productInformation._id,
+            };
+
+    res.json(formattedProductDetails);
+  } catch (error) {
+    console.error('Error fetching product details:', error);
+    res.status(500).send('Server Error');
+  }
+}
