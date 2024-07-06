@@ -1,8 +1,13 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import './ShowcaseProduct.css';
-import img from './assets/47-BRAND-Los-Angeles-Dodgers-47-Clean-Up-Strapback-Hat.jpg'
+import img from './assets/47-BRAND-Los-Angeles-Dodgers-47-Clean-Up-Strapback-Hat.jpg';
+
+axios.defaults.withCredentials = true;
 
 export default function ProductDescription() {
+    const {id} = useParams();
+    
     return (
         <div className='product-details-page'>
             <div className="product-images-container">
