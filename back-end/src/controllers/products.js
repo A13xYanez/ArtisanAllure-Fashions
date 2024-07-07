@@ -1,7 +1,7 @@
 import { fetchHomeFeaturedProducts, fetchHomeSaleProducts, fetchHomeTopRatedProducts } from '../db/products.js';
 import { fetchFilterMensProducts, fetchFilterWomansProducts, fetchFilterKidsProducts } from '../db/products.js';
 import { fetchFilterOnSaleProducts, fetchFilterFeaturedProducts } from '../db/products.js';
-import { getProductById } from '../db/products.js';
+import { getProductById, addProductReview, updateTotalReviews } from '../db/products.js';
 import pkg from 'lodash';
 const { get, merge } = pkg;
 
@@ -262,3 +262,29 @@ export const getProductDetails = async (req, res) => {
     res.status(500).send('Server Error');
   }
 }
+
+
+
+// Make a review for product
+export const createProductReview = async (req, res) => {
+    try {
+        const productID = req.params.id;
+        const productReview = req.body.review;
+        const productRating = req.body.rating;
+
+        const productInformation = await getProductById(productID);
+        const totalReviews = productInformation.product_evaluations.total_reviews;
+
+        addProductReview(productID, {
+          review: productReview,
+          rating: productRating
+        });
+
+        updateTotalReviews(productID, totalReviews + 1);
+
+        return res.sendStatus(200);
+    } catch (error) {
+        console.error('Error creating product review:', error);
+        res.status(500).send('Server Error');
+    }
+};

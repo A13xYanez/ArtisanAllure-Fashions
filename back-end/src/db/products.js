@@ -10,12 +10,17 @@ const productSchema = new mongoose.Schema({
     description: { type: String, required: true },
     regular_price: { type: String, required: true },
     sale_price: { type: String },
-    ratings: { type: String },
-    reviews: { type: String },
     arrival_date: { type: Date, default: Date.now },
     gender: { type: String, required: true },
     age_group: { type: String, required: true },
-    category: { type: String, required: true }
+    category: { type: String, required: true },
+    product_evaluations: {
+      total_reviews: { type: Number, default: 0 },
+      reviews: [{
+                review: { type: String },
+                rating: { type: Number }
+            }]
+    }
 });
 
 export const ProductModel = mongoose.model('Product', productSchema);
@@ -177,4 +182,20 @@ export const fetchFilterFeaturedProducts = async (page) => {
 // Finds a product by ID and returns its details
 export const getProductById = async (product) => {
     return ProductModel.findById(product);
+};
+
+
+
+// Adds review and rating to product
+export const addProductReview = async (product, review) => {
+  return ProductModel.findById(product)
+  .updateOne({$push: {"product_evaluations.reviews": {review: review.review, rating: review.rating}}});
+};
+
+
+
+// Update review counter
+export const updateTotalReviews = async (product, total) => {
+  return ProductModel.findById(product)
+  .updateOne({"product_evaluations.total_reviews": total});
 }
