@@ -253,6 +253,7 @@ export const getProductDetails = async (req, res) => {
                 regular_price: productInformation.regular_price,
                 sale_price: productInformation.sale_price,
                 id: productInformation._id,
+                description: productInformation.description
             };
 
     res.json(formattedProductDetails);

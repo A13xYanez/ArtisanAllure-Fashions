@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { GoStarFill } from "react-icons/go";
 import { BsFillCartPlusFill } from "react-icons/bs";
@@ -48,7 +49,7 @@ export default function FeaturedProductscroller() {
                                 {<FaRegHeart className="heart-icon-home" />}
                             </button>
                             <span className="discount-tag-home">50% off</span>
-                            <img src={product.product_image} className="product-thumb-home" alt="" />
+                            <Link to={`/product-details/${product.id}`}><img src={product.product_image} className="product-thumb-home" alt="" /></Link>
                             <button value={product.id} class="card-btn-home" onClick={saveItemToWishlist}>add to wishlist</button>
                         </div>
                         <div className="product-info-home">

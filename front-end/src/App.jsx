@@ -25,7 +25,7 @@ export default function App() {
           <Route path='/womans' element={<WomansProducts />} />
           <Route path='/kids' element={<KidsProducts />} />
           <Route path='/sales' element={<SalesProducts />} />
-          <Route path='/product-details' element={<ShowcaseProduct />} />
+          <Route path='/product-details/:id' element={<ShowcaseProduct />} />
         </Routes>
     </Router>
   )
