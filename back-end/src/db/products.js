@@ -201,12 +201,29 @@ export const addProductReview = async (product, review) => {
 export const updateTotalReviews = async (product, total) => {
   return ProductModel.findById(product)
   .updateOne({"product_evaluations.total_reviews": total});
-}
+};
 
 
 
 // Update the average ratings
 export const updateRatingAvg = async (product, avgRating) => {
   return ProductModel.findById(product)
-  .updateOne({"product_evaluations.rating_avg": avgRating})
+  .updateOne({"product_evaluations.rating_avg": avgRating});
+};
+
+
+
+// Returns product reviews limited by page
+export const fetchProductReviews = async (product, page) => {
+  try {
+    const itemsToFetch = 5; // maximum items to fetch
+    const skip = 5 * page; // skips items
+
+    const reviews = ProductModel.find( {_id: product}, { "product_evaluations.reviews": { $slice: [ skip, itemsToFetch ] } } );
+
+    return reviews;
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+    throw error;
+  }
 }

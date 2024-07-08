@@ -2,6 +2,7 @@ import { fetchHomeFeaturedProducts, fetchHomeSaleProducts, fetchHomeTopRatedProd
 import { fetchFilterMensProducts, fetchFilterWomansProducts, fetchFilterKidsProducts } from '../db/products.js';
 import { fetchFilterOnSaleProducts, fetchFilterFeaturedProducts, updateRatingAvg } from '../db/products.js';
 import { getProductById, addProductReview, updateTotalReviews } from '../db/products.js';
+import { fetchProductReviews } from '../db/products.js';
 import { getUserById } from '../db/users.js';
 import pkg from 'lodash';
 const { get, merge } = pkg;
@@ -262,7 +263,7 @@ export const getProductDetails = async (req, res) => {
     console.error('Error fetching product details:', error);
     res.status(500).send('Server Error');
   }
-}
+};
 
 
 
@@ -306,3 +307,48 @@ export const createProductReview = async (req, res) => {
         res.status(500).send('Server Error');
     }
 };
+
+
+
+// Display all the products reviews
+export const displayProductReviews = async (req, res) => {
+  try {
+    const productID = req.params.id;
+    const page = Number(req.params.page);
+
+    if (!Number.isInteger(page) || page <= 0) {
+      return res.status(400).json({
+        error: 'Page number must be integer greater than or equal to 1.',
+      });
+    }
+
+    const productData = await fetchProductReviews(productID, page - 1);
+    const productReviews = productData[0].product_evaluations.reviews;
+
+    const formattedProductReviews = productReviews.map((review) => ({
+      review: review.review,
+      rating: review.rating,
+      reviewer: review.reviewer,
+      date_reviewed: review.date_reviewed
+    }));
+
+    res.json(formattedProductReviews);
+  } catch (error) {
+        console.error('Error displaying product reviews:', error);
+        res.status(500).send('Server Error');
+    }
+};
+
+
+
+// Display total reviews, average rating
+// and the amount of each rating from 1 through 5
+export const displayProductRatings = async (req, res) => {
+  try {
+    
+    return res.sendStatus(200);
+  } catch (error) {
+        console.error('Error displaying product reviews:', error);
+        res.status(500).send('Server Error');
+    }
+}
