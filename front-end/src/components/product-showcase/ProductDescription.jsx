@@ -18,7 +18,7 @@ export default function ProductDescription() {
     }, []);
     
     return (
-        <div className='product-details-page'>
+        <section className='product-details-page'>
             <div className="product-images-container">
                 <div className="product-img-cluster">
                     <img className='product-img-small' src={img} />
@@ -51,6 +51,6 @@ export default function ProductDescription() {
                 <h3>Product Details</h3>
                 <span>{products.description}</span>
             </div>
-        </div>
+        </section>
     )
 }
