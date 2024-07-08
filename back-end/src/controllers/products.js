@@ -345,10 +345,45 @@ export const displayProductReviews = async (req, res) => {
 // and the amount of each rating from 1 through 5
 export const displayProductRatings = async (req, res) => {
   try {
-    
-    return res.sendStatus(200);
+    const productID = req.params.id;
+    const productInformation = await getProductById(productID);
+    const reviews = productInformation.product_evaluations.reviews;
+    const ratingAvg = productInformation.product_evaluations.rating_avg;
+    const totalReviews = productInformation.product_evaluations.total_reviews;
+
+    let countFiveStars = 0;
+    let countFourStars = 0;
+    let countThreeStars = 0;
+    let countTwoStars = 0;
+    let countOneStars = 0;
+
+    reviews.map((review) => {
+      if (review.rating == 5) {
+        countFiveStars++;
+      } else if (review.rating == 4) {
+        countFourStars++;
+      } else if (review.rating == 3) {
+        countThreeStars++;
+      } else if (review.rating == 2) {
+        countTwoStars++;
+      } else {
+        countOneStars++;
+      }
+    });
+
+    const formatProductRating = {
+      total_reviews: totalReviews,
+      rating_avg: ratingAvg,
+      five_stars: countFiveStars,
+      four_stars: countFourStars,
+      three_stars: countThreeStars,
+      two_stars: countTwoStars,
+      one_stars: countOneStars
+    };
+
+    res.json(formatProductRating);
   } catch (error) {
         console.error('Error displaying product reviews:', error);
         res.status(500).send('Server Error');
     }
-}
+};
