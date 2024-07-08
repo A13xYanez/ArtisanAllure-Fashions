@@ -15,25 +15,38 @@
 }
 
 .product-images-container {
-    width: 355px;
+    display: flex;
+    justify-content: space-between;
+    width: 1150px;
+    height: 600px;
 }
 
 .product-img-large {
-    width: 355px;
+    width: 500px;
+    height: 600px;
     object-fit: cover;
 }
 
 .product-img-cluster {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 600px;
+    width: 150px;
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
 
 .product-img-small {
-    width: 32%;
-    height: 100%;
+    width: 150px;
     object-fit: cover;
-    margin-top: 2px;
     cursor: pointer;
+    margin-bottom: 10.8px;
+}
+
+.product-img-small:last-child {
+    margin: 0;
 }
 
 .product-details {
@@ -49,7 +62,7 @@
 }
 
 .product-details h4 {
-    padding: 40px 0 20px 0;
+    padding: 20px 0 20px 0;
     font-size: 24px;
 }
 
@@ -60,14 +73,7 @@
 
 .product-details h2 {
     font-size: 26px;
-    margin-bottom: 20px;
-}
-
-.product-details select {
-    padding: 5px 10px;
-    margin-bottom: 20px;
-    background: whitesmoke;
-    border: 1px solid #2c2c34;
+    font-weight: 500;
 }
 
 .product-input {
@@ -76,7 +82,7 @@
 }
 
 .product-input button {
-    width: 150px;
+    width: 100%;
     height: 50px;
     border: none;
     background: dodgerblue;
@@ -109,16 +115,41 @@
 
 .product-details-prices {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
 }
 
 .product-details-regular-price {
     text-decoration: underline 3px;
     text-underline-offset: -40%;
     text-decoration-skip-ink: none;
+    margin-bottom: 10px;
 }
 
 .product-details-sale-price {
-    margin-left: 20px;
     color: red;
+}
+
+.product-sizes-container {
+    margin-bottom: 20px;
+}
+
+.product-sizes-container p {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.select-product-size {
+    display: flex;
+    justify-content: space-between;
+}
+
+.select-product-size button {
+    width: 100px;
+    height: 45px;
+    border: 1px solid black;
+    border-radius: 4px;
+    color: black;
+    background-color: whitesmoke;
+    cursor: pointer;
 }
