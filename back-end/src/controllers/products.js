@@ -1,7 +1,8 @@
 import { fetchHomeFeaturedProducts, fetchHomeSaleProducts, fetchHomeTopRatedProducts } from '../db/products.js';
 import { fetchFilterMensProducts, fetchFilterWomansProducts, fetchFilterKidsProducts } from '../db/products.js';
-import { fetchFilterOnSaleProducts, fetchFilterFeaturedProducts } from '../db/products.js';
+import { fetchFilterOnSaleProducts, fetchFilterFeaturedProducts, updateRatingAvg } from '../db/products.js';
 import { getProductById, addProductReview, updateTotalReviews } from '../db/products.js';
+import { getUserById } from '../db/users.js';
 import pkg from 'lodash';
 const { get, merge } = pkg;
 
@@ -268,19 +269,36 @@ export const getProductDetails = async (req, res) => {
 // Make a review for product
 export const createProductReview = async (req, res) => {
     try {
+        const user = get(req, 'identity');
         const productID = req.params.id;
         const productReview = req.body.review;
         const productRating = req.body.rating;
+        let ratingsSum = productRating;
 
         const productInformation = await getProductById(productID);
         const totalReviews = productInformation.product_evaluations.total_reviews;
+        const allRatings = productInformation.product_evaluations.reviews;
+
+        const userInformation = await getUserById(user._id, false);
+        const reviewerFirstName = userInformation.user_info.first_name;
+        const reviewerLastName = userInformation.user_info.last_name;
+        const reviewerFullName = reviewerFirstName + " " + reviewerLastName[0];
 
         addProductReview(productID, {
           review: productReview,
-          rating: productRating
+          rating: productRating,
+          reviewer: reviewerFullName
         });
 
         updateTotalReviews(productID, totalReviews + 1);
+
+        allRatings.map((rating) => {
+          ratingsSum += rating.rating;
+        })
+
+        const averageRating = (ratingsSum / (totalReviews + 1)).toFixed(1);
+
+        updateRatingAvg(productID, averageRating);
 
         return res.sendStatus(200);
     } catch (error) {

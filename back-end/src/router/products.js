@@ -2,6 +2,7 @@ import { homeFeaturedProducts, homeSaleProducts, homeTopRatedProducts } from "..
 import { filterMensProducts, filterWomansProducts, filterKidsProducts } from "../controllers/products.js";
 import { filterOnSaleProducts, filterFeaturedProducts, getProductDetails } from "../controllers/products.js";
 import { createProductReview } from "../controllers/products.js";
+import { isAuthenticated } from '../middlewares/authentication.js';
 
 export default (router) => {
     router.get('/home/featured', homeFeaturedProducts);
@@ -13,5 +14,5 @@ export default (router) => {
     router.get('/products/sale/:page', filterOnSaleProducts);
     router.get('/products/featured/:page', filterFeaturedProducts);
     router.get('/product/details/:id', getProductDetails);
-    router.post('/product/review/:id', createProductReview);
+    router.post('/product/review/:id', isAuthenticated, createProductReview);
 };

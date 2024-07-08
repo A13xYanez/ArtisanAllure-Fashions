@@ -16,9 +16,12 @@ const productSchema = new mongoose.Schema({
     category: { type: String, required: true },
     product_evaluations: {
       total_reviews: { type: Number, default: 0 },
+      rating_avg: { type: Number, default: 0 },
       reviews: [{
                 review: { type: String },
-                rating: { type: Number }
+                rating: { type: Number },
+                reviewer: { type: String },
+                date_reviewed: { type: Date, default: Date.now },
             }]
     }
 });
@@ -189,7 +192,7 @@ export const getProductById = async (product) => {
 // Adds review and rating to product
 export const addProductReview = async (product, review) => {
   return ProductModel.findById(product)
-  .updateOne({$push: {"product_evaluations.reviews": {review: review.review, rating: review.rating}}});
+  .updateOne({$push: {"product_evaluations.reviews": {review: review.review, rating: review.rating, reviewer: review.reviewer}}});
 };
 
 
@@ -198,4 +201,12 @@ export const addProductReview = async (product, review) => {
 export const updateTotalReviews = async (product, total) => {
   return ProductModel.findById(product)
   .updateOne({"product_evaluations.total_reviews": total});
+}
+
+
+
+// Update the average ratings
+export const updateRatingAvg = async (product, avgRating) => {
+  return ProductModel.findById(product)
+  .updateOne({"product_evaluations.rating_avg": avgRating})
 }
