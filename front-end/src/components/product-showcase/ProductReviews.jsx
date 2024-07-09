@@ -19,7 +19,7 @@ export default function ProductReviews() {
 
     return (
         <section className='product-review-section'>
-            {reviews.map((review) => (
+            {reviews != undefined ? reviews.map((review) => (
             <div className="review-card">
                 <div className="reviewer-info">
                         <p className='reviewer-name'>{review.reviewer}</p>
@@ -36,7 +36,7 @@ export default function ProductReviews() {
                     <p>{review.review}</p>
                 </div>
             </div>
-            ))}
+            )) : null}
             <div className="pages review-page">
                 <FaArrowLeft className='page-arrow' onClick={() => page != 1 ? setPage(page - 1) : setPage(page)} />
                 <h2>{page}</h2>
