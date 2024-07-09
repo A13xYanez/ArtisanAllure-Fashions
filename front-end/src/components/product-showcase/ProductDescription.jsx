@@ -18,30 +18,32 @@ export default function ProductDescription() {
     }, []);
     
     return (
-        <div className='product-details-page'>
+        <section className='product-details-page'>
             <div className="product-images-container">
-                <img className='product-img-large' src={img} />
                 <div className="product-img-cluster">
                     <img className='product-img-small' src={img} />
                     <img className='product-img-small' src={img} />
                     <img className='product-img-small' src={img} />
                 </div>
+                <img className='product-img-large' src={img} />
             </div>
             <div className="product-details">
                 <h6>{products.brand}</h6>
                 <h4>{products.product_name}</h4>
                 <div className="product-details-prices">
                     <h2 className='product-details-regular-price'>${products.regular_price}</h2>
-                    <h2 className='product-details-sale-price'>${products.sale_price}</h2>
+                    <h2 className='product-details-sale-price'>On Sale ${products.sale_price}</h2>
                 </div>
-                <select>
-                    <option>Select Size</option>
-                    <option>XXL</option>
-                    <option>XL</option>
-                    <option>L</option>
-                    <option>M</option>
-                    <option>S</option>
-                </select>
+                <div className='product-sizes-container'>
+                    <p>Select Size:</p>
+                    <div className="select-product-size">
+                        <button>S</button>
+                        <button>M</button>
+                        <button>L</button>
+                        <button>XL</button>
+                        <button>XX</button>
+                    </div>
+                </div>
                 <div className="product-input">
                     <input type='number' value='1' />
                     <button value={products.id}>Add To Cart</button>
@@ -49,6 +51,6 @@ export default function ProductDescription() {
                 <h3>Product Details</h3>
                 <span>{products.description}</span>
             </div>
-        </div>
+        </section>
     )
 }
