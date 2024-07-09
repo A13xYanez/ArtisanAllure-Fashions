@@ -219,3 +219,51 @@
 .contain-star-cluster {
     width: 120px;
 }
+
+.product-review-section {
+    padding: 0px 80px 0px 80px;
+    font-family: sans-serif;
+}
+
+.review-card {
+    padding: 30px 0 30px 0;
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid lightgray;
+}
+
+.customer-review-stars-container {
+    margin: 10px 0 15px 0;
+}
+
+.reviewer-info {
+    margin-right: 240px;
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewer-name {
+    font-weight: 600;
+}
+
+.reviewed-date {
+    font-weight: 300;
+}
+
+.reviewer-star {
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+.review-content {
+    width: 650px;
+    overflow-wrap: break-word;
+}
+
+.review-content p {
+    font-size: 18px;
+}
+
+.review-page {
+    margin-top: 20px;
+}
