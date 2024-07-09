@@ -19,12 +19,12 @@ export default function ProductRatings() {
     return (
         <section className='product-rating-section'>
             <div className="ratings-total">
-                <h2>{ratings.total_reviews} Ratings</h2>
+                {ratings != undefined ? (<h2>{ratings.total_reviews} Ratings</h2>) : (<h2>0 Ratings</h2>)}
             </div>
             <div className="contain-summaries">
                 <div className="ratings-summary">
                     <div className="ratings-score">
-                        <h2>{ratings.rating_avg}</h2>
+                        {ratings != undefined ? (<h2>{ratings.rating_avg}</h2>) : (<h2>0</h2>)}
                         <div className="total-stars">
                             <GoStarFill className='product-star-icon' />
                             <GoStarFill className='product-star-icon' />
@@ -46,7 +46,7 @@ export default function ProductRatings() {
                             <GoStarFill className='star-icon-cluster' />
                             <GoStarFill className='star-icon-cluster' />
                         </div>
-                        <span>({ratings.five_stars})</span>
+                        {ratings != undefined ? (<span>({ratings.five_stars})</span>) : (<span>0</span>)}
                     </div>
                     <div className="stars-quantity">
                         <span>4</span>
@@ -56,7 +56,7 @@ export default function ProductRatings() {
                             <GoStarFill className='star-icon-cluster' />
                             <GoStarFill className='star-icon-cluster' />
                         </div>
-                        <span>({ratings.four_stars})</span>
+                        {ratings != undefined ? (<span>({ratings.four_stars})</span>) : (<span>0</span>)}
                     </div>
                     <div className="stars-quantity">
                         <span>3</span>
@@ -65,7 +65,7 @@ export default function ProductRatings() {
                             <GoStarFill className='star-icon-cluster' />
                             <GoStarFill className='star-icon-cluster' />
                         </div>
-                        <span>({ratings.three_stars})</span>
+                        {ratings != undefined ? (<span>({ratings.three_stars})</span>) : (<span>0</span>)}
                     </div>
                     <div className="stars-quantity">
                         <span>2</span>
@@ -73,14 +73,14 @@ export default function ProductRatings() {
                             <GoStarFill className='star-icon-cluster' />
                             <GoStarFill className='star-icon-cluster' />
                         </div>
-                        <span>({ratings.two_stars})</span>
+                        {ratings != undefined ? (<span>({ratings.two_stars})</span>) : (<span>0</span>)}
                     </div>
                     <div className="stars-quantity">
                         <span>1</span>
                         <div className='contain-star-cluster'>
                             <GoStarFill className='star-icon-cluster' />
                         </div>
-                        <span>({ratings.one_stars})</span>
+                        {ratings != undefined ? (<span>({ratings.one_stars})</span>) : (<span>0</span>)}
                     </div>
                 </div>
             </div>
