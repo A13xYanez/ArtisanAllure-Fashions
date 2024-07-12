@@ -28,6 +28,8 @@ export default function ProductDescription() {
                 <img className='product-img-large' src={img} />
             </div>
             <div className="product-details">
+                <div>
+
                 <h6>{products.brand}</h6>
                 <h4>{products.product_name}</h4>
                 <div className="product-details-prices">
@@ -50,6 +52,7 @@ export default function ProductDescription() {
                 </div>
                 <h3>Product Details</h3>
                 <span>{products.description}</span>
+                </div>
             </div>
         </section>
     )
