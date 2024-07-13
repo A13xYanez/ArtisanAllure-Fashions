@@ -4,7 +4,9 @@
 }
 
 
-
+.showcase-product {
+    overflow: hidden;
+}
 
 
 
@@ -368,5 +370,62 @@
     .product-img-small {
         height: 100%;
         margin-right: 10px;
+    }
+}
+
+@media (max-width: 475px) {
+    .product-star-icon {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 688px) {
+    .contain-summaries {
+        flex-direction: column;
+    }
+
+    .stars-summary h4 {
+        text-align: start;
+    }
+}
+
+
+.review-card {
+    flex-direction: column;
+}
+    
+.reviewer-info {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 620px) {
+    .product-rating-section {
+        padding: 0;
+    }
+
+    .ratings-summary {
+        margin-left: 30px;
+    }
+
+    .stars-summary {
+        margin-left: 30px;
+    }
+
+    .ratings-total h2 {
+        margin-left: 30px;
+    }
+
+    .product-review-section {
+        padding: 0;
+    }
+
+    .reviewer-info {
+        margin-left: 30px;
+    }
+
+    .review-content {
+        margin-left: 30px;
     }
 }

@@ -9,12 +9,12 @@ import './ShowcaseProduct.css';
 
 export default function ShowcaseProduct() {
     return (
-        <>
+        <div className='showcase-product'>
             <Navbar />
             <ProductDescription />
             <ProductRatings />
             <ProductReviews />
             <Footer />
-        </>
+        </div>
     )
 }
