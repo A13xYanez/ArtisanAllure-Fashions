@@ -23,18 +23,20 @@ export default function ProductsInCart() {
             </div>
             {products.map((product) => (
                 <div className="product-cart-card">
-                    <div className="product-cart-img">
-                        <img src={img} className="product-img" />
-                    </div>
-                    <div className="product-cart-description">
-                        <div className="info">
-                            <h2>{product.brand}</h2>
-                            <p>{product.product_name}</p>
+                    <div className="product-img-desc">
+                        <div className="product-cart-img">
+                            <img src={img} className="product-img" />
                         </div>
-                        <div className="cart-card-btn">
-                            <button>Edit</button>
-                            <button>Remove</button>
-                            <button>Save For Later</button>
+                        <div className="product-cart-description">
+                            <div className="info">
+                                <h2>{product.brand}</h2>
+                                <p>{product.product_name}</p>
+                            </div>
+                            <div className="cart-card-btn">
+                                <button>Edit</button>
+                                <button>Remove</button>
+                                <button>Save For Later</button>
+                            </div>
                         </div>
                     </div>
                     <div className='product-qty-price'>
