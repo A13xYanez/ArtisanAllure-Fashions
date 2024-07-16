@@ -37,14 +37,16 @@ export default function ProductsInCart() {
                             <button>Save For Later</button>
                         </div>
                     </div>
-                    <div className="product-cart-quantity">
-                        <button className="quantity-btn">{<FaMinus className='btn-icon-minus' />}</button>
-                        <p className="product-amount">{product.quantity}</p>
-                        <button className="quantity-btn">{<FaPlus className='btn-icon-add' />}</button>
-                    </div>
-                    <div className="product-cart-costs">
-                        <p className="total">Total</p>
-                        <p className="costs">${product.regular_price * product.quantity}</p>
+                    <div className='product-qty-price'>
+                        <div className="product-cart-quantity">
+                            <button className="quantity-btn subtract-quantity">{<FaMinus className='btn-icon-minus' />}</button>
+                            <p className="product-amount">{product.quantity}</p>
+                            <button className="quantity-btn add-quantity">{<FaPlus className='btn-icon-add' />}</button>
+                        </div>
+                        <div className="product-cart-costs">
+                            <p className="total">Total</p>
+                            <p className="costs">${product.regular_price * product.quantity}</p>
+                        </div>
                     </div>
                 </div>
             ))}

@@ -378,6 +378,14 @@
     justify-content: space-between;
 }
 
+.product-qty-price {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    text-align: end;
+    height: 100%;
+}
+
 .info h2 {
     margin-bottom: 10px;
     font-weight: 300;
@@ -391,15 +399,14 @@
 .product-cart-quantity {
     width: 14%;
     display: flex;
-    justify-content: space-between;
+    width: 100%;
 }
 
 .quantity-btn {
     width: 30px;
-    height: 25px;
+    height: 100%;
     border: none;
     background: dodgerblue;
-    border-radius: 4px;
     color: whitesmoke;
     display: flex;
     justify-content: center;
@@ -412,6 +419,16 @@
     font-size: 18px;
 }
 
+.subtract-quantity {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.add-quantity {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
 .product-amount {
     display: flex;
     justify-content: center;
@@ -420,7 +437,6 @@
     width: 25px;
     height: 20px;
     padding: 5px 10px 5px 10px;
-    margin: 0px 5px 0px 5px;
 }
 
 .total {
@@ -431,4 +447,64 @@
 
 .costs {
     font-size: 18px;
+}
+
+@media (max-width: 1158px) {
+    .cart-complete {
+        flex-direction: column;
+    }
+
+    .products-in-cart {
+        width: 95dvw;
+    }
+
+    .order-summary {
+        justify-content: center;
+        align-items: center;
+        width: 95dvw;
+        margin-left: 25px;
+    }
+
+    .contain-order-summary {
+        width: 500px;
+    }
+}
+
+@media (max-width: 796px) {
+    .products-in-cart {
+        width: 90dvw;
+    }
+
+    .order-summary {
+        width: 90dvw;
+    }
+
+    .cart-card-btn {
+        flex-direction: column;
+    }
+
+    .cart-card-btn button {
+        width: 150px;
+        margin-top: 5px;
+    }
+}
+
+@media (max-width: 600px) {
+    .product-qty-price {
+        display: none;
+    }
+
+    .cart-card-btn button {
+        width: 100%;
+    }
+
+    .product-cart-description {
+        width: 40%;
+    }
+}
+
+@media (max-width: 558px) {
+    .contain-order-summary {
+        width: 100%;
+    }
 }
