@@ -23,28 +23,32 @@ export default function ProductsInCart() {
             </div>
             {products.map((product) => (
                 <div className="product-cart-card">
-                    <div className="product-cart-img">
-                        <img src={img} className="product-img" />
-                    </div>
-                    <div className="product-cart-description">
-                        <div className="info">
-                            <h2>{product.brand}</h2>
-                            <p>{product.product_name}</p>
+                    <div className="product-img-desc">
+                        <div className="product-cart-img">
+                            <img src={img} className="product-img" />
                         </div>
-                        <div className="cart-card-btn">
-                            <button>Edit</button>
-                            <button>Remove</button>
-                            <button>Save For Later</button>
+                        <div className="product-cart-description">
+                            <div className="info">
+                                <h2>{product.brand}</h2>
+                                <p>{product.product_name}</p>
+                            </div>
+                            <div className="cart-card-btn">
+                                <button>Edit</button>
+                                <button>Remove</button>
+                                <button>Save For Later</button>
+                            </div>
                         </div>
                     </div>
-                    <div className="product-cart-quantity">
-                        <button className="quantity-btn">{<FaMinus className='btn-icon-minus' />}</button>
-                        <p className="product-amount">{product.quantity}</p>
-                        <button className="quantity-btn">{<FaPlus className='btn-icon-add' />}</button>
-                    </div>
-                    <div className="product-cart-costs">
-                        <p className="total">Total</p>
-                        <p className="costs">${product.regular_price * product.quantity}</p>
+                    <div className='product-qty-price'>
+                        <div className="product-cart-quantity">
+                            <button className="quantity-btn subtract-quantity">{<FaMinus className='btn-icon-minus' />}</button>
+                            <p className="product-amount">{product.quantity}</p>
+                            <button className="quantity-btn add-quantity">{<FaPlus className='btn-icon-add' />}</button>
+                        </div>
+                        <div className="product-cart-costs">
+                            <p className="total">Total</p>
+                            <p className="costs">${product.regular_price * product.quantity}</p>
+                        </div>
                     </div>
                 </div>
             ))}
