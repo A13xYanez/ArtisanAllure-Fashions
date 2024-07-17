@@ -403,3 +403,13 @@
     font-family: sans-serif;
     font-weight: 300;
 }
+
+@media (max-width: 691px) {
+    .products-display-container-wishlist {
+        justify-content: center;
+    }
+
+    .display-wishlist-lesser-three {
+        justify-content: center;
+    }
+}
