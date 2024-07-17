@@ -15,6 +15,7 @@ axios.defaults.withCredentials = true;
 export default function Products(props) {
     const [products, setProducts] = useState([]);
     const [page, setPage] = useState(1);
+    const [enableFilters, setEnableFilters] = useState(false);
 
     useEffect(() => {
         axios.get(`http://localhost:8080/${props.urlPath}/${page}`)
@@ -33,13 +34,17 @@ export default function Products(props) {
         .then((res) => console.log(res))
         .catch((error) => { console.error(error.response.data.error); });
     };
+
+    function showFilterButtons() {
+        setEnableFilters(!enableFilters);
+    }
     
     return (
         <div className='product-page'>
             <div className='product-filters'>
                 <div className='filter-buttons'>
-                    <button className='main-filter-button'><VscSettings className='icon' />All Filters</button>
-                    <div className='contain-sub-filter-buttons'>
+                    <button className='main-filter-button' onClick={showFilterButtons}><VscSettings className='icon' />All Filters</button>
+                    <div className={enableFilters ? 'sub-filter-buttons-enabled' : 'contain-sub-filter-buttons'}>
                         <button>Filter</button>
                         <button>Filter</button>
                         <button>Filter</button>
