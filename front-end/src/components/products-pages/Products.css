@@ -232,6 +232,10 @@
     display: flex;
 }
 
+.contain-sub-filter-buttons {
+    display: none;
+}
+
 .filter-buttons button {
     height: 50px;
     padding: 0 25px 0 25px;
@@ -481,4 +485,54 @@
 .page-arrow {
     cursor: pointer;
     font-size: 20px;
+}
+
+@media (max-width: 1137px) {
+    .contain-sub-filter-buttons {
+        display: flex;
+        width: 100%;
+        overflow-x: scroll;
+        scrollbar-width: none;
+    }
+
+    .filter-buttons {
+        width: 50%;
+    }
+}
+
+@media (max-width: 691px) {
+    .products-display-container {
+        justify-content: center;
+    }
+
+    .product-filters {
+        flex-direction: column-reverse;
+    }
+
+    .dropdown-container {
+        margin-bottom: 15px;
+        justify-content: center;
+    }
+
+    .contain-sub-filter-buttons {
+        display: flex;
+        width: 100%;
+        overflow-x: scroll;
+        scrollbar-width: none;
+    }
+
+    .contain-sub-filter-buttons button:last-child {
+        margin: 0;
+    }
+
+    .filter-buttons {
+        width: 100%;
+    }
+}
+
+.main-filter-button{
+    padding: 0 !important;
+    display: flex;
+    justify-content: center;
+    min-width: 150px !important;
 }

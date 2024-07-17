@@ -38,13 +38,15 @@ export default function Products(props) {
         <div className='product-page'>
             <div className='product-filters'>
                 <div className='filter-buttons'>
-                    <button><VscSettings className='icon' />All Filters</button>
-                    <button>Filter</button>
-                    <button>Filter</button>
-                    <button>Filter</button>
-                    <button>Filter</button>
-                    <button>Filter</button>
-                    <button>Filter</button>
+                    <button className='main-filter-button'><VscSettings className='icon' />All Filters</button>
+                    <div className='contain-sub-filter-buttons'>
+                        <button>Filter</button>
+                        <button>Filter</button>
+                        <button>Filter</button>
+                        <button>Filter</button>
+                        <button>Filter</button>
+                        <button>Filter</button>
+                    </div>
                 </div>
                 <div className='dropdown-container'>
                     <select className='filter-dropdown'>
