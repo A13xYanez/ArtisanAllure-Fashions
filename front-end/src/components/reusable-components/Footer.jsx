@@ -10,7 +10,6 @@ export default function Footer2() {
                     <div className="footer-logo">
                         <Link to='/'><img src={logo} /></Link>
                     </div>
-                    
                 </div>
                 <div className="link-boxes">
                     <ul className="box">
