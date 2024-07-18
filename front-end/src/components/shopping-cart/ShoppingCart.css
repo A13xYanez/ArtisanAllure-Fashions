@@ -224,6 +224,11 @@
 
 .btn-icon-minus {
     font-size: 18px;
+    pointer-events: none;
+}
+
+.btn-icon-add {
+    pointer-events: none;
 }
 
 .subtract-quantity {

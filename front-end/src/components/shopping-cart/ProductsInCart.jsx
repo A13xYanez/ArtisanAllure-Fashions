@@ -16,6 +16,23 @@ export default function ProductsInCart() {
         .catch((error) => { console.error(error.response.data.error); });
     }, []);
 
+    function incrementProduct(e) {
+        axios.post(`http://localhost:8080/account/addToCart/${(e.target.value)}`)
+        .then((res) => console.log(res))
+        .catch((error) => { console.error(error.response.data.error); });
+
+        axios.get('http://localhost:8080/account/displayProductsInCart')
+        .then((res) => { setProducts(res.data); })
+        .catch((error) => { console.error(error.response.data.error); });
+    };
+
+    function decrementProduct(e) {
+        // subtract product from quantity when minus button is clicked
+        console.log(e.target.value)
+    };
+
+    //refresh page to show the adjusted product quantity
+
     return (
         <section className='products-in-cart'>
             <div className='section-title'>
@@ -41,9 +58,9 @@ export default function ProductsInCart() {
                     </div>
                     <div className='product-qty-price'>
                         <div className="product-cart-quantity">
-                            <button className="quantity-btn subtract-quantity">{<FaMinus className='btn-icon-minus' />}</button>
+                            <button className="quantity-btn subtract-quantity" value={product.id} onClick={decrementProduct}>{<FaMinus className='btn-icon-minus' />}</button>
                             <p className="product-amount">{product.quantity}</p>
-                            <button className="quantity-btn add-quantity">{<FaPlus className='btn-icon-add' />}</button>
+                            <button className="quantity-btn add-quantity" value={product.id} onClick={incrementProduct}>{<FaPlus className='btn-icon-add' />}</button>
                         </div>
                         <div className="product-cart-costs">
                             <p className="total">Total</p>
