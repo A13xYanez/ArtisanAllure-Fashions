@@ -8,13 +8,14 @@ import { RxMagnifyingGlass } from "react-icons/rx";
 import { FaRegUser } from "react-icons/fa6";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
+import './Reuseable.css';
 
 export default function Navbar() {
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
 
     function iconClicked() {
-        setIsOpen(!isOpen)
-    }
+        setIsOpen(!isOpen);
+    };
 
     return (
         <nav>
@@ -48,4 +49,4 @@ export default function Navbar() {
             </div>
         </nav>
     )
-}
+};
