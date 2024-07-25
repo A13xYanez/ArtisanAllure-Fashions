@@ -131,4 +131,15 @@ export const removeFromWishlist = async (account_id, product) => {
         {"account_details.wishlist.items.item": product.item}, 
         {$pull: {"account_details.wishlist.items": {item: product.item}}}
     );
-}
+};
+
+
+
+// Deletes an item from users cart when quantity reaches zero
+export const deleteFromCart = async (account_id, product) => {
+    return UserModel.findById(account_id)
+    .findOneAndUpdate(
+        {"account_details.cart.items.item": product.item}, 
+        {$pull: {"account_details.cart.items": {item: product.item}}}
+    );
+};
