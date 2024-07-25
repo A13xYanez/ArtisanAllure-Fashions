@@ -4,9 +4,7 @@
 }
 
 
-.showcase-product {
-    overflow: hidden;
-}
+
 
 
 
@@ -274,6 +272,12 @@
     margin: 20px 0 70px 0;
 }
 
+
+
+
+
+
+/* Responsive Media Queries */
 @media (max-width: 1331px) {
     .select-product-size {
         flex-wrap: wrap;

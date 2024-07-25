@@ -5,6 +5,7 @@ import CartComplete from './CartComplete';
 import Footer from '../reusable-components/Footer';
 
 export default function ShoppingCart() {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
     return (
         <>
             <Navbar />

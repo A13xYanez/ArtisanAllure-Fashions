@@ -7,13 +7,14 @@ import Footer from '..//reusable-components/Footer';
 import './ShowcaseProduct.css';
 
 export default function ShowcaseProduct() {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
     return (
-        <div className='showcase-product'>
+        <>
             <Navbar />
             <ProductDescription />
             <ProductRatings />
             <ProductReviews />
             <Footer />
-        </div>
+        </>
     )
 }
