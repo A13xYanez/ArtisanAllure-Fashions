@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import img from './assets/47-BRAND-Los-Angeles-Dodgers-47-Clean-Up-Strapback-Hat.jpg'
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa6";
 
@@ -18,20 +17,23 @@ export default function ProductsInCart() {
 
     function incrementProduct(e) {
         axios.post(`http://localhost:8080/account/addToCart/${(e.target.value)}`)
-        .then((res) => console.log(res))
-        .catch((error) => { console.error(error.response.data.error); });
-
-        axios.get('http://localhost:8080/account/displayProductsInCart')
-        .then((res) => { setProducts(res.data); })
+        .then((res) => {
+            axios.get('http://localhost:8080/account/displayProductsInCart')
+            .then((res) => { setProducts(res.data); })
+            .catch((error) => { console.error(error.response.data.error); });
+        })
         .catch((error) => { console.error(error.response.data.error); });
     };
 
     function decrementProduct(e) {
-        // subtract product from quantity when minus button is clicked
-        console.log(e.target.value)
+        axios.put(`http://localhost:8080/account/subtractFromCart/${e.target.value}`)
+        .then((res) => {
+            axios.get('http://localhost:8080/account/displayProductsInCart')
+            .then((res) => { setProducts(res.data); })
+            .catch((error) => { console.error(error.response.data.error); });
+        })
+        .catch((error) => { console.error(error.response.data.error); });
     };
-
-    //refresh page to show the adjusted product quantity
 
     return (
         <section className='products-in-cart'>
@@ -42,7 +44,7 @@ export default function ProductsInCart() {
                 <div className="product-cart-card">
                     <div className="product-img-desc">
                         <div className="product-cart-img">
-                            <img src={img} className="product-img" />
+                            <img src={product.product_image} className="product-img" />
                         </div>
                         <div className="product-cart-description">
                             <div className="info">
@@ -64,7 +66,7 @@ export default function ProductsInCart() {
                         </div>
                         <div className="product-cart-costs">
                             <p className="total">Total</p>
-                            <p className="costs">${product.regular_price * product.quantity}</p>
+                            <p className="costs">${(product.regular_price * product.quantity).toFixed(2)}</p>
                         </div>
                     </div>
                 </div>
