@@ -374,6 +374,7 @@
 .review-close-icon {
     font-size: 32px;
     color: black;
+    cursor: pointer;
 }
 
 .create-review-title {

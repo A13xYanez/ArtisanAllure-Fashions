@@ -1,15 +1,16 @@
 import React from 'react';
+import { useState } from 'react';
 import { GoStarFill } from "react-icons/go";
 import { IoClose } from "react-icons/io5";
 
-export default function WriteReview(props) {
+export default function WriteReview({ isActive, setIsActive }) {
     return (
-        <div className={props.isActive ? 'write-review-container' : 'write-review-disabled'}>
+        <div className={isActive ? 'write-review-container' : 'write-review-disabled'}>
             <form className="create-review">
                 <div className='create-review-title'>
                     <div className="header-with-close">
                         <h2>Share your experience</h2>
-                        <IoClose className='review-close-icon' />
+                        <IoClose className='review-close-icon' onClick={(e) => {e.preventDefault, setIsActive(false)}} />
                     </div>
                     <p>Product Name</p>
                 </div>
@@ -28,7 +29,7 @@ export default function WriteReview(props) {
                     <textarea />
                 </div>
                 <div className="close-or-submit-review">
-                    <button>Close</button>
+                    <button onClick={(e) => {e.preventDefault, setIsActive(false)}}>Close</button>
                     <button>Submit</button>
                 </div>
             </form>

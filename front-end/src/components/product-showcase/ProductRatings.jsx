@@ -20,7 +20,7 @@ export default function ProductRatings() {
 
     return (
         <section>
-            <WriteReview isActive={isActive} />
+            {isActive ? <WriteReview isActive={isActive} setIsActive={setIsActive} /> : null}
             <div className='product-rating-section'>
                 <div className="ratings-total">
                     {ratings != undefined ? (<h2>{ratings.total_reviews} Ratings</h2>) : (<h2>0 Ratings</h2>)}
