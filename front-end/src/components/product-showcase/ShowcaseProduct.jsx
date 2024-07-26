@@ -3,7 +3,6 @@ import Navbar from '../reusable-components/Navbar';
 import ProductRatings from './ProductRatings';
 import ProductReviews from './ProductReviews'
 import ProductDescription from './ProductDescription';
-import WriteReview from './WriteReview';
 import Footer from '..//reusable-components/Footer';
 import './ShowcaseProduct.css';
 
@@ -15,7 +14,6 @@ export default function ShowcaseProduct() {
             <ProductDescription />
             <ProductRatings />
             <ProductReviews />
-            <WriteReview />
             <Footer />
         </>
     )

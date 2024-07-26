@@ -272,6 +272,12 @@
     margin: 20px 0 70px 0;
 }
 
+
+
+
+
+
+/* Create Review Section */
 .write-review-disabled {
     display: none;
 }
@@ -290,6 +296,7 @@
 
 .create-review {
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     z-index: 101;
@@ -303,12 +310,6 @@
 
 .create-review-title h2 {
     font-weight: 400;
-}
-
-.create-review-title p {
-    color: #888888;
-    font-weight: 300;
-    margin-top: 8px;
 }
 
 .leave-rating {
@@ -365,6 +366,7 @@
     color: whitesmoke;
     margin-right: 30px;
     font-size: 14px;
+    cursor: pointer;
 }
 
 .close-or-submit-review button:last-child {
@@ -387,6 +389,9 @@
     justify-content: space-between;
     width: 100%;
 }
+
+
+
 
 
 

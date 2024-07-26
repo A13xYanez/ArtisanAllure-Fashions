@@ -272,10 +272,9 @@ export const createProductReview = async (req, res) => {
     try {
         const user = get(req, 'identity');
         const productID = req.params.id;
-        const productReview = req.body.review;
-        const productRating = req.body.rating;
+        const { productReview, productRating } = req.body;
         let ratingsSum = productRating;
-
+        
         const productInformation = await getProductById(productID);
         const totalReviews = productInformation.product_evaluations.total_reviews;
         const allRatings = productInformation.product_evaluations.reviews;
@@ -292,13 +291,13 @@ export const createProductReview = async (req, res) => {
         });
 
         updateTotalReviews(productID, totalReviews + 1);
-
+        
         allRatings.map((rating) => {
           ratingsSum += rating.rating;
         })
 
         const averageRating = (ratingsSum / (totalReviews + 1)).toFixed(1);
-
+        
         updateRatingAvg(productID, averageRating);
 
         return res.sendStatus(200);
