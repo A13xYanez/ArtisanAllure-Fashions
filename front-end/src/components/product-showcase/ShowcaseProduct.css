@@ -278,10 +278,6 @@
 
 
 /* Create Review Section */
-.write-review-disabled {
-    display: none;
-}
-
 .write-review-container {
     display: flex;
     justify-content: center;
@@ -300,7 +296,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     z-index: 101;
-    width: 50vw;
+    width: 720px;
     background: white;
     border-radius: 4px;
     box-shadow: 0px 0px 15px 4px rgba(0, 0, 0, .35);
@@ -388,6 +384,16 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+}
+
+.leave-rating h4 span {
+    color: red;
+    font-size: 18px;
+}
+
+.leave-review h4 span {
+    color: red;
+    font-size: 18px;
 }
 
 
@@ -549,5 +555,11 @@
 
     .review-content {
         margin-left: 30px;
+    }
+}
+
+@media (max-width: 816px) {
+    .create-review {
+        width: 88%;
     }
 }
