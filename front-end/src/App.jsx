@@ -10,7 +10,7 @@ import MensProducts from './components/products-pages/MenProducts';
 import WomansProducts from './components/products-pages/WomansProducts';
 import KidsProducts from './components/products-pages/KidsProducts';
 import SalesProducts from './components/products-pages/SalesProducts';
-import ShowcaseProduct from './components/product-showcase/ShowcaseProduct';
+import ShowcaseProductComplete from './components/product-showcase/ShowcaseProductComplete';
 
 export default function App() {
   return (
@@ -25,7 +25,7 @@ export default function App() {
           <Route path='/womans' element={<WomansProducts />} />
           <Route path='/kids' element={<KidsProducts />} />
           <Route path='/sales' element={<SalesProducts />} />
-          <Route path='/product-details/:id' element={<ShowcaseProduct />} />
+          <Route path='/product-details/:id' element={<ShowcaseProductComplete />} />
         </Routes>
     </Router>
   )
