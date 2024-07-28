@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import Navbar from '../reusable-components/Navbar';
 import ProductRatings from './ProductRatings';
 import ProductReviews from './ProductReviews'
@@ -7,14 +8,15 @@ import Footer from '..//reusable-components/Footer';
 import './ShowcaseProduct.css';
 
 export default function ShowcaseProduct() {
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
+    const [isActive, setIsActive] = useState(false);
+
     return (
-        <>
+        <div className={isActive ? 'no-scroll-showcase-product' : 'scroll-showcase-product'}>
             <Navbar />
             <ProductDescription />
-            <ProductRatings />
+            <ProductRatings isActive={isActive} setIsActive={setIsActive} />
             <ProductReviews />
             <Footer />
-        </>
+        </div>
     )
-}
+};

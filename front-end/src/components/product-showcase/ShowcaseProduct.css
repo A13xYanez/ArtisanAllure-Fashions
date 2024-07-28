@@ -396,6 +396,11 @@
     font-size: 18px;
 }
 
+.no-scroll-showcase-product {
+    height: 100dvh;
+    overflow: hidden;
+}
+
 
 
 

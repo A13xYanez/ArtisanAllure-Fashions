@@ -7,10 +7,9 @@ import WriteReview from './WriteReview';
 
 axios.defaults.withCredentials = true;
 
-export default function ProductRatings() {
+export default function ProductRatings({ isActive, setIsActive }) {
     const {id} = useParams();
     const [ratings, setRatings] = useState();
-    const [isActive, setIsActive] = useState(false);
 
     useEffect(() => {
         axios.get(`http://localhost:8080/product/rating/${id}`)
