@@ -4,18 +4,26 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import './ShowcaseProduct.css';
 import img from './assets/47-BRAND-Los-Angeles-Dodgers-47-Clean-Up-Strapback-Hat.jpg';
+import { useToast } from '../reusable-components/UseToast';
 
 axios.defaults.withCredentials = true;
 
 export default function ProductDescription() {
     const {id} = useParams();
     const [products, setProducts] = useState({});
+    const toast = useToast();
 
     useEffect(() => {
         axios.get(`http://localhost:8080/product/details/${id}`)
         .then((res) => { setProducts(res.data); })
         .catch((error) => { console.error(error.response.data.error); });
     }, []);
+
+    function addItemToCart(e) {
+        axios.post(`http://localhost:8080/account/addToCart/${(e.target.value)}`)
+        .then((res) => toast("success", "Product successfully added to cart"))
+        .catch((error) => toast("error", "Please login to add product to cart"));
+    };
     
     return (
         <section className='product-details-page'>
@@ -48,7 +56,7 @@ export default function ProductDescription() {
                 </div>
                 <div className="product-input">
                     <input type='number' value='1' />
-                    <button value={products.id}>Add To Cart</button>
+                    <button value={products.id} onClick={addItemToCart}>Add To Cart</button>
                 </div>
                 <h3>Product Details</h3>
                 <span>{products.description}</span>
