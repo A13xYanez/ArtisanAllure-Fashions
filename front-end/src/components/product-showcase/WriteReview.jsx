@@ -4,10 +4,12 @@ import axios from 'axios';
 import { GoStarFill } from "react-icons/go";
 import { GoStar } from "react-icons/go";
 import { IoClose } from "react-icons/io5";
+import { useToast } from '../reusable-components/UseToast';
 
-export default function WriteReview({ setIsActive, id }) {
+export default function WriteReview({ setIsActive, setRefreshPage, id }) {
     const [productReview, setProductReview] = useState("");
     const [productRating, setProductRating] = useState(null);
+    const toast = useToast();
 
     function disableWriteReview() {
         setIsActive(false);
@@ -16,8 +18,16 @@ export default function WriteReview({ setIsActive, id }) {
     function submitProductReview() {
         if (productRating != null && productReview != "") {
             axios.post(`http://localhost:8080/product/create/review/${id}`, { productReview, productRating })
-            .then((res) => {setIsActive(false), window.location.reload()})
-            .catch((error) => { console.error(error); });
+            .then((res) => {setIsActive(false),
+                            setRefreshPage(true),
+                            toast("success", "Review submitted, thank you for your feedback!")})
+            .catch((error) => { toast("error", "Please login to submit a review"); });
+        } else if (productRating == null && productReview == "") {
+            toast("warning", "A written review and overall rating is required!");
+        } else if (productRating == null) {
+            toast("warning", "Overall Rating is required!");
+        } else if (productReview == "") {
+            toast("warning", "A written review is required!");
         }
     }
 
@@ -47,7 +57,7 @@ export default function WriteReview({ setIsActive, id }) {
                 </div>
                 <div className="leave-review">
                     <h4>Review <span>*</span></h4>
-                    <textarea onChange={e => setProductReview(e.target.value)} required />
+                    <textarea onChange={(e) => setProductReview(e.target.value)} required />
                 </div>
                 <div className="close-or-submit-review">
                     <button onClick={disableWriteReview}>Close</button>

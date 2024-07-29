@@ -12,14 +12,17 @@ import ToastProvider from '../reusable-components/ToastContext';
 
 export default function ShowcaseProduct() {
     const [isActive, setIsActive] = useState(false);
+    const [refreshPage, setRefreshPage] = useState(false);
 
     return (
         <div className={isActive ? 'no-scroll-showcase-product' : 'scroll-showcase-product'}>
             <ToastProvider>
                 <Navbar />
                 <ProductDescription />
-                <ProductRatings isActive={isActive} setIsActive={setIsActive} />
-                <ProductReviews />
+                <ProductRatings isActive={isActive} setIsActive={setIsActive} 
+                                refreshPage={refreshPage} setRefreshPage={setRefreshPage} 
+                />
+                <ProductReviews refreshPage={refreshPage} setRefreshPage={setRefreshPage}  />
                 <Footer />
                 <ToastContainer />
             </ToastProvider>
