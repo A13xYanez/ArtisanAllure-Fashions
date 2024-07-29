@@ -3,8 +3,12 @@ import { IoClose } from "react-icons/io5";
 import success from './assets/success-icon.png';
 import error from './assets/error-icon.png';
 import warning from './assets/warning-icon.png';
+import { useToastDispatchContext } from './ToastContext';
 
 export default function Toast(props) {
+    const dispatch = useToastDispatchContext();
+    const id = props.id;
+
     return (
         <div className={props.type == "success" ? "toast-green toast-box" :
                         props.type == "warning" ? "toast-yellow toast-box" :
@@ -22,7 +26,9 @@ export default function Toast(props) {
                 <p>{props.message}</p>
             </div>
 
-            <IoClose className='toast-close-icon' />
+            <IoClose className='toast-close-icon' onClick={() => {
+                dispatch({ type: "DELETE_TOAST", id });
+            }} />
         </div>
     )
 };
