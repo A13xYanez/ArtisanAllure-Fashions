@@ -378,9 +378,6 @@ footer .footer-content .link-boxes .box {
     width: 313px;
     height: 75px;
     z-index: 1002;
-    position: fixed;
-    bottom: 15px;
-    right: 15px;
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -388,6 +385,23 @@ footer .footer-content .link-boxes .box {
     background-repeat: no-repeat;
     background-size: cover;
     user-select: none;
+    margin-top: 30px;
+    animation: toast-slide-left 0.5s ease-in-out;
+}
+
+@keyframes toast-slide-left {
+    0% {
+        transform: translateX(400px);
+    }
+    50% {
+        transform: translateX(0px);
+    }
+    75% {
+        transform: translateX(30px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
 }
 
 .toast-green {
@@ -405,29 +419,25 @@ footer .footer-content .link-boxes .box {
 .toast-type-icon {
     height: 40px;
     width: 40px;
-    position: absolute;
-    top: -15px;
+    position: relative;
+    top: -35px;
     left: 15px;
 }
 
-.toast-box h3 {
-    font-size: 22px;
+.toast-text {
     color: whitesmoke;
     font-family: sans-serif;
-    font-weight: 500;
-    position: absolute;
-    top: 12px;
-    left: 80px;
+    position: relative;
+    left: 40px;
+    height: 100%;
 }
 
-.toast-box p {
-    color: whitesmoke;
-    font-size: 14px;
+.toast-text h3 {
+    margin: 15px 0 5px 0;
+}
+
+.toast-text p {
     font-weight: 300;
-    font-family: sans-serif;
-    position: absolute;
-    left: 80px;
-    top: 38px;
     width: 190px;
     overflow-wrap: break-word;
 }
@@ -435,10 +445,26 @@ footer .footer-content .link-boxes .box {
 .toast-close-icon {
     color: whitesmoke;
     font-size: 22px;
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    position: relative;
+    top: -15px;
+    right: -50px;
     cursor: pointer;
+}
+
+.toast-container {
+    height: 100dvh;
+    padding: 10px 0 10px 0;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.toast-lists {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 10px 0 10px;
 }
 
 

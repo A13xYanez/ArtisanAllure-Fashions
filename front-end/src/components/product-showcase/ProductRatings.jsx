@@ -4,12 +4,14 @@ import { GoStarFill } from "react-icons/go";
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import WriteReview from './WriteReview';
+import { useToast } from '../reusable-components/UseToast';
 
 axios.defaults.withCredentials = true;
 
 export default function ProductRatings({ isActive, setIsActive }) {
     const {id} = useParams();
     const [ratings, setRatings] = useState();
+    const toast = useToast();
 
     useEffect(() => {
         axios.get(`http://localhost:8080/product/rating/${id}`)
