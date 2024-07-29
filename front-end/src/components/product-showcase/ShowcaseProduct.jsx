@@ -5,10 +5,9 @@ import ProductRatings from './ProductRatings';
 import ProductReviews from './ProductReviews'
 import ProductDescription from './ProductDescription';
 import Footer from '..//reusable-components/Footer';
-import './ShowcaseProduct.css';
-
 import ToastContainer from '../reusable-components/ToastContainer';
 import ToastProvider from '../reusable-components/ToastContext';
+import './ShowcaseProduct.css';
 
 export default function ShowcaseProduct() {
     const [isActive, setIsActive] = useState(false);

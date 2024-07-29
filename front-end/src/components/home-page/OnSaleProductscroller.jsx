@@ -7,11 +7,13 @@ import { BsFillCartPlusFill } from "react-icons/bs";
 import { BsFillCartCheckFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
+import { useToast } from '../reusable-components/UseToast';
 
 axios.defaults.withCredentials = true;
 
 export default function OnSaleProductscroller() {
     const [products, setProducts] = useState([]);
+    const toast = useToast();
 
     useEffect(() => {
         axios.get('http://localhost:8080/home/sale')
@@ -21,14 +23,14 @@ export default function OnSaleProductscroller() {
 
     function addItemToCart(e) {
         axios.post(`http://localhost:8080/account/addToCart/${(e.target.value)}`)
-        .then((res) => console.log(res))
-        .catch((error) => { console.error(error.response.data.error); });
+        .then((res) => toast("success", "Product successfully added to cart!"))
+        .catch((error) => toast("error", "Please login to add product to cart"));
     };
 
     function saveItemToWishlist(e) {
         axios.post(`http://localhost:8080/account/saveToWishlist/${(e.target.value)}`)
-        .then((res) => console.log(res))
-        .catch((error) => { console.error(error.response.data.error); });
+        .then((res) => toast("success", "Product successfully saved to wishlist!"))
+        .catch((error) => toast("error", "Please login to save product to wishlist"));
     };
 
     return (
