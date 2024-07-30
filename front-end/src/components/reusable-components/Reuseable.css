@@ -19,7 +19,7 @@
     margin-right: 30px;
     height: 25px;
     width: 25px;
-    z-index: 1001;
+    z-index: 1009;
     visibility: hidden;
     position: fixed;
 }
@@ -48,10 +48,11 @@
 .close-menu {
     position: absolute;
     top: 20px;
-    left: 30px;
+    left: 20px;
     color: whitesmoke;
     height: 25px;
     width: 25px;
+    cursor: pointer;
 }
 
 .close-menu-hidden {
@@ -68,7 +69,7 @@
     background-color: #1e1e24;
     position: fixed;
     box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
-    z-index: 1000;
+    z-index: 1009;
     top: 0;
 }
 
@@ -433,7 +434,7 @@ footer .footer-content .link-boxes .box {
 }
 
 .toast-text h3 {
-    margin: 15px 0 5px 0;
+    margin: 15px 0 2px 0;
 }
 
 .toast-text p {
@@ -457,6 +458,7 @@ footer .footer-content .link-boxes .box {
     position: fixed;
     bottom: 0;
     right: 0;
+    z-index: 1002;
 }
 
 .toast-lists {
@@ -465,6 +467,7 @@ footer .footer-content .link-boxes .box {
     flex-direction: column;
     justify-content: flex-end;
     padding: 0 10px 0 10px;
+    z-index: 1002;
 }
 
 

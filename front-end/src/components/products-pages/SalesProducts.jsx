@@ -6,7 +6,7 @@ import Footer from '../reusable-components/Footer';
 
 export default function SalesProducts() {
     return (
-        <>
+        <>    
             <Navbar /> 
             <Products urlPath={'products/sale'} />
             <Footer />

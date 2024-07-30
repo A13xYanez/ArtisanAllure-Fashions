@@ -4,24 +4,23 @@ import { GoStarFill } from "react-icons/go";
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import WriteReview from './WriteReview';
-import { useToast } from '../reusable-components/UseToast';
 
 axios.defaults.withCredentials = true;
 
-export default function ProductRatings({ isActive, setIsActive }) {
+export default function ProductRatings({ isActive, setIsActive, refreshPage, setRefreshPage }) {
     const {id} = useParams();
     const [ratings, setRatings] = useState();
-    const toast = useToast();
 
     useEffect(() => {
+        setRefreshPage(false);
         axios.get(`http://localhost:8080/product/rating/${id}`)
         .then((res) => { setRatings(res.data); })
         .catch((error) => { console.error(error.response.data.error); });
-    }, []);
+    }, [refreshPage]);
 
     return (
         <section>
-            {isActive ? <WriteReview setIsActive={setIsActive} id={id} /> : null}
+            {isActive ? <WriteReview setIsActive={setIsActive} setRefreshPage={setRefreshPage} id={id} /> : null}
             <div className='product-rating-section'>
                 <div className="ratings-total">
                     {ratings != undefined ? (<h2>{ratings.total_reviews} Ratings</h2>) : (<h2>0 Ratings</h2>)}

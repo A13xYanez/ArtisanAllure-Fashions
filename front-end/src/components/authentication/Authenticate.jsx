@@ -5,6 +5,7 @@ import { MdLockOutline } from "react-icons/md";
 import { FaUser } from "react-icons/fa6";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '../reusable-components/UseToast';
 
 export default function Authenticate() {
     const [active, setActive] = useState(false);
@@ -14,6 +15,7 @@ export default function Authenticate() {
     const [first_name, setFirst_Name] = useState("");
     const [last_name, setLast_Name] = useState("");
     const navigate = useNavigate();
+    const toast = useToast();
 
     function isActive() {
         setActive(!active);
@@ -22,20 +24,20 @@ export default function Authenticate() {
     function loginUser(e) {
         e.preventDefault();
         axios.post("http://localhost:8080/auth/login", { email, password })
-        .then((res) => { navigate("/"); })
-        .catch((error) => { console.error(error.response.data.error); });
+        .then((res) => { navigate("/"), toast("success", "Logged in successfully!") })
+        .catch((error) => toast("warning", `${error.response.data.error}`));
     };
 
     function registerUser(e) {
         e.preventDefault();
 
         if (password != confirmPassword) {
-            return console.error("Passwords do not match.")
+            return toast("warning", "Passwords do not match...")
         }
 
         axios.post("http://localhost:8080/auth/register", { email, password, first_name, last_name })
-        .then((res) => { navigate("/"); })
-        .catch((error) => { console.error(error.response.data.error); });
+        .then((res) => { navigate("/"), toast("success", "Account created successfully!") })
+        .catch((error) => toast("warning", `${error.response.data.error}`));
     };
 
     return (

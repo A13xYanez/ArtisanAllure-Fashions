@@ -6,16 +6,17 @@ import { GoStarFill } from "react-icons/go";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
 
-export default function ProductReviews() {
+export default function ProductReviews({ refreshPage, setRefreshPage }) {
     const {id} = useParams();
     const [reviews, setReviews] = useState();
     const [page, setPage] = useState(1);
 
     useEffect(() => {
+        setRefreshPage(false);
         axios.get(`http://localhost:8080/product/review/${id}/${page}`)
         .then((res) => { setReviews(res.data); })
         .catch((error) => { console.error(error.response.data.error); });
-    }, [page]);
+    }, [page, refreshPage]);
 
     return (
         <section className='product-review-section'>
