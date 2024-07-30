@@ -7,12 +7,14 @@ import { FaHeart } from "react-icons/fa";
 import { GoStarFill } from "react-icons/go";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { BsFillCartCheckFill } from "react-icons/bs";
+import { useToast } from '../reusable-components/UseToast';
 
 axios.defaults.withCredentials = true;
 
 export default function WishlistItems() {
     const [products, setProducts] = useState([]);
     const [refreshPage, setRefreshPage] = useState(false);
+    const toast = useToast();
     let wishlistCount = 0;
 
     useEffect(() => {
@@ -21,21 +23,19 @@ export default function WishlistItems() {
         axios.get(`http://localhost:8080/account/displayProductsInWishlist`)
         .then((res) => { setProducts(res.data); })
         .catch((error) => { console.error(error.response.data.error); });
-
-        
     }, [refreshPage]);
 
     function addItemToCart(e) {
         axios.post(`http://localhost:8080/account/addToCart/${(e.target.value)}`)
-        .then((res) => console.log(res))
-        .catch((error) => { console.error(error.response.data.error); });
+        .then((res) => toast("success", "Product successfully added to cart!"))
+        .catch((error) => toast("error", "Please login to add product to cart"));
     };
 
     function saveItemToWishlist(e) {
         setRefreshPage(true);
         axios.post(`http://localhost:8080/account/saveToWishlist/${(e.target.value)}`)
-        .then((res) => console.log(res))
-        .catch((error) => { console.error(error.response.data.error); });
+        .then((res) => toast("success", "Product successfully removed from wishlist!"))
+        .catch((error) => toast("error", "An unexpected error has occurred"));
     };
 
     for (let productCount in products) {
