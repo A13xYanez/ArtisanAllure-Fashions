@@ -12,6 +12,7 @@ import './Reuseable.css';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const [searchInput, setSearchInput] = useState(null);
 
     function iconClicked() {
         setIsOpen(!isOpen);
@@ -36,7 +37,8 @@ export default function Navbar() {
                             <div className='confirm-search'>
                                 <RxMagnifyingGlass className='magnifier' />
                             </div>
-                            <input className='search-input' type='text' placeholder='Search' />
+                            <input className='search-input' type='text' placeholder='Search' 
+                            onChange={(e) => setSearchInput(e.target.value)} />
                         </div>
                         <div className='nav-icons'>
                             <Link to='/wishlist'><FaRegHeart className='wish-list icon' /></Link>
