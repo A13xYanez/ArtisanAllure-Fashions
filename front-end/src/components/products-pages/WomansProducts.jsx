@@ -3,13 +3,18 @@ import './Products.css'
 import Navbar from '../reusable-components/Navbar';
 import Products from './Products';
 import Footer from '../reusable-components/Footer';
+import ToastContainer from '../reusable-components/ToastContainer';
+import ToastProvider from '../reusable-components/ToastContext';
 
 export default function WomansProducts() {
     return (
         <>
-            <Navbar /> 
-            <Products urlPath={'products/womans'} />
-            <Footer />
+            <ToastProvider>
+                <Navbar /> 
+                <Products urlPath={'products/womans'} />
+                <Footer />
+                <ToastContainer />
+            </ToastProvider>
         </>
     )
 };
