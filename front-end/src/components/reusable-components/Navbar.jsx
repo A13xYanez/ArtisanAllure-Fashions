@@ -1,7 +1,8 @@
 import React from 'react'
 import { useState } from 'react';
-import { Link } from 'react-router-dom'
-import logo4 from './assets/logo4.png'
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import logo4 from './assets/logo4.png';
 import { PiShoppingCartSimple } from "react-icons/pi";
 import { FaRegHeart } from "react-icons/fa";
 import { RxMagnifyingGlass } from "react-icons/rx";
@@ -12,10 +13,15 @@ import './Reuseable.css';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const [searchInput, setSearchInput] = useState(null);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [products, setProducts] = useState([]);
 
     function iconClicked() {
         setIsOpen(!isOpen);
+    };
+
+    function searchForProduct(e) {
+        e.preventDefault;
     };
 
     return (
@@ -33,13 +39,15 @@ export default function Navbar() {
                         <IoClose onClick={iconClicked} className={isOpen ? 'close-menu' : 'close-menu-hidden'} />
                     </div>
                     <div className='nav--extras'>
-                        <div className='search-bar'>
-                            <div className='confirm-search'>
-                                <RxMagnifyingGlass className='magnifier' />
+                            <div className='search-bar'>
+                                <form className='search-input-form' onSubmit={searchForProduct}>
+                                        <button className='confirm-search' onClick={searchForProduct}>
+                                            <RxMagnifyingGlass className='magnifier' />
+                                        </button>
+                                        <input className='search-input' type='text' placeholder='Search' 
+                                        onChange={(e) => setSearchQuery(e.target.value)} />
+                                </form>
                             </div>
-                            <input className='search-input' type='text' placeholder='Search' 
-                            onChange={(e) => setSearchInput(e.target.value)} />
-                        </div>
                         <div className='nav-icons'>
                             <Link to='/wishlist'><FaRegHeart className='wish-list icon' /></Link>
                             <Link to='/cart'><PiShoppingCartSimple className='shopping-bag icon' /></Link>
