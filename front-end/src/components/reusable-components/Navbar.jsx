@@ -9,19 +9,24 @@ import { RxMagnifyingGlass } from "react-icons/rx";
 import { FaRegUser } from "react-icons/fa6";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
+import { useToast } from '../reusable-components/UseToast';
 import './Reuseable.css';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [products, setProducts] = useState([]);
+    const toast = useToast();
 
     function iconClicked() {
         setIsOpen(!isOpen);
     };
 
     function searchForProduct(e) {
-        e.preventDefault;
+        e.preventDefault();
+        axios.post('http://localhost:8080/products/search', { searchQuery })
+        .then((res) => setProducts(res.data))
+        .catch((error) => toast("error", "Error searching for product, please try again"))
     };
 
     return (
