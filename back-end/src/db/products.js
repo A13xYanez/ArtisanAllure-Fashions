@@ -226,4 +226,22 @@ export const fetchProductReviews = async (product, page) => {
     console.error('Error fetching reviews:', error);
     throw error;
   }
+};
+
+
+
+// Get a search query to find products
+// with similar matching names
+export const searchProductModel = async (query) => {
+  try {
+    const itemsToFetch = 5; // maximum items to fetch
+
+    const products = await ProductModel.find({"product_name": {$regex: ".*" + query + ".*", $options: 'i'}})
+      .limit(itemsToFetch);
+      
+    return products;
+  } catch (error) {
+    console.error('Error finding product:', error);
+    res.status(500).send('Server Error');
+  }
 }
