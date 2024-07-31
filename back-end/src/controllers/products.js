@@ -2,7 +2,7 @@ import { fetchHomeFeaturedProducts, fetchHomeSaleProducts, fetchHomeTopRatedProd
 import { fetchFilterMensProducts, fetchFilterWomansProducts, fetchFilterKidsProducts } from '../db/products.js';
 import { fetchFilterOnSaleProducts, fetchFilterFeaturedProducts, updateRatingAvg } from '../db/products.js';
 import { getProductById, addProductReview, updateTotalReviews } from '../db/products.js';
-import { fetchProductReviews } from '../db/products.js';
+import { fetchProductReviews, searchProductModel } from '../db/products.js';
 import { getUserById } from '../db/users.js';
 import pkg from 'lodash';
 const { get, merge } = pkg;
@@ -385,4 +385,31 @@ export const displayProductRatings = async (req, res) => {
         console.error('Error displaying product reviews:', error);
         res.status(500).send('Server Error');
     }
+};
+
+
+
+// Get a users input to search
+// for a product
+export const searchProduct = async (req, res) => {
+  try {
+    const { searchQuery } = req.body;
+
+    const products = await searchProductModel(searchQuery);
+
+    const formattedProducts = products.map((products) => ({
+      product_image: products.product_image,
+      product_name: products.product_name,
+      brand: products.brand,
+      ratings: products.ratings,
+      regular_price: products.regular_price,
+      sale_price: products.sale_price,
+      id: products._id,
+    }));
+
+    res.json(formattedProducts);
+  } catch (error) {
+        console.error('Error searching for product:', error);
+        res.status(500).send('Server Error');
+  }
 };
