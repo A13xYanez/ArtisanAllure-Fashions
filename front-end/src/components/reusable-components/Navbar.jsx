@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import logo4 from './assets/logo4.png';
@@ -17,6 +17,7 @@ export default function Navbar() {
     const [searchQuery, setSearchQuery] = useState("");
     const [products, setProducts] = useState([]);
     const toast = useToast();
+    let resultRef = useRef();
 
     function iconClicked() {
         setIsOpen(!isOpen);
@@ -28,6 +29,15 @@ export default function Navbar() {
         .then((res) => setProducts(res.data))
         .catch((error) => toast("error", "Error searching for product, please try again"))
     };
+
+    useEffect(() => {
+        let handler = (e) => {
+            if ((!resultRef.current.contains(e.target)) && (products.length > 0)) {
+                setProducts([]);
+            }
+        };
+        document.addEventListener("mousedown", handler);
+    });
 
     return (
         <nav>
@@ -59,7 +69,7 @@ export default function Navbar() {
                             <Link to='/login'><FaRegUser className='account icon' /></Link>
                         </div>
                     </div>
-                    <div className="search-result">
+                    <div className="search-result" ref={resultRef}>
                         {products.map((product) => (
                             <Link to={`/product-details/${product.id}`} className='product-result-link'>
                                 <div className="product-result-card">
