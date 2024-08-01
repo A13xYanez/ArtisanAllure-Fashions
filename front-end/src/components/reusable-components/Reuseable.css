@@ -195,6 +195,56 @@
     background: #e1e0e0;
 }
 
+.search-result {
+    background: whitesmoke;
+    width: 310px;
+    position: fixed;
+    top: 60px;
+    right: 165px;
+}
+
+.product-result-card {
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid rgba(136, 136, 137, 0.3);
+    cursor: pointer;
+}
+
+.product-result-card:last-child {
+    border: none;
+}
+
+.product-result-card img {
+    height: 90px;
+    width: 90px;
+    margin-right: 10px;
+}
+
+.product-result-text {
+    width: 100%;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.product-result-text p {
+    color: #888889;
+    font-weight: 300;
+}
+
+.product-result-text h3 {
+    width: 187px;
+    color: black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 400;
+}
+
+.product-result-link {
+    text-decoration: none;
+}
 
 
 

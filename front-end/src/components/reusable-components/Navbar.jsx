@@ -59,6 +59,20 @@ export default function Navbar() {
                             <Link to='/login'><FaRegUser className='account icon' /></Link>
                         </div>
                     </div>
+                    <div className="search-result">
+                        {products.map((product) => (
+                            <Link to={`/product-details/${product.id}`} className='product-result-link'>
+                                <div className="product-result-card">
+                                    <img src={product.product_image} />
+                                    <div className="product-result-text">
+                                        <p>{product.brand}</p>
+                                        <h3>{product.product_name}</h3>
+                                        <h3>${product.regular_price}</h3>
+                                    </div>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
                 </div>
                 <GiHamburgerMenu onClick={iconClicked} className={isOpen ? 'responsive-nav-icon-hidden' : 'responsive-nav-icon'} />
             </div>
