@@ -197,10 +197,23 @@
 
 .search-result {
     background: whitesmoke;
-    width: 310px;
+    width: 400px;
     position: fixed;
     top: 60px;
     right: 165px;
+    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.5);
+}
+
+.search-result h2 {
+    font-family: sans-serif;
+    padding: 10px 0px 0px 0px;
+    border-bottom: 1px solid black;
+    margin: 0 10px 0 10px;
+}
+
+.hide-results-text {
+    display: none;
+    background: black;
 }
 
 .product-result-card {
@@ -208,10 +221,6 @@
     padding: 10px;
     border-bottom: 1px solid rgba(136, 136, 137, 0.3);
     cursor: pointer;
-}
-
-.product-result-card:last-child {
-    border: none;
 }
 
 .product-result-card img {
@@ -234,7 +243,7 @@
 }
 
 .product-result-text h3 {
-    width: 187px;
+    width: 100%;
     color: black;
     overflow: hidden;
     text-overflow: ellipsis;

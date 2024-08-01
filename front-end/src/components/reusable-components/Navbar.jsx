@@ -36,7 +36,12 @@ export default function Navbar() {
                 setProducts([]);
             }
         };
+
         document.addEventListener("mousedown", handler);
+
+        return() => {
+            document.removeEventListener("mousedown", handler);
+        }
     });
 
     return (
@@ -70,6 +75,7 @@ export default function Navbar() {
                         </div>
                     </div>
                     <div className="search-result" ref={resultRef}>
+                        <h2 className={products.length == 0 && "hide-results-text"}>Search Results</h2>
                         {products.map((product) => (
                             <Link to={`/product-details/${product.id}`} className='product-result-link'>
                                 <div className="product-result-card">
