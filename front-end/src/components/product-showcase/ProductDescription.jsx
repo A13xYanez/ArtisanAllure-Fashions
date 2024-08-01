@@ -17,7 +17,7 @@ export default function ProductDescription() {
         axios.get(`http://localhost:8080/product/details/${id}`)
         .then((res) => { setProducts(res.data); })
         .catch((error) => { console.error(error.response.data.error); });
-    }, []);
+    }, [id]);
 
     function addItemToCart(e) {
         axios.post(`http://localhost:8080/account/addToCart/${(e.target.value)}`)

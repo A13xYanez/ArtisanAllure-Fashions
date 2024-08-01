@@ -16,7 +16,7 @@ export default function ProductReviews({ refreshPage, setRefreshPage }) {
         axios.get(`http://localhost:8080/product/review/${id}/${page}`)
         .then((res) => { setReviews(res.data); })
         .catch((error) => { console.error(error.response.data.error); });
-    }, [page, refreshPage]);
+    }, [page, refreshPage, id]);
 
     return (
         <section className='product-review-section'>
