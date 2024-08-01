@@ -9,11 +9,13 @@ import { RxMagnifyingGlass } from "react-icons/rx";
 import { FaRegUser } from "react-icons/fa6";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
+import { IoIosArrowBack } from "react-icons/io";
 import { useToast } from '../reusable-components/UseToast';
 import './Reuseable.css';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [products, setProducts] = useState([]);
     const toast = useToast();
@@ -22,6 +24,11 @@ export default function Navbar() {
     function iconClicked() {
         setIsOpen(!isOpen);
     };
+
+    function openSearch() {
+        setSearchOpen(!searchOpen);
+        setIsOpen(!isOpen);
+    }
 
     function searchForProduct(e) {
         e.preventDefault();
@@ -69,6 +76,7 @@ export default function Navbar() {
                                 </form>
                             </div>
                         <div className='nav-icons'>
+                            <RxMagnifyingGlass className='magnifying-glass' onClick={openSearch} />
                             <Link to='/wishlist'><FaRegHeart className='wish-list icon' /></Link>
                             <Link to='/cart'><PiShoppingCartSimple className='shopping-bag icon' /></Link>
                             <Link to='/login'><FaRegUser className='account icon' /></Link>
@@ -89,8 +97,22 @@ export default function Navbar() {
                             </Link>
                         ))}
                     </div>
+                    <div className={searchOpen ? "search-other-view" : "hide-search-other"}>
+                        <div className='search-bar-other'>
+                            <form className='search-input-form-other' onSubmit={searchForProduct}>
+                                <button className='close-search-other' onClick={openSearch}>
+                                    <IoIosArrowBack className='exit-search' />
+                                </button>
+                                <input className='search-input-other' type='text' placeholder='Search' 
+                                onChange={(e) => setSearchQuery(e.target.value)} />
+                                <button className='confirm-search-other' onClick={searchForProduct}>
+                                    <RxMagnifyingGlass className='magnifier' />
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <GiHamburgerMenu onClick={iconClicked} className={isOpen ? 'responsive-nav-icon-hidden' : 'responsive-nav-icon'} />
+                <GiHamburgerMenu onClick={iconClicked} className={isOpen || searchOpen ? 'responsive-nav-icon-hidden' : 'responsive-nav-icon'} />
             </div>
         </nav>
     )
