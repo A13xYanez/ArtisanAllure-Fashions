@@ -328,8 +328,10 @@
     width: 100dvw;
     position: fixed;
     top: 50px;
+    bottom: 0;
     right: 0;
     overflow-y: scroll;
+    height: auto;
 }
 
 .product-result-card-other {
@@ -763,12 +765,6 @@ footer .footer-content .link-boxes .box {
             width: 27px;
             cursor: pointer;
             color: whitesmoke;
-        }
-    }
-
-    @media (max-height: 500px) {
-        .search-results-other {
-            height: 325px;
         }
     }
 

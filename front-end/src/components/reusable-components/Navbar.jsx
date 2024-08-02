@@ -91,7 +91,7 @@ export default function Navbar({ setStopScroll }) {
                     <div className="search-result" ref={resultRef}>
                         <h2 className={products.length == 0 && "hide-results-text"}>Search Results</h2>
                         {products.map((product) => (
-                            <Link to={`/product-details/${product.id}`} className='product-result-link'>
+                            <Link to={`/product-details/${product.id}`} className='product-result-link' key={product.id}>
                                 <div className="product-result-card">
                                     <img src={product.product_image} />
                                     <div className="product-result-text">
@@ -120,7 +120,8 @@ export default function Navbar({ setStopScroll }) {
                     {searchOpen && <div className="search-results-other" ref={resultRef}>
                         <h2 className={products.length == 0 && "hide-results-text"}>Search Results</h2>
                         {products.map((product) => (
-                            <Link to={`/product-details/${product.id}`} className='product-result-link' onClick={(e) => {setStopScroll(false), setSearchOpen(false), setProducts([])}}>
+                            <Link to={`/product-details/${product.id}`} className='product-result-link' 
+                            onClick={(e) => {setStopScroll(false), setSearchOpen(false), setProducts([])}} key={product.id}>
                                 <div className="product-result-card-other">
                                     <img src={product.product_image} />
                                     <div className="product-result-text-other">
@@ -133,7 +134,8 @@ export default function Navbar({ setStopScroll }) {
                         ))}
                     </div>}
                 </div>
-                <GiHamburgerMenu onClick={iconClicked} className={isOpen || searchOpen ? 'responsive-nav-icon-hidden' : 'responsive-nav-icon'} />
+                <GiHamburgerMenu onClick={iconClicked} 
+                className={isOpen || searchOpen ? 'responsive-nav-icon-hidden' : 'responsive-nav-icon'} />
             </div>
         </nav>
     )
