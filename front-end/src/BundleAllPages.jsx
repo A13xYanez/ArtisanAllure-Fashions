@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/home-page/HomePage';
 import Authenticate from './components/authentication/Authenticate';
@@ -12,20 +13,24 @@ import SalesProducts from './components/products-pages/SalesProducts';
 import ShowcaseProductComplete from './components/product-showcase/ShowcaseProductComplete';
 
 export default function BundleAllPages() {
+    const [stopScroll, setStopScroll] = useState(false);
+
     return (
-        <Router>
-            <Routes>
-            <Route path='/' element={<HomePage />} exact />
-            <Route path='/login' element={<Authenticate />} />
-            <Route path='/cart' element={<ShoppingCart />} />
-            <Route path='/wishlist' element={<Wishlist />} />
-            <Route path='/featured' element={<NewAndFeatured />} />
-            <Route path='/mens' element={<MensProducts />} />
-            <Route path='/womans' element={<WomansProducts />} />
-            <Route path='/kids' element={<KidsProducts />} />
-            <Route path='/sales' element={<SalesProducts />} />
-            <Route path='/product-details/:id' element={<ShowcaseProductComplete />} />
-            </Routes>
-        </Router>
+        <div className={stopScroll ? 'app-prevent-scroll' : 'app'}>
+            <Router>
+                <Routes>
+                <Route path='/' element={<HomePage setStopScroll={setStopScroll} />} exact />
+                <Route path='/login' element={<Authenticate />} />
+                <Route path='/cart' element={<ShoppingCart setStopScroll={setStopScroll} />} />
+                <Route path='/wishlist' element={<Wishlist setStopScroll={setStopScroll} />} />
+                <Route path='/featured' element={<NewAndFeatured setStopScroll={setStopScroll} />} />
+                <Route path='/mens' element={<MensProducts setStopScroll={setStopScroll} />} />
+                <Route path='/womans' element={<WomansProducts setStopScroll={setStopScroll} />} />
+                <Route path='/kids' element={<KidsProducts setStopScroll={setStopScroll} />} />
+                <Route path='/sales' element={<SalesProducts setStopScroll={setStopScroll} />} />
+                <Route path='/product-details/:id' element={<ShowcaseProductComplete setStopScroll={setStopScroll} />} />
+                </Routes>
+            </Router>
+        </div>
     )
 };

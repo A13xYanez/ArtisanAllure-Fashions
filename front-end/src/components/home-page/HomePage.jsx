@@ -12,11 +12,11 @@ import ToastContainer from '../reusable-components/ToastContainer';
 import ToastProvider from '../reusable-components/ToastContext';
 import './Home.css';
 
-export default function HomePage() {
+export default function HomePage({ setStopScroll }) {
     return (
         <>
             <ToastProvider>
-                <Navbar /> 
+                <Navbar setStopScroll={setStopScroll} /> 
                 <Hero />
                 <LogoScroller />
                 <FeaturedProductscroller />

@@ -7,13 +7,13 @@ import ProductDescription from './ProductDescription';
 import Footer from '..//reusable-components/Footer';
 import './ShowcaseProduct.css';
 
-export default function ShowcaseProduct() {
+export default function ShowcaseProduct({ setStopScroll }) {
     const [isActive, setIsActive] = useState(false);
     const [refreshPage, setRefreshPage] = useState(false);
 
     return (
         <div className={isActive ? 'no-scroll-showcase-product' : 'scroll-showcase-product'}>
-            <Navbar />
+            <Navbar setStopScroll={setStopScroll} />
             <ProductDescription />
             <ProductRatings isActive={isActive} setIsActive={setIsActive} 
                             refreshPage={refreshPage} setRefreshPage={setRefreshPage} 

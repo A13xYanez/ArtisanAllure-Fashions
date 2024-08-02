@@ -4,10 +4,10 @@ import Navbar from '../reusable-components/Navbar';
 import Products from './Products';
 import Footer from '../reusable-components/Footer';
 
-export default function WomansProducts() {
+export default function WomansProducts({ setStopScroll }) {
     return (
         <>
-            <Navbar /> 
+            <Navbar setStopScroll={setStopScroll} /> 
             <Products urlPath={'products/womans'} />
             <Footer />
         </>

@@ -2,3 +2,20 @@
 * {
     margin: 0;
 }
+
+
+
+/* Prevent app from scrolling */
+.app-prevent-scroll {
+    height: 100dvh;
+    width: 100dvw;
+    z-index: 1010;
+    overflow: hidden;
+}
+
+
+
+.app {
+    width: 100dvw;
+    overflow-x: hidden;
+}

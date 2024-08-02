@@ -13,7 +13,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import { useToast } from '../reusable-components/UseToast';
 import './Reuseable.css';
 
-export default function Navbar() {
+export default function Navbar({ setStopScroll }) {
     const [isOpen, setIsOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
@@ -28,6 +28,12 @@ export default function Navbar() {
     function openSearch() {
         setSearchOpen(!searchOpen);
         setIsOpen(false);
+
+        if (!searchOpen) {
+            setStopScroll(true);
+        } else {
+            setStopScroll(false);
+        }
     }
 
     function searchForProduct(e) {
@@ -114,7 +120,7 @@ export default function Navbar() {
                     {searchOpen && <div className="search-results-other" ref={resultRef}>
                         <h2 className={products.length == 0 && "hide-results-text"}>Search Results</h2>
                         {products.map((product) => (
-                            <Link to={`/product-details/${product.id}`} className='product-result-link'>
+                            <Link to={`/product-details/${product.id}`} className='product-result-link' onClick={(e) => {setStopScroll(false), setSearchOpen(false), setProducts([])}}>
                                 <div className="product-result-card-other">
                                     <img src={product.product_image} />
                                     <div className="product-result-text-other">
