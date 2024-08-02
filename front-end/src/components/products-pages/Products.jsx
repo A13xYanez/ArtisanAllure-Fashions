@@ -10,6 +10,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
 import { useToast } from '../reusable-components/UseToast';
+import { Link } from 'react-router-dom';
 
 axios.defaults.withCredentials = true;
 
@@ -74,7 +75,7 @@ export default function Products(props) {
                                 {<FaRegHeart className="heart-icon" />}
                             </button>
                             <span className="discount-tag">50% off</span>
-                            <img src={product.product_image} className="product-thumb" alt="" />
+                            <Link to={`/product-details/${product.id}`}><img src={product.product_image} className="product-thumb" alt="" /></Link>
                             <button value={product.id} class="card-btn" onClick={saveItemToWishlist}>add to wishlist</button>
                         </div>
                         <div className="product-info">

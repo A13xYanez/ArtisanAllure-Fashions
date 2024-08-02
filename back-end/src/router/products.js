@@ -18,5 +18,5 @@ export default (router) => {
     router.post('/product/create/review/:id', isAuthenticated, createProductReview);
     router.get('/product/review/:id/:page', displayProductReviews);
     router.get('/product/rating/:id', displayProductRatings);
-    router.get('/products/search', searchProduct);
+    router.post('/products/search', searchProduct);
 };

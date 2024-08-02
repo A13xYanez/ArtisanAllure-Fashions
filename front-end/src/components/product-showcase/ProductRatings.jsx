@@ -16,7 +16,7 @@ export default function ProductRatings({ isActive, setIsActive, refreshPage, set
         axios.get(`http://localhost:8080/product/rating/${id}`)
         .then((res) => { setRatings(res.data); })
         .catch((error) => { console.error(error.response.data.error); });
-    }, [refreshPage]);
+    }, [refreshPage, id]);
 
     return (
         <section>

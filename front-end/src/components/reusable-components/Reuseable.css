@@ -111,6 +111,16 @@
     transition: box-shadow 0.25s;
 }
 
+.search-input-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 40px;
+}
+
 .search-bar:focus-within {
     box-shadow: 0 0 2px white;
 }
@@ -124,6 +134,7 @@
     margin-left: 3px;
     height: 35px;
     width: 35px;
+    border: none;
 }
 
 .confirm-search:hover {
@@ -178,10 +189,192 @@
     align-items: center;
 }
 
+.magnifying-glass {
+    display: none;
+}
+
 .nav-filler {
     width: 100dvw;
     height: 7vh;
     background: #e1e0e0;
+}
+
+.search-result {
+    background: whitesmoke;
+    width: 400px;
+    position: fixed;
+    top: 60px;
+    right: 165px;
+    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.5);
+}
+
+.search-result h2 {
+    font-family: sans-serif;
+    padding: 10px 0px 0px 0px;
+    border-bottom: 1px solid black;
+    margin: 0 10px 0 10px;
+}
+
+.hide-results-text {
+    display: none;
+    background: black;
+}
+
+.product-result-card {
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid rgba(136, 136, 137, 0.3);
+    cursor: pointer;
+}
+
+.product-result-card img {
+    height: 90px;
+    width: 90px;
+    margin-right: 10px;
+}
+
+.product-result-text {
+    width: 100%;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.product-result-text p {
+    color: #888889;
+    font-weight: 300;
+}
+
+.product-result-text h3 {
+    width: 100%;
+    color: black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 400;
+}
+
+.product-result-link {
+    text-decoration: none;
+}
+
+.hide-search-other {
+    display: none;
+}
+
+.search-other-view {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100dvh;
+    width: 100dvw;
+    background: whitesmoke;
+}
+
+.search-bar-other {
+    height: 50px;
+    width: 100%;
+    background: #e9e9ed;
+}
+
+.search-input-form-other {
+    display: flex;
+    flex-direction: row;
+    min-height: 50px;
+    width: 100%;
+    height: 100%;
+}
+
+.search-input-other {
+    height: 44px;
+    width: 100%;
+    outline: none;
+    position: absolute;
+    left: 50px;
+    background: transparent;
+    border: none;
+    font-size: 18px;
+}
+
+.close-search-other {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    left: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.confirm-search-other {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.exit-search {
+    font-size: 25px;
+}
+
+.search-results-other {
+    width: 100dvw;
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    right: 0;
+    overflow-y: scroll;
+    height: auto;
+}
+
+.product-result-card-other {
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid rgba(136, 136, 137, 0.3);
+    cursor: pointer;
+}
+
+.product-result-card-other img {
+    height: 120px;
+    width: 120px;
+    margin-right: 10px;
+}
+
+.product-result-text-other {
+    color: black;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-family: sans-serif;
+}
+
+.search-results-other h2 {
+    font-family: sans-serif;
+    padding: 10px 0px 0px 0px;
+    border-bottom: 1px solid black;
+    margin: 0 10px 0 10px;
+}
+
+.product-result-text-other p {
+    color: #888889;
+    font-weight: 300;
+}
+
+.product-result-text-other h3 {
+    width: 100%;
+    color: black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 400;
 }
 
 
@@ -513,10 +706,12 @@ footer .footer-content .link-boxes .box {
         .nav-icons {
             margin-right: 65px;
         }
+
         .footer-socials img {
             margin-left: 25px !important;
             margin-right: 75px !important;
         }
+
         .social-icons-container {
             margin-right: 25px !important;
         }
@@ -539,8 +734,7 @@ footer .footer-content .link-boxes .box {
         }
 
         .search-bar {
-            margin: 0 0 10px 0 !important;
-            width: 100%;
+            display: none;
         }
 
         .nav-icons {
@@ -563,6 +757,14 @@ footer .footer-content .link-boxes .box {
 
         .search-input {
             width: 100% !important;
+        }
+
+        .magnifying-glass {
+            display: block;
+            height: 27px;
+            width: 27px;
+            cursor: pointer;
+            color: whitesmoke;
         }
     }
 
