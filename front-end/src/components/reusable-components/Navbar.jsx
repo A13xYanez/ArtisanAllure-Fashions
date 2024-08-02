@@ -27,7 +27,7 @@ export default function Navbar() {
 
     function openSearch() {
         setSearchOpen(!searchOpen);
-        setIsOpen(!isOpen);
+        setIsOpen(false);
     }
 
     function searchForProduct(e) {
@@ -97,12 +97,12 @@ export default function Navbar() {
                             </Link>
                         ))}
                     </div>
-                    <div className={searchOpen ? "search-other-view" : "hide-search-other"}>
+                    {searchOpen && <div className="search-other-view">
                         <div className='search-bar-other'>
                             <form className='search-input-form-other' onSubmit={searchForProduct}>
-                                <button className='close-search-other' onClick={openSearch}>
+                                <div className='close-search-other' onClick={openSearch}>
                                     <IoIosArrowBack className='exit-search' />
-                                </button>
+                                </div>
                                 <input className='search-input-other' type='text' placeholder='Search' 
                                 onChange={(e) => setSearchQuery(e.target.value)} />
                                 <button className='confirm-search-other' onClick={searchForProduct}>
@@ -110,7 +110,22 @@ export default function Navbar() {
                                 </button>
                             </form>
                         </div>
-                    </div>
+                    </div>}
+                    {searchOpen && <div className="search-results-other" ref={resultRef}>
+                        <h2 className={products.length == 0 && "hide-results-text"}>Search Results</h2>
+                        {products.map((product) => (
+                            <Link to={`/product-details/${product.id}`} className='product-result-link'>
+                                <div className="product-result-card-other">
+                                    <img src={product.product_image} />
+                                    <div className="product-result-text-other">
+                                        <p>{product.brand}</p>
+                                        <h3>{product.product_name}</h3>
+                                        <h3>${product.regular_price}</h3>
+                                    </div>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>}
                 </div>
                 <GiHamburgerMenu onClick={iconClicked} className={isOpen || searchOpen ? 'responsive-nav-icon-hidden' : 'responsive-nav-icon'} />
             </div>
