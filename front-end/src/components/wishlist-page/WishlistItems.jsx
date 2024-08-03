@@ -14,6 +14,7 @@ axios.defaults.withCredentials = true;
 export default function WishlistItems() {
     const [products, setProducts] = useState([]);
     const [refreshPage, setRefreshPage] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const toast = useToast();
     let wishlistCount = 0;
 
@@ -21,7 +22,7 @@ export default function WishlistItems() {
         setRefreshPage(false);
 
         axios.get(`http://localhost:8080/account/displayProductsInWishlist`)
-        .then((res) => { setProducts(res.data); })
+        .then((res) => { setProducts(res.data), setIsLoggedIn(true) })
         .catch((error) => { console.error(error.response.data.error); });
     }, [refreshPage]);
 
@@ -47,7 +48,7 @@ export default function WishlistItems() {
             <div className='wishlist-title'>
                 <h3>Wishlist</h3>
             </div>
-            <div className={wishlistCount <= 3 ? "display-wishlist-lesser-three" : "products-display-container-wishlist"}>
+            <div className={wishlistCount <= 3 ? `${products.length == 0 ? "wishlist-adjust-center" : "display-wishlist-lesser-three"}` : "products-display-container-wishlist"}>
                 {products.map((product) => (
                     <div className="product-card-wishlist">
                         <div className="product-image-wishlist">
@@ -78,6 +79,17 @@ export default function WishlistItems() {
                         </div>
                     </div>
                 ))}
+                {!isLoggedIn ? (
+                    <div className='wish-temp-msg'>
+                        <h1>Not logged in</h1>
+                        <p>Please login to access your wishlist</p>
+                    </div>
+                ) : products.length == 0 && (
+                    <div className='wish-temp-msg'>
+                        <h1>Your wishlist is empty</h1>
+                        <p>Save products to your wishlist to view them</p>
+                    </div>
+                )}
             </div>
         </div>
     )

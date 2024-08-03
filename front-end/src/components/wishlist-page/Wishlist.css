@@ -194,6 +194,24 @@
     font-weight: 300;
 }
 
+.wish-temp-msg {
+    text-align: center;
+    text-transform: capitalize;
+    font-size: clamp(12px, 2vw + 0.5rem, 32px);
+    font-family: sans-serif;
+    width: 100%;
+    margin: 20px 40px 350px 40px;;
+}
+
+.wish-temp-msg h1 {
+    margin-bottom: 15px;
+}
+
+.wishlist-adjust-center {
+    display: flex;
+    justify-content: center;
+}
+
 
 
 

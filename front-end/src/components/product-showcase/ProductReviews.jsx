@@ -8,7 +8,7 @@ import { FaArrowRight } from "react-icons/fa";
 
 export default function ProductReviews({ refreshPage, setRefreshPage }) {
     const {id} = useParams();
-    const [reviews, setReviews] = useState();
+    const [reviews, setReviews] = useState([]);
     const [page, setPage] = useState(1);
 
     useEffect(() => {
@@ -20,24 +20,30 @@ export default function ProductReviews({ refreshPage, setRefreshPage }) {
 
     return (
         <section className='product-review-section'>
-            {reviews != undefined ? reviews.map((review) => (
-            <div className="review-card">
-                <div className="reviewer-info">
-                        <p className='reviewer-name'>{review.reviewer}</p>
-                        <div className="customer-review-stars-container">
-                            <GoStarFill className='reviewer-star' />
-                            <GoStarFill className='reviewer-star' />
-                            <GoStarFill className='reviewer-star' />
-                            <GoStarFill className='reviewer-star' />
-                            <GoStarFill className='reviewer-star' />
-                        </div>
-                        <p className='reviewed-date'>{review.date_reviewed.slice(5, 7)}-{review.date_reviewed.slice(8, 10)}-{review.date_reviewed.slice(0, 4)}</p>
+            {reviews != undefined && reviews.map((review) => (
+                <div className="review-card">
+                    <div className="reviewer-info">
+                            <p className='reviewer-name'>{review.reviewer}</p>
+                            <div className="customer-review-stars-container">
+                                <GoStarFill className='reviewer-star' />
+                                <GoStarFill className='reviewer-star' />
+                                <GoStarFill className='reviewer-star' />
+                                <GoStarFill className='reviewer-star' />
+                                <GoStarFill className='reviewer-star' />
+                            </div>
+                            <p className='reviewed-date'>{review.date_reviewed.slice(5, 7)}-{review.date_reviewed.slice(8, 10)}-{review.date_reviewed.slice(0, 4)}</p>
+                    </div>
+                    <div className="review-content">
+                        <p>{review.review}</p>
+                    </div>
                 </div>
-                <div className="review-content">
-                    <p>{review.review}</p>
+            ))}
+            {reviews.length == 0 && (
+                <div className='review-temp-msg'>
+                    <h1>There are no reviews</h1>
+                    <p>Be the first to leave a review</p>
                 </div>
-            </div>
-            )) : null}
+            )}
             <div className="pages review-page">
                 <FaArrowLeft className='page-arrow' onClick={() => page != 1 ? setPage(page - 1) : setPage(page)} />
                 <h2>{page}</h2>

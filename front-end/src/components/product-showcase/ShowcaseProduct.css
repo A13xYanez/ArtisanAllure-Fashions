@@ -272,6 +272,17 @@
     margin: 20px 0 70px 0;
 }
 
+.review-temp-msg {
+    text-align: center;
+    margin: 20px 0 40px 0;
+    font-size: clamp(12px, 2vw + 0.5rem, 24px);
+    text-transform: capitalize;
+}
+
+.review-temp-msg h1 {
+    margin-bottom: 15px;
+}
+
 
 
 

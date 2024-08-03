@@ -8,10 +8,11 @@ axios.defaults.withCredentials = true;
 
 export default function ProductsInCart() {
     const [products, setProducts] = useState([]);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
         axios.get('http://localhost:8080/account/displayProductsInCart')
-        .then((res) => { setProducts(res.data); })
+        .then((res) => { setProducts(res.data), setIsLoggedIn(true) })
         .catch((error) => { console.error(error.response.data.error); });
     }, []);
 
@@ -71,6 +72,17 @@ export default function ProductsInCart() {
                     </div>
                 </div>
             ))}
+            {!isLoggedIn ? (
+                <div className='cart-temp-msg'>
+                    <h1>Not logged in</h1>
+                    <p>Please login to access your cart</p>
+                </div>
+            ) : products.length == 0 && (
+                <div className='cart-temp-msg'>
+                    <h1>Your cart is empty</h1>
+                    <p>Add products to your cart to view them</p>
+                </div>
+            )}
         </section>
     )
 }
