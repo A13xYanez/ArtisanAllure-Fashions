@@ -269,6 +269,18 @@
     justify-content: space-between;
 }
 
+.cart-temp-msg {
+    text-align: center;
+    color: #2c2c34;
+    text-transform: capitalize;
+    margin-top: 20px;
+    font-size: clamp(12px, 2vw + 0.5rem, 26px);
+}
+
+.cart-temp-msg h1 {
+    margin-bottom: 15px;
+}
+
 
 
 
