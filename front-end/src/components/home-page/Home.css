@@ -10,7 +10,6 @@
 
 /* Hero */
 .hero2 {
-    width: 100vw;
     height: 93vh;
     display: flex;
     flex-direction: row-reverse;
@@ -614,13 +613,24 @@
             flex-direction: column-reverse;
         }
         .hero-img-container2 {
-            width: 100dvw;
+            width: auto;
             height: 43dvh;
         }
         .hero-text2 {
-            width: 100dvw;
+            width: auto;
             height: 43dvh;
-            
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-text-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
         }
         .hero-img2 {
             height: 100%;
@@ -646,6 +656,7 @@
             width: 43dvw;
             object-fit: contain;
         }
+
         @media (max-width: 700px) {
             .hero2 {
             flex-direction: column-reverse;

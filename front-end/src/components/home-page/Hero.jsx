@@ -14,7 +14,7 @@ export default function Hero() {
                 <div className="hero-text-box">
                     <motion.h6
                         initial={{
-                            x: -700,
+                            x: -800,
                         }}
                         animate={{
                             x: 0,
@@ -24,7 +24,7 @@ export default function Hero() {
                     }}>FIND YOUR STYLE</motion.h6>
                     <motion.h1
                         initial={{
-                            x: -700,
+                            x: -800,
                         }}
                         animate={{
                             x: 0,
@@ -34,7 +34,7 @@ export default function Hero() {
                     }}>New Arrivals</motion.h1>
                     <motion.h2
                         initial={{
-                            x: -700,
+                            x: -800,
                         }}
                         animate={{
                             x: 0,
@@ -44,7 +44,7 @@ export default function Hero() {
                     }}>Ready To Rock</motion.h2>
                     <motion.p
                         initial={{
-                            x: -700,
+                            x: -800,
                         }}
                         animate={{
                             x: 0,
@@ -55,7 +55,7 @@ export default function Hero() {
                     <Link to='/featured' className='hero-link'>
                         <motion.button className="hero-button2"
                         initial={{
-                            x: -700,
+                            x: -800,
                         }}
                         animate={{
                             x: 0,
