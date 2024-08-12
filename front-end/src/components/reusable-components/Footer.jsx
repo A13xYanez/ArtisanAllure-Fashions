@@ -22,19 +22,19 @@ export default function Footer2() {
                     </ul>
                     <ul className="box">
                         <li className='link-name'>Account</li>
-                        <li><a>Sign In</a></li>
-                        <li><a>View Cart</a></li>
-                        <li><a>My Wishlist</a></li>
+                        <li><Link to="/login">Sign In</Link></li>
+                        <li><Link to="/cart">View Cart</Link></li>
+                        <li><Link to="/wishlist">My Wishlist</Link></li>
                         <li><a>Track My Order</a></li>
                         <li><a>Help</a></li>
                     </ul>
                     <ul className="box">
                         <li className='link-name'>Products</li>
-                        <li><a>New & Featured</a></li>
-                        <li><a>Men</a></li>
-                        <li><a>Women</a></li>
-                        <li><a>Kids</a></li>
-                        <li><a>Sale</a></li>
+                        <li><Link to="/featured">New & Featured</Link></li>
+                        <li><Link to="/mens">Men</Link></li>
+                        <li><Link to="/womans">Women</Link></li>
+                        <li><Link to="/kids">Kids</Link></li>
+                        <li><Link to="/sales">Sale</Link></li>
                     </ul>
                     <ul className="box input-box">
                         <li className='link-name'>Newsletter</li>

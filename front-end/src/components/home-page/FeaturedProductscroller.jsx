@@ -37,7 +37,7 @@ export default function FeaturedProductscroller() {
         <section className="product-home">
             <div className="section-header-home">
                 <h2 className="product-category-home">Featured</h2>
-                <button>Explore More</button>
+                <Link to="/featured"><button>Explore More</button></Link>
             </div>
             <button class="pre-btn-home">{<IoIosArrowForward className="arrow-icon-home" />}</button>
             <button class="nxt-btn-home">{<IoIosArrowForward className="arrow-icon-home" />}</button>
