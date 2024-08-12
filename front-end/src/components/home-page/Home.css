@@ -659,6 +659,18 @@
             object-fit: cover;
         }
 
+        .hero-text2 h1 {
+            margin: 0;
+        }
+
+        .hero-text2 p {
+            margin-top: 10px;
+        }
+
+        .hero-button2 {
+            margin-top: 10px;
+        }
+
         @media (max-width: 700px) {
             .hero2 {
                 flex-direction: column-reverse;
@@ -717,6 +729,12 @@
         }
         .home-benefit-card {
             margin: 10px 0 10px 0;
+        }
+    }
+
+    @media (max-width: 364px) {
+        .home-benefit-card {
+            width: 250px;
         }
     }
 

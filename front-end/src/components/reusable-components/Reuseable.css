@@ -809,3 +809,15 @@ footer .footer-content .link-boxes .box {
             width: 100%;
         }
     }
+
+    @media (max-width: 425px) {
+        .footer-content .top .footer-logo img {
+            object-fit: contain;
+        }
+    }
+
+    @media (max-width: 335px) {
+        .footer-content .top .footer-logo img {
+            width: 290px;
+        }
+    }
