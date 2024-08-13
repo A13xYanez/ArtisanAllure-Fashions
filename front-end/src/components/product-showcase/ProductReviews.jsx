@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { GoStarFill } from "react-icons/go";
+import { GoStar } from "react-icons/go";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
 
@@ -25,11 +26,16 @@ export default function ProductReviews({ refreshPage, setRefreshPage }) {
                     <div className="reviewer-info">
                             <p className='reviewer-name'>{review.reviewer}</p>
                             <div className="customer-review-stars-container">
-                                <GoStarFill className='reviewer-star' />
-                                <GoStarFill className='reviewer-star' />
-                                <GoStarFill className='reviewer-star' />
-                                <GoStarFill className='reviewer-star' />
-                                <GoStarFill className='reviewer-star' />
+                                {review.rating >= 1 ? <GoStarFill className="reviewer-star" />
+                                : <GoStar className="reviewer-star" />}
+                                {review.rating >= 2 ? <GoStarFill className="reviewer-star" />
+                                : <GoStar className="reviewer-star" />}
+                                {review.rating >= 3 ? <GoStarFill className="reviewer-star" />
+                                : <GoStar className="reviewer-star" />}
+                                {review.rating >= 4 ? <GoStarFill className="reviewer-star" />
+                                : <GoStar className="reviewer-star" />}
+                                {review.rating == 5 ? <GoStarFill className="reviewer-star" />
+                                : <GoStar className="reviewer-star" />}
                             </div>
                             <p className='reviewed-date'>{review.date_reviewed.slice(5, 7)}-{review.date_reviewed.slice(8, 10)}-{review.date_reviewed.slice(0, 4)}</p>
                     </div>

@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { GoStarFill } from "react-icons/go";
+import { GoStar } from "react-icons/go";
+import { FaRegStarHalfStroke } from "react-icons/fa6";
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import WriteReview from './WriteReview';
@@ -30,11 +32,21 @@ export default function ProductRatings({ isActive, setIsActive, refreshPage, set
                         <div className="ratings-score">
                             {ratings != undefined ? (<h2>{ratings.rating_avg}</h2>) : (<h2>0</h2>)}
                             <div className="total-stars">
-                                <GoStarFill className='product-star-icon' />
-                                <GoStarFill className='product-star-icon' />
-                                <GoStarFill className='product-star-icon' />
-                                <GoStarFill className='product-star-icon' />
-                                <GoStarFill className='product-star-icon' />
+                                {ratings && (ratings.rating_avg >= 1 ? <GoStarFill className="product-star-icon" />
+                                : ratings.rating_avg < 1 && ratings.rating_avg > 0 ? <FaRegStarHalfStroke className="product-star-icon" />
+                                : <GoStar className="product-star-icon" />)}
+                                {ratings && (ratings.rating_avg >= 2 ? <GoStarFill className="product-star-icon" />
+                                : ratings.rating_avg < 2 && ratings.rating_avg > 1 ? <FaRegStarHalfStroke className="product-star-icon" />
+                                : <GoStar className="product-star-icon" />)}
+                                {ratings && (ratings.rating_avg >= 3 ? <GoStarFill className="product-star-icon" />
+                                : ratings.rating_avg < 3 && ratings.rating_avg > 2 ? <FaRegStarHalfStroke className="product-star-icon" />
+                                : <GoStar className="product-star-icon" />)}
+                                {ratings && (ratings.rating_avg >= 4 ? <GoStarFill className="product-star-icon" />
+                                : ratings.rating_avg < 4 && ratings.rating_avg > 3 ? <FaRegStarHalfStroke className="product-star-icon" />
+                                : <GoStar className="product-star-icon" />)}
+                                {ratings && (ratings.rating_avg == 5 ? <GoStarFill className="product-star-icon" />
+                                : ratings.rating_avg < 5 && ratings.rating_avg > 4 ? <FaRegStarHalfStroke className="product-star-icon" />
+                                : <GoStar className="product-star-icon" />)}
                             </div>
                             <button onClick={() => setIsActive(true)}>Write A Review</button>
                         </div>
