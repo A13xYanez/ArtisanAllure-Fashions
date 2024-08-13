@@ -432,6 +432,18 @@
     pointer-events: none;
 }
 
+.filled-star-icon-home {
+    color: #ffa41d;
+}
+
+.empty-star-icon-home {
+    color: #df7d27;
+}
+
+.half-star-icon-home {
+    color: #ffa41d;
+}
+
 
 
 

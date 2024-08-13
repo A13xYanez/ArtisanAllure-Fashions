@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Wishlist.css';
 import { FaRegHeart } from "react-icons/fa";
@@ -74,7 +75,7 @@ export default function WishlistItems() {
                                 {product.already_in_wishlist ? <FaHeart className="heart-icon-wishlist" /> : <FaRegHeart className="heart-icon-wishlist" />}
                             </button>
                             <span className="discount-tag-wishlist">50% off</span>
-                            <img src={product.product_image} className="product-thumb-wishlist" alt="" />
+                            <Link to={`/product-details/${product.id}`}><img src={product.product_image} className="product-thumb-wishlist" alt="" /></Link>
                             {product.already_in_wishlist ? <button value={product.id} class="card-btn-wishlist-wish" onClick={saveItemToWishlist}>remove from wishlist</button>
                             : <button value={product.id} class="card-btn-wishlist" onClick={saveItemToWishlist}>add to wishlist</button>}
                         </div>
