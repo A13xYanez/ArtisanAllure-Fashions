@@ -6,6 +6,8 @@ import './Wishlist.css';
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { GoStarFill } from "react-icons/go";
+import { GoStar } from "react-icons/go";
+import { FaRegStarHalfStroke } from "react-icons/fa6";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { BsFillCartCheckFill } from "react-icons/bs";
 import { useToast } from '../reusable-components/UseToast';
@@ -18,7 +20,6 @@ export default function WishlistItems() {
     const toast = useToast();
     let wishlistCount = 0;
     const [inCart, setInCart] = useState([]);
-    const [inWishlist, setInWishList] = useState([]);
     const [rerenderProducts, setRerenderProducts] = useState(false);
 
     useEffect(() => {
@@ -83,12 +84,22 @@ export default function WishlistItems() {
                             <div className="info-title-wishlist">
                                 <h2 className="product-brand-wishlist">{product.brand}</h2>
                                 <div className="review-stars-wishlist">
-                                    <p>5.0</p>
-                                    <GoStarFill />
-                                    <GoStarFill />
-                                    <GoStarFill />
-                                    <GoStarFill />
-                                    <GoStarFill />
+                                    <p>{product.ratings}</p>
+                                    {product.ratings >= 1 ? <GoStarFill className="filled-star-icon-wish" />
+                                    : product.ratings < 1 && product.ratings > 0 ? <FaRegStarHalfStroke className="half-star-icon-wish" />
+                                    : <GoStar className="empty-star-icon-wish" />}
+                                    {product.ratings >= 2 ? <GoStarFill className="filled-star-icon-wish" />
+                                    : product.ratings < 2 && product.ratings > 1 ? <FaRegStarHalfStroke className="half-star-icon-wish" />
+                                    : <GoStar className="empty-star-icon-wish" />}
+                                    {product.ratings >= 3 ? <GoStarFill className="filled-star-icon-wish" />
+                                    : product.ratings < 3 && product.ratings > 2 ? <FaRegStarHalfStroke className="half-star-icon-wish" />
+                                    : <GoStar className="empty-star-icon-wish" />}
+                                    {product.ratings >= 4 ? <GoStarFill className="filled-star-icon-wish" />
+                                    : product.ratings < 4 && product.ratings > 3 ? <FaRegStarHalfStroke className="half-star-icon-wish" />
+                                    : <GoStar className="empty-star-icon-wish" />}
+                                    {product.ratings == 5 ? <GoStarFill className="filled-star-icon-wish" />
+                                    : product.ratings < 5 && product.ratings > 4 ? <FaRegStarHalfStroke className="half-star-icon-wish" />
+                                    : <GoStar className="empty-star-icon-wish" />}
                                 </div>
                             </div>
                             <p className="product-short-description-wishlist">{product.product_name}</p>

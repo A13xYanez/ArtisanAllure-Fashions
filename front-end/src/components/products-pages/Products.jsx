@@ -4,6 +4,8 @@ import axios from 'axios';
 import { VscSettings } from "react-icons/vsc";
 import { IoIosArrowDown } from "react-icons/io";
 import { GoStarFill } from "react-icons/go";
+import { GoStar } from "react-icons/go";
+import { FaRegStarHalfStroke } from "react-icons/fa6";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { BsFillCartCheckFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
@@ -115,12 +117,22 @@ export default function Products(props) {
                             <div className="info-title">
                                 <h2 className="product-brand">{product.brand}</h2>
                                 <div className="review-stars">
-                                    <p>5.0</p>
-                                    <GoStarFill />
-                                    <GoStarFill />
-                                    <GoStarFill />
-                                    <GoStarFill />
-                                    <GoStarFill />
+                                    <p>{product.ratings}</p>
+                                    {product.ratings >= 1 ? <GoStarFill className="filled-star-icon" />
+                                    : product.ratings < 1 && product.ratings > 0 ? <FaRegStarHalfStroke className="half-star-icon" />
+                                    : <GoStar className="empty-star-icon" />}
+                                    {product.ratings >= 2 ? <GoStarFill className="filled-star-icon" />
+                                    : product.ratings < 2 && product.ratings > 1 ? <FaRegStarHalfStroke className="half-star-icon" />
+                                    : <GoStar className="empty-star-icon" />}
+                                    {product.ratings >= 3 ? <GoStarFill className="filled-star-icon" />
+                                    : product.ratings < 3 && product.ratings > 2 ? <FaRegStarHalfStroke className="half-star-icon" />
+                                    : <GoStar className="empty-star-icon" />}
+                                    {product.ratings >= 4 ? <GoStarFill className="filled-star-icon" />
+                                    : product.ratings < 4 && product.ratings > 3 ? <FaRegStarHalfStroke className="half-star-icon" />
+                                    : <GoStar className="empty-star-icon" />}
+                                    {product.ratings == 5 ? <GoStarFill className="filled-star-icon" />
+                                    : product.ratings < 5 && product.ratings > 4 ? <FaRegStarHalfStroke className="half-star-icon" />
+                                    : <GoStar className="empty-star-icon" />}
                                 </div>
                             </div>
                             <p className="product-short-description">{product.product_name}</p>

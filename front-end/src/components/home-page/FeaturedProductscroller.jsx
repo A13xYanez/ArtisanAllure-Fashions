@@ -95,19 +95,19 @@ export default function FeaturedProductscroller() {
                                 <div className="review-stars-home">
                                     {product.ratings >= 1 ? <GoStarFill className="filled-star-icon-home" />
                                     : product.ratings < 1 && product.ratings > 0 ? <FaRegStarHalfStroke className="half-star-icon-home" />
-                                    : <GoStar className="empty-star-icon-home" /> }
+                                    : <GoStar className="empty-star-icon-home" />}
                                     {product.ratings >= 2 ? <GoStarFill className="filled-star-icon-home" />
                                     : product.ratings < 2 && product.ratings > 1 ? <FaRegStarHalfStroke className="half-star-icon-home" />
-                                    : <GoStar className="empty-star-icon-home" /> }
+                                    : <GoStar className="empty-star-icon-home" />}
                                     {product.ratings >= 3 ? <GoStarFill className="filled-star-icon-home" />
                                     : product.ratings < 3 && product.ratings > 2 ? <FaRegStarHalfStroke className="half-star-icon-home" />
-                                    : <GoStar className="empty-star-icon-home" /> }
+                                    : <GoStar className="empty-star-icon-home" />}
                                     {product.ratings >= 4 ? <GoStarFill className="filled-star-icon-home" />
                                     : product.ratings < 4 && product.ratings > 3 ? <FaRegStarHalfStroke className="half-star-icon-home" />
-                                    : <GoStar className="empty-star-icon-home" /> }
+                                    : <GoStar className="empty-star-icon-home" />}
                                     {product.ratings == 5 ? <GoStarFill className="filled-star-icon-home" />
                                     : product.ratings < 5 && product.ratings > 4 ? <FaRegStarHalfStroke className="half-star-icon-home" />
-                                    : <GoStar className="empty-star-icon-home" /> }
+                                    : <GoStar className="empty-star-icon-home" />}
                                 </div>
                             </div>
                             <p className="product-short-description-home">{product.product_name}</p>
