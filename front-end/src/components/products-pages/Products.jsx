@@ -60,6 +60,12 @@ export default function Products(props) {
         setEnableFilters(!enableFilters);
     };
 
+    function incrementPage() {
+        axios.get(`http://localhost:8080/${props.urlPath}/${page + 1}`)
+        .then((res) => { if (res.data.length) {setPage(page + 1)} })
+        .catch((error) => { console.error(error.response.data.error); });
+    };
+
     for (let item in inCart) {
         for (let product in products) {
             if (products[product].id == inCart[item].id) {
@@ -147,7 +153,7 @@ export default function Products(props) {
             <div className="pages">
                 <FaArrowLeft className='page-arrow' onClick={() => page != 1 ? setPage(page - 1) : setPage(page)} />
                 <h2>{page}</h2>
-                <FaArrowRight className='page-arrow' onClick={() => setPage(page + 1)} />
+                <FaArrowRight className='page-arrow' onClick={incrementPage} />
             </div>
         </div>
     )

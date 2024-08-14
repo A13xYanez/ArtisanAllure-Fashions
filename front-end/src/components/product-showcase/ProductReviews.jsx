@@ -19,6 +19,12 @@ export default function ProductReviews({ refreshPage, setRefreshPage }) {
         .catch((error) => { console.error(error.response.data.error); });
     }, [page, refreshPage, id]);
 
+    function incrementPage() {
+        axios.get(`http://localhost:8080/product/review/${id}/${page + 1}`)
+        .then((res) => { if (res.data.length) {setPage(page + 1)} })
+        .catch((error) => { console.error(error.response.data.error); });
+    }
+
     return (
         <section className='product-review-section'>
             {reviews != undefined && reviews.map((review) => (
@@ -51,9 +57,9 @@ export default function ProductReviews({ refreshPage, setRefreshPage }) {
                 </div>
             )}
             <div className="pages review-page">
-                <FaArrowLeft className='page-arrow' onClick={() => page != 1 ? setPage(page - 1) : setPage(page)} />
+                <FaArrowLeft className='page-arrow' onClick={() => page != 1 && setPage(page - 1)} />
                 <h2>{page}</h2>
-                <FaArrowRight className='page-arrow' onClick={() => setPage(page + 1)} />
+                <FaArrowRight className='page-arrow' onClick={incrementPage} />
             </div>
         </section>
     )
