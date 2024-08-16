@@ -168,7 +168,7 @@ export const displayUserProductsInWishlist = async (req, res) => {
                 product_image: productInformation.product_image,
                 product_name: productInformation.product_name,
                 brand: productInformation.brand,
-                ratings: productInformation.ratings,
+                ratings: productInformation.product_evaluations.rating_avg,
                 regular_price: productInformation.regular_price,
                 sale_price: productInformation.sale_price,
                 id: productInformation._id,

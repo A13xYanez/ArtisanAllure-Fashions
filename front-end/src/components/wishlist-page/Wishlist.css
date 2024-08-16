@@ -212,6 +212,80 @@
     justify-content: center;
 }
 
+.card-btn-wishlist-wish {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    width: 90%;
+    text-transform: capitalize;
+    border: none;
+    outline: none;
+    background: #ef233c;
+    border-radius: 5px;
+    transition: 0.5s;
+    cursor: pointer;
+    opacity: 0;
+    color: #fff;
+}
+
+.product-card-wishlist:hover .card-btn-wishlist-wish {
+    opacity: 1;
+}
+
+.cart-check-container-wish {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 25px;
+    border-radius: 50px;
+    border: 1px solid darkgreen;
+    position: relative;
+    bottom: 10px;
+    right: -242px;
+    background-color: lightgreen;
+    cursor: pointer;
+}
+
+.cart-check-icon-wish {
+    width: 22px;
+    height: 22px; 
+    font-weight: 500; 
+    color: darkgreen;
+    pointer-events: none;
+}
+
+.filled-heart-container-wish {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(239, 37, 60, 0.5);
+    border: 1px solid red;
+    border-radius: 50px;
+    height: 30px;
+    width: 30px;
+    transition: 0.5s;
+    cursor: pointer;
+    color: #ef233c;
+}
+
+.filled-star-icon-wish {
+    color: #ffa41d;
+}
+
+.empty-star-icon-wish {
+    color: #df7d27;
+}
+
+.half-star-icon-wish {
+    color: #ffa41d;
+}
+
 
 
 

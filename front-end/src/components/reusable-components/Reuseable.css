@@ -514,6 +514,7 @@ footer .footer-content .link-boxes .box {
 .footer-content .link-boxes .box li {
     list-style: none;
     margin: 6px 0;
+    user-select: none;
 }
 
 .footer-content .link-boxes .box li a {
@@ -523,6 +524,7 @@ footer .footer-content .link-boxes .box {
     opacity: 0.8;
     transition: all 0.4s ease;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .footer-content .link-boxes .box li a:hover {
@@ -807,5 +809,17 @@ footer .footer-content .link-boxes .box {
         }
         footer .footer-content .link-boxes .input-box {
             width: 100%;
+        }
+    }
+
+    @media (max-width: 425px) {
+        .footer-content .top .footer-logo img {
+            object-fit: contain;
+        }
+    }
+
+    @media (max-width: 335px) {
+        .footer-content .top .footer-logo img {
+            width: 290px;
         }
     }

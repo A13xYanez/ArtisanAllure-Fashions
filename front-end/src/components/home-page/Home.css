@@ -10,7 +10,6 @@
 
 /* Hero */
 .hero2 {
-    width: 100vw;
     height: 93vh;
     display: flex;
     flex-direction: row-reverse;
@@ -206,7 +205,29 @@
     opacity: 0;
 }
 
+.card-btn-wishlist-home {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    width: 90%;
+    text-transform: capitalize;
+    border: none;
+    outline: none;
+    background: #ef233c;
+    border-radius: 5px;
+    transition: 0.5s;
+    cursor: pointer;
+    opacity: 0;
+    color: #fff;
+}
+
 .product-card-home:hover .card-btn-home {
+    opacity: 1;
+}
+
+.product-card-home:hover .card-btn-wishlist-home {
     opacity: 1;
 }
 
@@ -335,11 +356,34 @@
     cursor: pointer;
 }
 
+.cart-check-container-home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 25px;
+    border-radius: 50px;
+    border: 1px solid darkgreen;
+    position: relative;
+    bottom: 10px;
+    right: -192px;
+    background-color: lightgreen;
+    cursor: pointer;
+}
+
 .cart-icon-home {
     width: 22px;
     height: 22px; 
     font-weight: 500; 
     color: #516ff5;
+    pointer-events: none;
+}
+
+.cart-check-icon-home {
+    width: 22px;
+    height: 22px; 
+    font-weight: 500; 
+    color: darkgreen;
     pointer-events: none;
 }
 
@@ -359,6 +403,23 @@
     cursor: pointer;
 }
 
+.filled-heart-container-home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(239, 37, 60, 0.5);
+    border: 1px solid red;
+    border-radius: 50px;
+    height: 30px;
+    width: 30px;
+    transition: 0.5s;
+    cursor: pointer;
+    color: #ef233c;
+}
+
 .heart-container-home:hover {
     background: rgba(239, 37, 60, 0.5);
     color: white;
@@ -369,6 +430,18 @@
     height: 20px;
     width: 20px;
     pointer-events: none;
+}
+
+.filled-star-icon-home {
+    color: #ffa41d;
+}
+
+.empty-star-icon-home {
+    color: #df7d27;
+}
+
+.half-star-icon-home {
+    color: #ffa41d;
 }
 
 
@@ -614,13 +687,24 @@
             flex-direction: column-reverse;
         }
         .hero-img-container2 {
-            width: 100dvw;
+            width: auto;
             height: 43dvh;
         }
         .hero-text2 {
-            width: 100dvw;
+            width: auto;
             height: 43dvh;
-            
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-text-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
         }
         .hero-img2 {
             height: 100%;
@@ -642,27 +726,48 @@
             height: 93dvh;
         }
         .hero-img2 {
-            height: 100dvh;
-            width: 43dvw;
-            object-fit: contain;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            object-fit: cover;
         }
+
+        .hero-text2 h1 {
+            margin: 0;
+        }
+
+        .hero-text2 p {
+            margin-top: 10px;
+        }
+
+        .hero-button2 {
+            margin-top: 10px;
+        }
+
         @media (max-width: 700px) {
             .hero2 {
-            flex-direction: column-reverse;
+                flex-direction: column-reverse;
+            }
+            .hero-img-container2 {
+                width: 100dvw;
+                height: 43dvh;
+            }
+            .hero-text2 {
+                width: 100dvw;
+                height: 43dvh;
+            }
+            .hero-img2 {
+                height: 43dvh;
+                width: 100dvw;
+                object-fit: contain;
+            }
         }
-        .hero-img-container2 {
-            width: 100dvw;
-            height: 43dvh;
-        }
-        .hero-text2 {
-            width: 100dvw;
-            height: 43dvh;
-        }
-        .hero-img2 {
-            height: 43dvh;
-            width: 100dvw;
-            object-fit: contain;
-        }
+
+        @media (min-width: 1088px) {
+            .hero-img2 {
+                object-fit: contain;
+            }
         }
     }
 
@@ -698,6 +803,12 @@
         }
         .home-benefit-card {
             margin: 10px 0 10px 0;
+        }
+    }
+
+    @media (max-width: 364px) {
+        .home-benefit-card {
+            width: 250px;
         }
     }
 

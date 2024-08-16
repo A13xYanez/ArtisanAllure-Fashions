@@ -1,10 +1,13 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Wishlist.css';
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { GoStarFill } from "react-icons/go";
+import { GoStar } from "react-icons/go";
+import { FaRegStarHalfStroke } from "react-icons/fa6";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { BsFillCartCheckFill } from "react-icons/bs";
 import { useToast } from '../reusable-components/UseToast';
@@ -13,34 +16,51 @@ axios.defaults.withCredentials = true;
 
 export default function WishlistItems() {
     const [products, setProducts] = useState([]);
-    const [refreshPage, setRefreshPage] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const toast = useToast();
     let wishlistCount = 0;
+    const [inCart, setInCart] = useState([]);
+    const [rerenderProducts, setRerenderProducts] = useState(false);
 
     useEffect(() => {
-        setRefreshPage(false);
-
         axios.get(`http://localhost:8080/account/displayProductsInWishlist`)
         .then((res) => { setProducts(res.data), setIsLoggedIn(true) })
         .catch((error) => { console.error(error.response.data.error); });
-    }, [refreshPage]);
+
+        axios.get('http://localhost:8080/account/displayProductsInCart')
+        .then((res) => { setInCart(res.data) })
+        .catch((error) => { console.error(error.response.data.error); });
+
+        setRerenderProducts(false);
+    }, [rerenderProducts]);
 
     function addItemToCart(e) {
         axios.post(`http://localhost:8080/account/addToCart/${(e.target.value)}`)
-        .then((res) => toast("success", "Product successfully added to cart!"))
+        .then((res) => toast("success", "Product successfully added to cart!"), setRerenderProducts(true))
         .catch((error) => toast("error", "Please login to add product to cart"));
     };
 
     function saveItemToWishlist(e) {
-        setRefreshPage(true);
         axios.post(`http://localhost:8080/account/saveToWishlist/${(e.target.value)}`)
-        .then((res) => toast("success", "Product successfully removed from wishlist!"))
+        .then((res) => toast("success", "Product successfully removed from wishlist!"), setRerenderProducts(true))
         .catch((error) => toast("error", "An unexpected error has occurred"));
     };
 
     for (let productCount in products) {
         wishlistCount++;
+    }
+
+    for (let item in inCart) {
+        for (let product in products) {
+            if (products[product].id == inCart[item].id) {
+                products[product]["already_in_cart"] = true;
+            }
+        }
+    }
+
+
+    for (let product in products) {
+        products[product]["already_in_wishlist"] = true;
     }
 
     return (
@@ -52,29 +72,40 @@ export default function WishlistItems() {
                 {products.map((product) => (
                     <div className="product-card-wishlist">
                         <div className="product-image-wishlist">
-                            <button value={product.id} className="heart-container-wishlist" onClick={saveItemToWishlist}>
-                                {<FaRegHeart className="heart-icon-wishlist" />}
+                            <button value={product.id} className={product.already_in_wishlist ? "filled-heart-container-wish" : "heart-container-wishlist"} onClick={saveItemToWishlist}>
+                                {product.already_in_wishlist ? <FaHeart className="heart-icon-wishlist" /> : <FaRegHeart className="heart-icon-wishlist" />}
                             </button>
                             <span className="discount-tag-wishlist">50% off</span>
-                            <img src={product.product_image} className="product-thumb-wishlist" alt="" />
-                            <button value={product.id} className="card-btn-wishlist" onClick={saveItemToWishlist}>add to wishlist</button>
+                            <Link to={`/product-details/${product.id}`}><img src={product.product_image} className="product-thumb-wishlist" alt="" /></Link>
+                            {product.already_in_wishlist ? <button value={product.id} class="card-btn-wishlist-wish" onClick={saveItemToWishlist}>remove from wishlist</button>
+                            : <button value={product.id} class="card-btn-wishlist" onClick={saveItemToWishlist}>add to wishlist</button>}
                         </div>
                         <div className="product-info-wishlist">
                             <div className="info-title-wishlist">
                                 <h2 className="product-brand-wishlist">{product.brand}</h2>
                                 <div className="review-stars-wishlist">
-                                    <p>5.0</p>
-                                    <GoStarFill />
-                                    <GoStarFill />
-                                    <GoStarFill />
-                                    <GoStarFill />
-                                    <GoStarFill />
+                                    <p>{product.ratings}</p>
+                                    {product.ratings >= 1 ? <GoStarFill className="filled-star-icon-wish" />
+                                    : product.ratings < 1 && product.ratings > 0 ? <FaRegStarHalfStroke className="half-star-icon-wish" />
+                                    : <GoStar className="empty-star-icon-wish" />}
+                                    {product.ratings >= 2 ? <GoStarFill className="filled-star-icon-wish" />
+                                    : product.ratings < 2 && product.ratings > 1 ? <FaRegStarHalfStroke className="half-star-icon-wish" />
+                                    : <GoStar className="empty-star-icon-wish" />}
+                                    {product.ratings >= 3 ? <GoStarFill className="filled-star-icon-wish" />
+                                    : product.ratings < 3 && product.ratings > 2 ? <FaRegStarHalfStroke className="half-star-icon-wish" />
+                                    : <GoStar className="empty-star-icon-wish" />}
+                                    {product.ratings >= 4 ? <GoStarFill className="filled-star-icon-wish" />
+                                    : product.ratings < 4 && product.ratings > 3 ? <FaRegStarHalfStroke className="half-star-icon-wish" />
+                                    : <GoStar className="empty-star-icon-wish" />}
+                                    {product.ratings == 5 ? <GoStarFill className="filled-star-icon-wish" />
+                                    : product.ratings < 5 && product.ratings > 4 ? <FaRegStarHalfStroke className="half-star-icon-wish" />
+                                    : <GoStar className="empty-star-icon-wish" />}
                                 </div>
                             </div>
                             <p className="product-short-description-wishlist">{product.product_name}</p>
                             <span className="actual-price-wishlist">${product.regular_price}</span><span className="price-wishlist">${product.sale_price}</span>
-                            <button value={product.id} className="cart-container-wishlist" onClick={addItemToCart}>
-                                {<BsFillCartPlusFill className="cart-icon-wishlist" />}
+                            <button value={product.id} className={product.already_in_cart ? "cart-check-container-wish" : "cart-container-wishlist"} onClick={addItemToCart}>
+                                {product.already_in_cart ? <BsFillCartCheckFill className="cart-check-icon-wish" /> : <BsFillCartPlusFill className="cart-icon-wishlist" />}
                             </button>
                         </div>
                     </div>
