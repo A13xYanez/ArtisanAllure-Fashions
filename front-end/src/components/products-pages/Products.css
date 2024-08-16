@@ -84,6 +84,12 @@
     padding: 40px;
 }
 
+.loading-products {
+    height: 630px;
+    width: 100%;
+    background: transparent;
+}
+
 .product-card {
     width: 300px;
     min-height: 520px;

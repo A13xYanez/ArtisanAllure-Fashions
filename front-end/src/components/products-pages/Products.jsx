@@ -107,7 +107,7 @@ export default function Products(props) {
                     </div>
                 </div>
             </div>
-            <div className="products-display-container">
+            <div className={products.length > 0 ? "products-display-container" : "loading-products"}>
                 {products.map((product) => (
                     <div className="product-card">
                         <div className="product-image">
