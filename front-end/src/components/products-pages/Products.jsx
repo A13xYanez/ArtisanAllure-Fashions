@@ -115,7 +115,7 @@ export default function Products(props) {
                                 {product.already_in_wishlist ? <FaHeart className="heart-icon" /> : <FaRegHeart className="heart-icon" />}
                             </button>
                             <span className="discount-tag">50% off</span>
-                            <Link to={`/product-details/${product.id}`}><img src={product.product_image} className="product-thumb" alt="" /></Link>
+                            <Link to={`/product-details/${product.id}`}><img src={`product-images/${product.product_image}.jpg`} className="product-thumb" alt="" /></Link>
                             {product.already_in_wishlist ? <button value={product.id} class="card-btn-wishlist" onClick={saveItemToWishlist}>remove from wishlist</button>
                             : <button value={product.id} class="card-btn" onClick={saveItemToWishlist}>add to wishlist</button>}
                         </div>

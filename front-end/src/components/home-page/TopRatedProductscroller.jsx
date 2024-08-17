@@ -85,7 +85,7 @@ export default function TopRatedProductscroller() {
                                 {product.already_in_wishlist ? <FaHeart className="heart-icon-home" /> : <FaRegHeart className="heart-icon-home" />}
                             </button>
                             <span className="discount-tag-home">50% off</span>
-                            <Link to={`/product-details/${product.id}`}><img src={product.product_image} className="product-thumb-home" alt="" /></Link>
+                            <Link to={`/product-details/${product.id}`}><img src={`product-images/${product.product_image}.jpg`} className="product-thumb-home" alt="" /></Link>
                             {product.already_in_wishlist ? <button value={product.id} class="card-btn-wishlist-home" onClick={saveItemToWishlist}>remove from wishlist</button>
                             : <button value={product.id} class="card-btn-home" onClick={saveItemToWishlist}>add to wishlist</button>}
                         </div>
