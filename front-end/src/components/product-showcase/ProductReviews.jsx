@@ -28,7 +28,7 @@ export default function ProductReviews({ refreshPage, setRefreshPage }) {
     return (
         <section className='product-review-section'>
             {reviews != undefined && reviews.map((review) => (
-                <div className="review-card">
+                <div className="review-card" key={review.id}>
                     <div className="reviewer-info">
                             <p className='reviewer-name'>{review.reviewer}</p>
                             <div className="customer-review-stars-container">

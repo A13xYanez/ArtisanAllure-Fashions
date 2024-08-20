@@ -270,6 +270,14 @@
     font-size: 20px;
 }
 
+.regular-price-home {
+    position: relative;
+    bottom: -20px;
+    color: #1e1e24;
+    font-weight: 900;
+    font-size: 20px;
+}
+
 .actual-price-home {
     position: relative;
     bottom: -20px;

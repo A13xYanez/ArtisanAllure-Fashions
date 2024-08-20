@@ -246,13 +246,37 @@
     font-weight: 300;
 }
 
-.product-result-text h3 {
-    width: 100%;
+.result-product-name {
+    width: 300px;
     color: black;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     font-weight: 400;
+}
+
+.product-result-prices {
+    width: 300px;
+    display: flex;
+}
+
+.result-regular-price {
+    color: #1e1e24;
+    opacity: 0.75;
+    text-decoration: line-through;
+    margin-right: 15px;
+    font-size: 16px;
+    position: relative;
+    bottom: -2px;
+}
+
+.result-no-sales {
+    color: black;
+    margin-right: 15px;
+}
+
+.result-sales-price {
+    color: #ef233c;
 }
 
 .product-result-link {
@@ -354,6 +378,9 @@
     flex-direction: column;
     justify-content: space-evenly;
     font-family: sans-serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .search-results-other h2 {
@@ -368,8 +395,8 @@
     font-weight: 300;
 }
 
-.product-result-text-other h3 {
-    width: 100%;
+.result-product-name-other {
+    width: auto;
     color: black;
     overflow: hidden;
     text-overflow: ellipsis;

@@ -42,10 +42,10 @@ export default function ProductsInCart() {
                 <h3>Shopping Cart</h3>
             </div>
             {products.map((product) => (
-                <div className="product-cart-card">
+                <div className="product-cart-card" key={product.id}>
                     <div className="product-img-desc">
                         <div className="product-cart-img">
-                            <img src={product.product_image} className="product-img" />
+                            <img src={`product-images/${product.product_image}.jpg`} className="product-img" />
                         </div>
                         <div className="product-cart-description">
                             <div className="info">
