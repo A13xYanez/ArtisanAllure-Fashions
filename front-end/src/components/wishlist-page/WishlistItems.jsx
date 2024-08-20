@@ -70,15 +70,15 @@ export default function WishlistItems() {
             </div>
             <div className={wishlistCount <= 3 ? `${products.length == 0 ? "wishlist-adjust-center" : "display-wishlist-lesser-three"}` : "products-display-container-wishlist"}>
                 {products.map((product) => (
-                    <div className="product-card-wishlist">
+                    <div className="product-card-wishlist" key={product.id}>
                         <div className="product-image-wishlist">
                             <button value={product.id} className={product.already_in_wishlist ? "filled-heart-container-wish" : "heart-container-wishlist"} onClick={saveItemToWishlist}>
                                 {product.already_in_wishlist ? <FaHeart className="heart-icon-wishlist" /> : <FaRegHeart className="heart-icon-wishlist" />}
                             </button>
-                            <span className="discount-tag-wishlist">50% off</span>
-                            <Link to={`/product-details/${product.id}`}><img src={product.product_image} className="product-thumb-wishlist" alt="" /></Link>
-                            {product.already_in_wishlist ? <button value={product.id} class="card-btn-wishlist-wish" onClick={saveItemToWishlist}>remove from wishlist</button>
-                            : <button value={product.id} class="card-btn-wishlist" onClick={saveItemToWishlist}>add to wishlist</button>}
+                            {product.sale_price > 0 && <span className="discount-tag-wishlist">{((product.regular_price / product.sale_price) * 100).toFixed(0)}% off</span>}
+                            <Link to={`/product-details/${product.id}`}><img src={`product-images/${product.product_image}.jpg`} className="product-thumb-wishlist" alt="" /></Link>
+                            {product.already_in_wishlist ? <button value={product.id} className="card-btn-wishlist-wish" onClick={saveItemToWishlist}>remove from wishlist</button>
+                            : <button value={product.id} className="card-btn-wishlist" onClick={saveItemToWishlist}>add to wishlist</button>}
                         </div>
                         <div className="product-info-wishlist">
                             <div className="info-title-wishlist">
@@ -103,7 +103,8 @@ export default function WishlistItems() {
                                 </div>
                             </div>
                             <p className="product-short-description-wishlist">{product.product_name}</p>
-                            <span className="actual-price-wishlist">${product.regular_price}</span><span className="price-wishlist">${product.sale_price}</span>
+                            <span className={product.sale_price > 0 ? "actual-price-wishlist" : "regular-price-wishlist"}>${product.regular_price}</span>
+                            {product.sale_price > 0 && <span className="price-wishlist">${product.sale_price}</span>}
                             <button value={product.id} className={product.already_in_cart ? "cart-check-container-wish" : "cart-container-wishlist"} onClick={addItemToCart}>
                                 {product.already_in_cart ? <BsFillCartCheckFill className="cart-check-icon-wish" /> : <BsFillCartPlusFill className="cart-icon-wishlist" />}
                             </button>

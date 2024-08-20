@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import cors from 'cors';
+import 'dotenv/config';
 import mongoose from 'mongoose';
 import pkg from 'mongoose';
 const { Promise } = pkg;
@@ -33,9 +34,10 @@ app.use(bodyParser.json());
 
 // HTTP server
 const server = http.createServer(app);
+const port = process.env.PORT || 8080
 
-server.listen(8080, () => {
-    console.log('Server is running on port 8080');
+server.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
 
 // MongoDB connection

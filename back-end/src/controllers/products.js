@@ -328,7 +328,8 @@ export const displayProductReviews = async (req, res) => {
       review: review.review,
       rating: review.rating,
       reviewer: review.reviewer,
-      date_reviewed: review.date_reviewed
+      date_reviewed: review.date_reviewed,
+      id: review._id
     }));
 
     res.json(formattedProductReviews);

@@ -93,11 +93,14 @@ export default function Navbar({ setStopScroll }) {
                         {products.map((product) => (
                             <Link to={`/product-details/${product.id}`} className='product-result-link' key={product.id}>
                                 <div className="product-result-card">
-                                    <img src={product.product_image} />
+                                    <img src={`product-images/${product.product_image}.jpg`} />
                                     <div className="product-result-text">
                                         <p>{product.brand}</p>
-                                        <h3>{product.product_name}</h3>
-                                        <h3>${product.regular_price}</h3>
+                                        <h3 className='result-product-name'>{product.product_name}</h3>
+                                        <div className="product-result-prices">
+                                            <h3 className={product.sale_price > 0 ? "result-regular-price" : "result-no-sales"}>${product.regular_price}</h3>
+                                            {product.sale_price > 0 && <h3 className='result-sales-price'>${product.sale_price}</h3>}
+                                        </div>
                                     </div>
                                 </div>
                             </Link>
@@ -123,11 +126,14 @@ export default function Navbar({ setStopScroll }) {
                             <Link to={`/product-details/${product.id}`} className='product-result-link' 
                             onClick={(e) => {setStopScroll(false), setSearchOpen(false), setProducts([])}} key={product.id}>
                                 <div className="product-result-card-other">
-                                    <img src={product.product_image} />
+                                    <img src={`product-images/${product.product_image}.jpg`} />
                                     <div className="product-result-text-other">
                                         <p>{product.brand}</p>
-                                        <h3>{product.product_name}</h3>
-                                        <h3>${product.regular_price}</h3>
+                                        <h3 className='result-product-name-other'>{product.product_name}</h3>
+                                        <div className="product-result-prices">
+                                            <h3 className={product.sale_price > 0 ? "result-regular-price" : "result-no-sales"}>${product.regular_price}</h3>
+                                            {product.sale_price > 0 && <h3 className='result-sales-price'>${product.sale_price}</h3>}
+                                        </div>
                                     </div>
                                 </div>
                             </Link>

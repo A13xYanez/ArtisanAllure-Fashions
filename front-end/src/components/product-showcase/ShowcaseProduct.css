@@ -126,6 +126,10 @@
     margin-bottom: 10px;
 }
 
+.product-details-no-sale {
+    margin-bottom: 10px;
+}
+
 .product-details-sale-price {
     color: red;
 }

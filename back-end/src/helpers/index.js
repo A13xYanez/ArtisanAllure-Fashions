@@ -1,5 +1,7 @@
 import crypto from 'crypto';
-const SECRET = 'CHANGE_LATER_IN_ENV_FILE';
+import 'dotenv/config';
+
+const SECRET = process.env.SECRET;
 
 // generate random string function. This function will generate a random string. Uses the crypto library.
 // returns a random string

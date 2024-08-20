@@ -73,21 +73,21 @@ export default function TopRatedProductscroller() {
                 <h2 className="product-category-home">Top Rated</h2>
                 <button>Explore More</button>
             </div>
-            <button class="pre-btn-home">{<IoIosArrowForward className="arrow-icon-home" />}</button>
-            <button class="nxt-btn-home">{<IoIosArrowForward className="arrow-icon-home" />}</button>
+            <button className="pre-btn-home">{<IoIosArrowForward className="arrow-icon-home" />}</button>
+            <button className="nxt-btn-home">{<IoIosArrowForward className="arrow-icon-home" />}</button>
             <button className="pre-btn-home"></button>
             <button className="nxt-btn-home"></button>
             <div className="product-container-home">
                 {products.map((product) => (
-                    <div className="product-card-home">
+                    <div className="product-card-home" key={product.id}>
                         <div className="product-image-home">
                             <button value={product.id} className={product.already_in_wishlist ? "filled-heart-container-home" : "heart-container-home"} onClick={saveItemToWishlist}>
                                 {product.already_in_wishlist ? <FaHeart className="heart-icon-home" /> : <FaRegHeart className="heart-icon-home" />}
                             </button>
-                            <span className="discount-tag-home">50% off</span>
-                            <Link to={`/product-details/${product.id}`}><img src={product.product_image} className="product-thumb-home" alt="" /></Link>
-                            {product.already_in_wishlist ? <button value={product.id} class="card-btn-wishlist-home" onClick={saveItemToWishlist}>remove from wishlist</button>
-                            : <button value={product.id} class="card-btn-home" onClick={saveItemToWishlist}>add to wishlist</button>}
+                            {product.sale_price > 0 && <span className="discount-tag-home">{((product.regular_price / product.sale_price) * 100).toFixed(0)}% off</span>}
+                            <Link to={`/product-details/${product.id}`}><img src={`product-images/${product.product_image}.jpg`} className="product-thumb-home" alt="" /></Link>
+                            {product.already_in_wishlist ? <button value={product.id} className="card-btn-wishlist-home" onClick={saveItemToWishlist}>remove from wishlist</button>
+                            : <button value={product.id} className="card-btn-home" onClick={saveItemToWishlist}>add to wishlist</button>}
                         </div>
                         <div className="product-info-home">
                             <div className="info-title-home">
@@ -111,7 +111,8 @@ export default function TopRatedProductscroller() {
                                 </div>
                             </div>
                             <p className="product-short-description-home">{product.product_name}</p>
-                            <span className="actual-price-home">${product.regular_price}</span><span className="price-home">${product.sale_price}</span>
+                            <span className={product.sale_price > 0 ? "actual-price-home" : "regular-price-home"}>${product.regular_price}</span>
+                            {product.sale_price > 0 && <span className="price-home">${product.sale_price}</span>}
                             <button value={product.id} className={product.already_in_cart ? "cart-check-container-home" : "cart-container-home"} onClick={addItemToCart}>
                                 {product.already_in_cart ? <BsFillCartCheckFill className="cart-check-icon-home" /> : <BsFillCartPlusFill className="cart-icon-home" />}
                             </button>
