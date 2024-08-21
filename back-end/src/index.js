@@ -41,7 +41,7 @@ server.listen(port, () => {
 });
 
 // MongoDB connection
-const MONGO_URL = 'mongodb://localhost:27017/ArtisanAllureFashion';
+const MONGO_URL = 'mongodb+srv://alexy48207:Tag82XowUKct7BvB@cluster0.nd2z0.mongodb.net/ArtisanAllureFashions';
 
 mongoose.Promise = Promise;
 mongoose.connect(MONGO_URL);
