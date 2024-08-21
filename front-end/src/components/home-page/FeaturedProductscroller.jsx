@@ -28,15 +28,19 @@ export default function FeaturedProductscroller() {
             .catch((error) => { console.error(error.response.data.error); });
         }
 
-        axios.get('http://localhost:8080/account/displayProductsInCart')
-        .then((res) => { setInCart(res.data) })
-        .catch((error) => { console.error(error.response.data.error); });
+        const getUserData = async() => {
+            await axios.get('http://localhost:8080/account/displayProductsInCart')
+            .then((res) => { setInCart(res.data) })
+            .catch((error) => { console.error(error.response.data.error); });
 
-        axios.get(`http://localhost:8080/account/displayProductsInWishlist`)
-        .then((res) => { setInWishList(res.data) })
-        .catch((error) => { console.error(error.response.data.error); });
+            await axios.get(`http://localhost:8080/account/displayProductsInWishlist`)
+            .then((res) => { setInWishList(res.data) })
+            .catch((error) => { console.error(error.response.data.error); });
 
-        setRerenderProducts(false);
+            setRerenderProducts(false);
+        }
+
+        getUserData();
     }, [rerenderProducts]);
 
     function addItemToCart(e) {
@@ -45,10 +49,11 @@ export default function FeaturedProductscroller() {
         .catch((error) => toast("error", "Please login to add product to cart"));
     };
 
-    function saveItemToWishlist(e) {
-        axios.post(`http://localhost:8080/account/saveToWishlist/${(e.target.value)}`)
-        .then((res) => toast("success", "Product successfully saved to wishlist!"), setRerenderProducts(true))
+    const saveItemToWishlist = async(e) => {
+        await axios.post(`http://localhost:8080/account/saveToWishlist/${(e.target.value)}`)
+        .then((res) => toast("success", "Product successfully saved to wishlist!"))
         .catch((error) => toast("error", "Please login to save product to wishlist"));
+        setRerenderProducts(true);
     };
 
     for (let item in inCart) {
