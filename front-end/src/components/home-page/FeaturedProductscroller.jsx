@@ -43,10 +43,11 @@ export default function FeaturedProductscroller() {
         getUserData();
     }, [rerenderProducts]);
 
-    function addItemToCart(e) {
-        axios.post(`http://localhost:8080/account/addToCart/${(e.target.value)}`)
-        .then((res) => toast("success", "Product successfully added to cart!"), setRerenderProducts(true))
+    const addItemToCart = async(e) => {
+        await axios.post(`http://localhost:8080/account/addToCart/${(e.target.value)}`)
+        .then((res) => toast("success", "Product successfully added to cart!"))
         .catch((error) => toast("error", "Please login to add product to cart"));
+        setRerenderProducts(true);
     };
 
     const saveItemToWishlist = async(e) => {
