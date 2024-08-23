@@ -90,7 +90,7 @@ export default function FeaturedProductscroller() {
                             <button value={product.id} className={product.already_in_wishlist ? "filled-heart-container-home" : "heart-container-home"} onClick={saveItemToWishlist}>
                                 {product.already_in_wishlist ? <FaHeart className="heart-icon-home" /> : <FaRegHeart className="heart-icon-home" />}
                             </button>
-                            {product.sale_price > 0 && <span className="discount-tag-home">{((product.regular_price / product.sale_price) * 100).toFixed(0)}% off</span>}
+                            {product.sale_price > 0 && <span className="discount-tag-home">{(((product.regular_price - product.sale_price) / product.regular_price) * 100).toFixed(0)}% off</span>}
                             <Link to={`/product-details/${product.id}`}><img src={`product-images/${product.product_image}.jpg`} className="product-thumb-home" alt="" /></Link>
                             {product.already_in_wishlist ? <button value={product.id} className="card-btn-wishlist-home" onClick={saveItemToWishlist}>remove from wishlist</button>
                             : <button value={product.id} className="card-btn-home" onClick={saveItemToWishlist}>add to wishlist</button>}

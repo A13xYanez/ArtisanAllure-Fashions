@@ -13,6 +13,7 @@ import ToastProvider from '../reusable-components/ToastContext';
 import './Home.css';
 
 export default function HomePage({ setStopScroll }) {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
     return (
         <>
             <ToastProvider>

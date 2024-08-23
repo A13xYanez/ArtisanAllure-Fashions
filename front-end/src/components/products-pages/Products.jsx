@@ -33,27 +33,33 @@ export default function Products(props) {
             .catch((error) => { console.error(error.response.data.error); });
         }
 
-        axios.get('http://localhost:8080/account/displayProductsInCart')
-        .then((res) => { setInCart(res.data) })
-        .catch((error) => { console.error(error.response.data.error); });
+        const getUserData = async() => {
+            await axios.get('http://localhost:8080/account/displayProductsInCart')
+            .then((res) => { setInCart(res.data) })
+            .catch((error) => { console.error(error.response.data.error); });
+    
+            await axios.get(`http://localhost:8080/account/displayProductsInWishlist`)
+            .then((res) => { setInWishList(res.data) })
+            .catch((error) => { console.error(error.response.data.error); });
+    
+            setRerenderProducts(false);
+        }
 
-        axios.get(`http://localhost:8080/account/displayProductsInWishlist`)
-        .then((res) => { setInWishList(res.data) })
-        .catch((error) => { console.error(error.response.data.error); });
-
-        setRerenderProducts(false);
+        getUserData();
     }, [page, rerenderProducts]);
 
-    function addItemToCart(e) {
-        axios.post(`http://localhost:8080/account/addToCart/${(e.target.value)}`)
-        .then((res) => toast("success", "Product successfully added to cart!"), setRerenderProducts(true))
+    const addItemToCart = async(e) => {
+        await axios.post(`http://localhost:8080/account/addToCart/${(e.target.value)}`)
+        .then((res) => toast("success", "Product successfully added to cart!"))
         .catch((error) => toast("error", "Please login to add product to cart"));
+        setRerenderProducts(true);
     };
 
-    function saveItemToWishlist(e) {
-        axios.post(`http://localhost:8080/account/saveToWishlist/${(e.target.value)}`)
-        .then((res) => toast("success", "Product successfully saved to wishlist!"), setRerenderProducts(true))
+    const saveItemToWishlist = async(e) => {
+        await axios.post(`http://localhost:8080/account/saveToWishlist/${(e.target.value)}`)
+        .then((res) => toast("success", "Product successfully saved to wishlist!"))
         .catch((error) => toast("error", "Please login to save product to wishlist"));
+        setRerenderProducts(true);
     };
 
     function showFilterButtons() {
@@ -114,7 +120,7 @@ export default function Products(props) {
                             <button value={product.id} className={product.already_in_wishlist ? "filled-heart-container" : "heart-container"} onClick={saveItemToWishlist}>
                                 {product.already_in_wishlist ? <FaHeart className="heart-icon" /> : <FaRegHeart className="heart-icon" />}
                             </button>
-                            {product.sale_price > 0 && <span className="discount-tag">{((product.regular_price / product.sale_price) * 100).toFixed(0)}% off</span>}
+                            {product.sale_price > 0 && <span className="discount-tag">{(((product.regular_price - product.sale_price) / product.regular_price) * 100).toFixed(0)}% off</span>}
                             <Link to={`/product-details/${product.id}`}><img src={`product-images/${product.product_image}.jpg`} className="product-thumb" alt="" /></Link>
                             {product.already_in_wishlist ? <button value={product.id} className="card-btn-wishlist" onClick={saveItemToWishlist}>remove from wishlist</button>
                             : <button value={product.id} className="card-btn" onClick={saveItemToWishlist}>add to wishlist</button>}

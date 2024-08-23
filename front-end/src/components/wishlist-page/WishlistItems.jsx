@@ -27,23 +27,29 @@ export default function WishlistItems() {
         .then((res) => { setProducts(res.data), setIsLoggedIn(true) })
         .catch((error) => { console.error(error.response.data.error); });
 
-        axios.get('http://localhost:8080/account/displayProductsInCart')
-        .then((res) => { setInCart(res.data) })
-        .catch((error) => { console.error(error.response.data.error); });
+        const getUserData = async() => {
+            await axios.get('http://localhost:8080/account/displayProductsInCart')
+            .then((res) => { setInCart(res.data) })
+            .catch((error) => { console.error(error.response.data.error); });
+    
+            setRerenderProducts(false);
+        }
 
-        setRerenderProducts(false);
+        getUserData();
     }, [rerenderProducts]);
 
-    function addItemToCart(e) {
-        axios.post(`http://localhost:8080/account/addToCart/${(e.target.value)}`)
-        .then((res) => toast("success", "Product successfully added to cart!"), setRerenderProducts(true))
+    const addItemToCart = async(e) => {
+        await axios.post(`http://localhost:8080/account/addToCart/${(e.target.value)}`)
+        .then((res) => toast("success", "Product successfully added to cart!"))
         .catch((error) => toast("error", "Please login to add product to cart"));
+        setRerenderProducts(true);
     };
 
-    function saveItemToWishlist(e) {
-        axios.post(`http://localhost:8080/account/saveToWishlist/${(e.target.value)}`)
-        .then((res) => toast("success", "Product successfully removed from wishlist!"), setRerenderProducts(true))
+    const saveItemToWishlist = async(e) => {
+        await axios.post(`http://localhost:8080/account/saveToWishlist/${(e.target.value)}`)
+        .then((res) => toast("success", "Product successfully removed from wishlist!"))
         .catch((error) => toast("error", "An unexpected error has occurred"));
+        setRerenderProducts(true);
     };
 
     for (let productCount in products) {
@@ -75,7 +81,7 @@ export default function WishlistItems() {
                             <button value={product.id} className={product.already_in_wishlist ? "filled-heart-container-wish" : "heart-container-wishlist"} onClick={saveItemToWishlist}>
                                 {product.already_in_wishlist ? <FaHeart className="heart-icon-wishlist" /> : <FaRegHeart className="heart-icon-wishlist" />}
                             </button>
-                            {product.sale_price > 0 && <span className="discount-tag-wishlist">{((product.regular_price / product.sale_price) * 100).toFixed(0)}% off</span>}
+                            {product.sale_price > 0 && <span className="discount-tag-wishlist">{(((product.regular_price - product.sale_price) / product.regular_price) * 100).toFixed(0)}% off</span>}
                             <Link to={`/product-details/${product.id}`}><img src={`product-images/${product.product_image}.jpg`} className="product-thumb-wishlist" alt="" /></Link>
                             {product.already_in_wishlist ? <button value={product.id} className="card-btn-wishlist-wish" onClick={saveItemToWishlist}>remove from wishlist</button>
                             : <button value={product.id} className="card-btn-wishlist" onClick={saveItemToWishlist}>add to wishlist</button>}

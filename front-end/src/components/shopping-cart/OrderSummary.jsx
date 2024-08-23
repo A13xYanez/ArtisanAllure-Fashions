@@ -23,7 +23,7 @@ export default function OrderSummary() {
                 <div className="costs-total">
                     <div className="category-section">
                         <p className='category-title'>Subtotal</p>
-                        <p className='category-costs'>${estimatedTotal}</p>
+                        <p className='category-costs'>${(estimatedTotal).toFixed(2)}</p>
                     </div>
                     <div className="category-section">
                         <p className='category-title'>Shipping</p>
