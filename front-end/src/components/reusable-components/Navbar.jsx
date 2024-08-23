@@ -38,7 +38,7 @@ export default function Navbar({ setStopScroll }) {
 
     function searchForProduct(e) {
         e.preventDefault();
-        axios.post('http://localhost:8080/products/search', { searchQuery })
+        axios.post('https://artisanallurefashions-backend.onrender.com/products/search', { searchQuery })
         .then((res) => setProducts(res.data))
         .catch((error) => toast("error", "Error searching for product, please try again"))
     };

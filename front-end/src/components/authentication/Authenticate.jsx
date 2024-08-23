@@ -23,7 +23,7 @@ export default function Authenticate() {
 
     function loginUser(e) {
         e.preventDefault();
-        axios.post("http://localhost:8080/auth/login", { email, password })
+        axios.post("https://artisanallurefashions-backend.onrender.com/auth/login", { email, password })
         .then((res) => { navigate("/"), toast("success", "Logged in successfully!") })
         .catch((error) => toast("warning", `${error.response.data.error}`));
     };
@@ -35,7 +35,7 @@ export default function Authenticate() {
             return toast("warning", "Passwords do not match...")
         }
 
-        axios.post("http://localhost:8080/auth/register", { email, password, first_name, last_name })
+        axios.post("https://artisanallurefashions-backend.onrender.com/auth/register", { email, password, first_name, last_name })
         .then((res) => { navigate("/"), toast("success", "Account created successfully!") })
         .catch((error) => toast("warning", `${error.response.data.error}`));
     };

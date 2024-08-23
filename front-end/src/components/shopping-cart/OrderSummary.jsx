@@ -9,7 +9,7 @@ export default function OrderSummary() {
     const [estimatedTotal, setEstimatedTotal] = useState(0);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/account/cartTotal')
+        axios.get('https://artisanallurefashions-backend.onrender.com/account/cartTotal')
         .then((res) => { setEstimatedTotal(res.data); })
         .catch((error) => { console.error(error.response.data.error); });
     }, []);

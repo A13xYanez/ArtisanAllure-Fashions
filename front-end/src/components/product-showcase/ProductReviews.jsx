@@ -14,13 +14,13 @@ export default function ProductReviews({ refreshPage, setRefreshPage }) {
 
     useEffect(() => {
         setRefreshPage(false);
-        axios.get(`http://localhost:8080/product/review/${id}/${page}`)
+        axios.get(`https://artisanallurefashions-backend.onrender.com/product/review/${id}/${page}`)
         .then((res) => { setReviews(res.data); })
         .catch((error) => { console.error(error.response.data.error); });
     }, [page, refreshPage, id]);
 
     function incrementPage() {
-        axios.get(`http://localhost:8080/product/review/${id}/${page + 1}`)
+        axios.get(`https://artisanallurefashions-backend.onrender.com/product/review/${id}/${page + 1}`)
         .then((res) => { if (res.data.length) {setPage(page + 1)} })
         .catch((error) => { console.error(error.response.data.error); });
     }

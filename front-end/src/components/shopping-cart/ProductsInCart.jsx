@@ -11,15 +11,15 @@ export default function ProductsInCart() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/account/displayProductsInCart')
+        axios.get('https://artisanallurefashions-backend.onrender.com/account/displayProductsInCart')
         .then((res) => { setProducts(res.data), setIsLoggedIn(true) })
         .catch((error) => { console.error(error.response.data.error); });
     }, []);
 
     function incrementProduct(e) {
-        axios.post(`http://localhost:8080/account/addToCart/${(e.target.value)}`)
+        axios.post(`https://artisanallurefashions-backend.onrender.com/account/addToCart/${(e.target.value)}`)
         .then((res) => {
-            axios.get('http://localhost:8080/account/displayProductsInCart')
+            axios.get('https://artisanallurefashions-backend.onrender.com/account/displayProductsInCart')
             .then((res) => { setProducts(res.data); })
             .catch((error) => { console.error(error.response.data.error); });
         })
@@ -27,9 +27,9 @@ export default function ProductsInCart() {
     };
 
     function decrementProduct(e) {
-        axios.put(`http://localhost:8080/account/subtractFromCart/${e.target.value}`)
+        axios.put(`https://artisanallurefashions-backend.onrender.com/account/subtractFromCart/${e.target.value}`)
         .then((res) => {
-            axios.get('http://localhost:8080/account/displayProductsInCart')
+            axios.get('https://artisanallurefashions-backend.onrender.com/account/displayProductsInCart')
             .then((res) => { setProducts(res.data); })
             .catch((error) => { console.error(error.response.data.error); });
         })

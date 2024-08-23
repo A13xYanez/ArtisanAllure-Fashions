@@ -28,17 +28,17 @@ export default function Products(props) {
 
     useEffect(() => {
         if (!rerenderProducts) {
-            axios.get(`http://localhost:8080/${props.urlPath}/${page}`)
-            .then((res) => { setProducts(res.data); })
+            axios.get(`https://artisanallurefashions-backend.onrender.com/${props.urlPath}/${page}`)
+            .then((res) => { setProducts(res.data); document.body.scrollTop = document.documentElement.scrollTop = 0; })
             .catch((error) => { console.error(error.response.data.error); });
         }
 
         const getUserData = async() => {
-            await axios.get('http://localhost:8080/account/displayProductsInCart')
+            await axios.get('https://artisanallurefashions-backend.onrender.com/account/displayProductsInCart')
             .then((res) => { setInCart(res.data) })
             .catch((error) => { console.error(error.response.data.error); });
     
-            await axios.get(`http://localhost:8080/account/displayProductsInWishlist`)
+            await axios.get(`https://artisanallurefashions-backend.onrender.com/account/displayProductsInWishlist`)
             .then((res) => { setInWishList(res.data) })
             .catch((error) => { console.error(error.response.data.error); });
     
@@ -49,14 +49,14 @@ export default function Products(props) {
     }, [page, rerenderProducts]);
 
     const addItemToCart = async(e) => {
-        await axios.post(`http://localhost:8080/account/addToCart/${(e.target.value)}`)
+        await axios.post(`https://artisanallurefashions-backend.onrender.com/account/addToCart/${(e.target.value)}`)
         .then((res) => toast("success", "Product successfully added to cart!"))
         .catch((error) => toast("error", "Please login to add product to cart"));
         setRerenderProducts(true);
     };
 
     const saveItemToWishlist = async(e) => {
-        await axios.post(`http://localhost:8080/account/saveToWishlist/${(e.target.value)}`)
+        await axios.post(`https://artisanallurefashions-backend.onrender.com/account/saveToWishlist/${(e.target.value)}`)
         .then((res) => toast("success", "Product successfully saved to wishlist!"))
         .catch((error) => toast("error", "Please login to save product to wishlist"));
         setRerenderProducts(true);
@@ -67,7 +67,7 @@ export default function Products(props) {
     };
 
     function incrementPage() {
-        axios.get(`http://localhost:8080/${props.urlPath}/${page + 1}`)
+        axios.get(`https://artisanallurefashions-backend.onrender.com/${props.urlPath}/${page + 1}`)
         .then((res) => { if (res.data.length) {setPage(page + 1)} })
         .catch((error) => { console.error(error.response.data.error); });
     };

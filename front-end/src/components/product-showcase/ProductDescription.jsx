@@ -14,13 +14,13 @@ export default function ProductDescription() {
     const [quantity, setQuantity] = useState(1);
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/product/details/${id}`)
+        axios.get(`https://artisanallurefashions-backend.onrender.com/product/details/${id}`)
         .then((res) => { setProducts(res.data); })
         .catch((error) => { console.error(error.response.data.error); });
     }, [id]);
 
     function addItemToCart(e) {
-        axios.post(`http://localhost:8080/account/addToCart/${(e.target.value)}`)
+        axios.post(`https://artisanallurefashions-backend.onrender.com/account/addToCart/${(e.target.value)}`)
         .then((res) => toast("success", "Product successfully added to cart!"))
         .catch((error) => toast("error", "Please login to add product to cart"));
     };

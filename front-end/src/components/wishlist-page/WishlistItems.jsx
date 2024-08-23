@@ -23,12 +23,12 @@ export default function WishlistItems() {
     const [rerenderProducts, setRerenderProducts] = useState(false);
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/account/displayProductsInWishlist`)
+        axios.get(`https://artisanallurefashions-backend.onrender.com/account/displayProductsInWishlist`)
         .then((res) => { setProducts(res.data), setIsLoggedIn(true) })
         .catch((error) => { console.error(error.response.data.error); });
 
         const getUserData = async() => {
-            await axios.get('http://localhost:8080/account/displayProductsInCart')
+            await axios.get('https://artisanallurefashions-backend.onrender.com/account/displayProductsInCart')
             .then((res) => { setInCart(res.data) })
             .catch((error) => { console.error(error.response.data.error); });
     
@@ -39,14 +39,14 @@ export default function WishlistItems() {
     }, [rerenderProducts]);
 
     const addItemToCart = async(e) => {
-        await axios.post(`http://localhost:8080/account/addToCart/${(e.target.value)}`)
+        await axios.post(`https://artisanallurefashions-backend.onrender.com/account/addToCart/${(e.target.value)}`)
         .then((res) => toast("success", "Product successfully added to cart!"))
         .catch((error) => toast("error", "Please login to add product to cart"));
         setRerenderProducts(true);
     };
 
     const saveItemToWishlist = async(e) => {
-        await axios.post(`http://localhost:8080/account/saveToWishlist/${(e.target.value)}`)
+        await axios.post(`https://artisanallurefashions-backend.onrender.com/account/saveToWishlist/${(e.target.value)}`)
         .then((res) => toast("success", "Product successfully removed from wishlist!"))
         .catch((error) => toast("error", "An unexpected error has occurred"));
         setRerenderProducts(true);

@@ -23,17 +23,17 @@ export default function FeaturedProductscroller() {
 
     useEffect(() => {
         if (!rerenderProducts) {
-            axios.get('http://localhost:8080/home/featured')
+            axios.get('https://artisanallurefashions-backend.onrender.com/home/featured')
             .then((res) => { setProducts(res.data); })
             .catch((error) => { console.error(error.response.data.error); });
         }
 
         const getUserData = async() => {
-            await axios.get('http://localhost:8080/account/displayProductsInCart')
+            await axios.get('https://artisanallurefashions-backend.onrender.com/account/displayProductsInCart')
             .then((res) => { setInCart(res.data) })
             .catch((error) => { console.error(error.response.data.error); });
 
-            await axios.get(`http://localhost:8080/account/displayProductsInWishlist`)
+            await axios.get(`https://artisanallurefashions-backend.onrender.com/account/displayProductsInWishlist`)
             .then((res) => { setInWishList(res.data) })
             .catch((error) => { console.error(error.response.data.error); });
 
@@ -44,14 +44,14 @@ export default function FeaturedProductscroller() {
     }, [rerenderProducts]);
 
     const addItemToCart = async(e) => {
-        await axios.post(`http://localhost:8080/account/addToCart/${(e.target.value)}`)
+        await axios.post(`https://artisanallurefashions-backend.onrender.com/account/addToCart/${(e.target.value)}`)
         .then((res) => toast("success", "Product successfully added to cart!"))
         .catch((error) => toast("error", "Please login to add product to cart"));
         setRerenderProducts(true);
     };
 
     const saveItemToWishlist = async(e) => {
-        await axios.post(`http://localhost:8080/account/saveToWishlist/${(e.target.value)}`)
+        await axios.post(`https://artisanallurefashions-backend.onrender.com/account/saveToWishlist/${(e.target.value)}`)
         .then((res) => toast("success", "Product successfully saved to wishlist!"))
         .catch((error) => toast("error", "Please login to save product to wishlist"));
         setRerenderProducts(true);

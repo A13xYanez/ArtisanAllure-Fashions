@@ -17,7 +17,7 @@ export default function WriteReview({ setIsActive, setRefreshPage, id }) {
 
     function submitProductReview() {
         if (productRating != null && productReview != "") {
-            axios.post(`http://localhost:8080/product/create/review/${id}`, { productReview, productRating })
+            axios.post(`https://artisanallurefashions-backend.onrender.com/product/create/review/${id}`, { productReview, productRating })
             .then((res) => {setIsActive(false),
                             setRefreshPage(true),
                             toast("success", "Review submitted, thank you for your feedback!")})

@@ -15,7 +15,7 @@ export default function ProductRatings({ isActive, setIsActive, refreshPage, set
 
     useEffect(() => {
         setRefreshPage(false);
-        axios.get(`http://localhost:8080/product/rating/${id}`)
+        axios.get(`https://artisanallurefashions-backend.onrender.com/product/rating/${id}`)
         .then((res) => { setRatings(res.data); })
         .catch((error) => { console.error(error.response.data.error); });
     }, [refreshPage, id]);
