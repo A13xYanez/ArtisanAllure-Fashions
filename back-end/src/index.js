@@ -23,7 +23,7 @@ const app = express();
 // app.use(limiter);
 app.use(
     cors({
-        origin: 'http://localhost:5173',
+        origin: 'https://artisanallurefashions-frontend.onrender.com',
         credentials: true,
     })
 );
