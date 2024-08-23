@@ -67,7 +67,8 @@ export default function ProductsInCart() {
                         </div>
                         <div className="product-cart-costs">
                             <p className="total">Total</p>
-                            <p className="costs">${(product.regular_price * product.quantity).toFixed(2)}</p>
+                            {product.sale_price == 0 && <p className="costs">${(product.regular_price * product.quantity).toFixed(2)}</p>}
+                            {product.sale_price > 0 && <p className='sale-costs'>${(product.sale_price * product.quantity).toFixed(2)}</p>}
                         </div>
                     </div>
                 </div>

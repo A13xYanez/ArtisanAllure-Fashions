@@ -262,6 +262,11 @@
     font-size: 18px;
 }
 
+.sale-costs {
+    font-size: 18px;
+    color: red;
+}
+
 .product-img-desc {
     display: flex;
     width: 60%;

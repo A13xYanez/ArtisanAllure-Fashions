@@ -8,8 +8,8 @@ const productSchema = new mongoose.Schema({
     brand: { type: String, required: true },
     product_image: { type: String, required: true },
     description: { type: String, required: true },
-    regular_price: { type: String, required: true },
-    sale_price: { type: String },
+    regular_price: { type: Number, required: true },
+    sale_price: { type: Number },
     arrival_date: { type: Date, default: Date.now },
     gender: { type: String, required: true },
     age_group: { type: String, required: true },
@@ -33,7 +33,7 @@ export const ProductModel = mongoose.model('Product', productSchema);
 // Gets the featured products by newest to display on the homepage
 export const fetchHomeFeaturedProducts = async () => {
   try {
-    const itemsToFetch = 5; // maximum items to fetch
+    const itemsToFetch = 7; // maximum items to fetch
 
     // Fetch the newest products sorted by arrival_date in descending order
     const products = await ProductModel.find()
@@ -52,10 +52,10 @@ export const fetchHomeFeaturedProducts = async () => {
 // Gets the on sale products to display on the homepage
 export const fetchHomeSaleProducts = async () => {
   try {
-    const itemsToFetch = 5; // maximum items to fetch
+    const itemsToFetch = 7; // maximum items to fetch
 
      // Fetch the products on sale sorted by sale_price
-    const products = await ProductModel.find({  sale_price: { $gt: 0 } })
+    const products = await ProductModel.find({ sale_price: { $gt: 0 } })
       .limit(itemsToFetch) // limits the amount of products fetched
 
     return products;
@@ -70,7 +70,7 @@ export const fetchHomeSaleProducts = async () => {
 // Gets the featured products by newest to display on the homepage
 export const fetchHomeTopRatedProducts = async () => {
   try {
-    const itemsToFetch = 5; // maximum items to fetch
+    const itemsToFetch = 7; // maximum items to fetch
 
     // Fetch the highly rated products
     const products = await ProductModel.find()
@@ -89,7 +89,7 @@ export const fetchHomeTopRatedProducts = async () => {
 // Gets the products filtered by gender male and adult
 export const fetchFilterMensProducts = async (page) => {
   try {
-    const itemsToFetch = 20; // maximum items to fetch
+    const itemsToFetch = 12; // maximum items to fetch
 
     // Fetch the products filtered by gender, age, and limits products by page
     const products = await ProductModel.find({ gender: "Male", age_group: "Adult" })
@@ -108,7 +108,7 @@ export const fetchFilterMensProducts = async (page) => {
 // Gets the products filtered by gender female and adult
 export const fetchFilterWomansProducts = async (page) => {
   try {
-    const itemsToFetch = 20; // maximum items to fetch
+    const itemsToFetch = 12; // maximum items to fetch
 
     // Fetch the products filtered by gender, age, and limits products by page
     const products = await ProductModel.find({ gender: "Female", age_group: "Adult" })
@@ -127,7 +127,7 @@ export const fetchFilterWomansProducts = async (page) => {
 // Gets the products filtered by age group kids
 export const fetchFilterKidsProducts = async (page) => {
   try {
-    const itemsToFetch = 20; // maximum items to fetch
+    const itemsToFetch = 12; // maximum items to fetch
 
     // Fetch the products filtered by age and limits products by page
     const products = await ProductModel.find({ age_group: "Kid" })
@@ -146,7 +146,7 @@ export const fetchFilterKidsProducts = async (page) => {
 // Gets the products filtered by items on sale
 export const fetchFilterOnSaleProducts = async (page) => {
   try {
-    const itemsToFetch = 20; // maximum items to fetch
+    const itemsToFetch = 12; // maximum items to fetch
 
     // Fetch the products filtered by sale price grater than 0 and limits products by page
     const products = await ProductModel.find({  sale_price: { $gt: 0 } })
@@ -165,7 +165,7 @@ export const fetchFilterOnSaleProducts = async (page) => {
 // Gets the products filtered by newest
 export const fetchFilterFeaturedProducts = async (page) => {
   try {
-    const itemsToFetch = 20; // maximum items to fetch
+    const itemsToFetch = 12; // maximum items to fetch
 
     // Fetch the products filtered by newest and limits products by page
     const products = await ProductModel.find()
