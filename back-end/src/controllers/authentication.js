@@ -88,7 +88,7 @@ export const login = async (req, res) => {
     await user.save();
 
     res.cookie('session_token', user.authentication.session_token, {
-        domain: 'artisanallurefashions-frontend.onrender.com',
+        domain: 'artisanallurefashions-backend.onrender.com',
         path: '/',
         secure: true,
         httpOnly: true,
