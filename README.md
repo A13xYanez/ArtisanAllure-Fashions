@@ -7,4 +7,4 @@ Therefore, if there is anything in the application that does not work as intende
 it is becuase I haven't gotten around to that.
 
 Some additional details, the website is being hoasted using Render.com. I have used the free versions
-of Render.com as well as MongoDB Atlas so there may be slow downs.
+of Render.com as well as MongoDB Atlas so please keep in mind that there may be some slow downs when trying out the app.
